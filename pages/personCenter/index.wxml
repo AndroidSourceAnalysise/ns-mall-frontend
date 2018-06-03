@@ -1,0 +1,62 @@
+<!--pages/personCenter/index.wxml-->
+<view class="container person-center">
+  <view class="user-info">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class="user-info-detail">
+        <text class="user-info-item">会员号：{{userInfo.memberId}}</text>
+        <text class="user-info-item">昵称：{{userInfo.nickName}}</text>
+        <text class="user-info-item">推荐人：{{userInfo.recommender}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="person-stat common-border-bottom">
+    <view class="common-border-bottom">
+      <view class="person-stat-item">
+        <view class="inline-block">
+          <text class="red-text red-money">{{person.businessMoney}}元</text>
+          <text>营业额</text>
+        </view>
+      </view>
+      <view class="person-stat-item">
+        <view class="inline-block">
+          <text class="red-text red-money">{{person.integral}}元</text>
+          <text>积分猫币</text>
+        </view>
+      </view>
+      <view class="person-stat-item">
+        <view class="inline-block">
+          <text class="red-text red-money">{{person.businessMoney}}元</text>
+          <text>推广费</text>
+        </view>
+      </view>
+    </view>
+    <view class="common-border-bottom">
+      <view class="person-stat-item">
+      <icon></icon>
+      <text>二维码></text>
+      </view>
+      <view class="person-stat-item">
+        <icon></icon>
+        <text>提成订单></text>
+      </view>
+    </view>
+  </view>
+  <view class="person-item common-border-bottom">
+    <text>领券中心</text>
+    <text class="arrow">></text>
+  </view>
+  <view class="person-item common-border-bottom">
+    <text>收货地址</text>
+    <text class="arrow">></text>
+  </view>
+  <view class="person-item common-border-bottom">
+    <text>联系客服</text>
+    <text class="arrow">></text>
+  </view>
+  <view class="person-item common-border-bottom" bindtap="goMyMember">
+    <text>我的会员</text>
+    <text class="arrow">></text>
+  </view>
+</view>

@@ -1,0 +1,56 @@
+/* pages/orderCenter/index.wxss */
+.order-center {
+  align-items: left;
+}
+.order-item{
+  width: 100%;
+  margin-bottom: 16rpx;
+  background-color: #fff;
+}
+.order-item-status, .order-item-product, .order-statistic{
+  position: relative;
+  padding: 20rpx 40rpx;
+}
+.logo-img {
+  width: 58rpx;
+  height: 60rpx;
+  vertical-align: middle;
+}
+.shop-name {
+  margin-left: 1rem;
+  color: gray;
+}
+.order-status {
+  position: absolute;
+  right: 40rpx;
+  font-size: 32rpx;
+  color: red;
+}
+.product-img {
+  width: 112.8rpx;
+  height: 78rpx;
+  vertical-align:middle;
+}
+.product-name {
+  width: 240rpx;
+  margin: 0 20rpx 0 60rpx;
+}
+.product-other-info {
+  text-align: right;
+}
+.product-price {
+  display: block;
+  color: red;
+}
+.order-statistic {
+  font-size: 32rpx;
+  text-align: right;
+}
+.operate-btns {
+  padding: 16rpx 40rpx;
+  font-size: 0;
+}
+button[plain] {
+  border-color: gray;
+  border-radius: 0;
+}

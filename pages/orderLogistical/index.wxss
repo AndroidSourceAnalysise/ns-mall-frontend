@@ -1,0 +1,71 @@
+/* pages/orderLogistical/index.wxss */
+.order-logistical {
+  background-color: #fff;
+}
+.order-info {
+  padding: 60rpx;
+}
+.order-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+}
+.order-detail-info {
+  display: inline-block;
+  width: 420rpx;
+  margin-left: 20rpx;
+  vertical-align: top;
+}
+.order-detail-info text{
+  line-height: 40rpx;
+  font-size: 28rpx;
+}
+.gray-block {
+  height: 20rpx;
+  background-color: darkgray;
+}
+.logistical-info {
+  padding: 60rpx;
+}
+.timer-bar-item {
+  position: relative;
+  padding-bottom: 80rpx;
+  font-size: 30rpx;
+  color: darkgray;
+}
+.timer-bar-item .line {
+  position: absolute;
+  left: 120rpx;
+  top: 0;
+  width: 0;
+  height: 100%;
+  font-size: 0;
+  border: 1px solid gray;
+}
+.time, .circle, .message {
+  vertical-align: top;
+}
+.timer-bar-item .time {
+  width: 100rpx;
+}
+.timer-bar-item .circle {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 20rpx;
+  border-radius: 50%;
+  color: #fff;
+  background-color: gray;
+  text-align: center;
+}
+.timer-bar-item .message {
+  width: 400rpx;
+  margin-left: 20rpx;
+}
+.block {
+  display: block;
+}
+.green-text {
+  color: #009999;
+}

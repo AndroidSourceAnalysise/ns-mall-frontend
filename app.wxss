@@ -1,0 +1,30 @@
+/**app.wxss**/
+page {
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  background-color: #009999;
+  color: gray;
+}
+view {
+  width: 100%;
+  box-sizing: border-box;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+.vertical-top {
+  vertical-align: top;
+}
+.common-border-bottom {
+  border-bottom: 1rpx solid #009999;
+}
