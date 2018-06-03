@@ -6,6 +6,8 @@
     "pages/personCenter/index",
     "pages/myMember/index",
     "pages/orderLogistical/index",
+    "pages/rankPromotion/index",
+    "pages/coupon/index",
     "pages/logs/logs"
   ],
   "window":{

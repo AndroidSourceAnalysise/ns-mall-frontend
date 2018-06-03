@@ -1,0 +1,57 @@
+/* pages/rankPromotion/index.wxss */
+.promotion-rank {
+  background-color: #fff;
+}
+.title-area {
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 40rpx;
+}
+.title-area text {
+  width:33.3333%;
+}
+.rank-list {
+  padding: 0 40rpx;
+}
+.rank-item {
+  display: flex;
+  margin: 20rpx 0;
+}
+.rank-member, .rank-num-wrap, .promotion-money {
+  display: inline-block;
+  width: 33.3333%;
+  height: 80rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+}
+.member-img {
+  width: 80rpx;
+  height: 80rpx;
+  vertical-align: middle;
+}
+.member-name {
+  display: inline-block;
+  margin-left: 40rpx;
+  vertical-align: middle;
+}
+.rank-num {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: #cd8879;
+  text-align: center;
+}
+.top-rank-num {
+  background-color: #c13e43;
+}
+.ac {
+  text-align: center;
+}
+.ar {
+  text-align: right;
+}

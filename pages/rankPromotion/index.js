@@ -1,16 +1,15 @@
-// pages/myMember/index.js
+// pages/rankPromotion/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    curFilterType: '',
-    memberList: [
-      { nickName: '响叮当', memberId: '6788', memberImg: '', registerTiem: '2018-05-25 20:12:34', status: 1 },
-      { nickName: '当时明月在', memberId: '6789', memberImg: '', registerTiem: '2018-05-04 16:12:45', status: 1 },
-      { nickName: '花似梦', memberId: '6800', memberImg: '', registerTiem: '2018-01-15 20:12:34', status: 1 },
-      { nickName: '赵晓芳', memberId: '6899', memberImg: '', registerTiem: '2018-10-25 20:44:34', status: 0 }
+    rankList: [
+      { memberId: '6684', memberImg: '', memberName: '亿家', promotionMoney: 88856},
+      { memberId: '6685', memberImg: '', memberName: '花似梦', promotionMoney: 86342 },
+      { memberId: '6678', memberImg: '', memberName: '冷月心', promotionMoney: 80996 },
+      { memberId: '6696', memberImg: '', memberName: '殷紫萍', promotionMoney: 78684 }
     ]
   },
 
@@ -68,11 +67,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  filterMember: function(evt) {
-    var target = evt.target,
-        filterType = target.dataset.filterType;
-
-    this.setData({curFilterType: filterType});
   }
 })

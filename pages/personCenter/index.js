@@ -103,9 +103,14 @@ Page({
   onShareAppMessage: function () {
   
   },
+  seeRankOfPromotion: function () {
+    wx.navigateTo({
+      url: '../rankPromotion/index',
+    });
+  },
   goMyMember: function() {
     wx.navigateTo({
       url: '../myMember/index',
-    })
+    });
   }
 })

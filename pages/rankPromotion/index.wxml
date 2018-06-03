@@ -1,0 +1,20 @@
+<!--pages/rankPromotion/index.wxml-->
+<view class="container promotion-rank">
+  <view class="title-area common-border-bottom">
+    <text>会员</text>
+    <text class="ac">推广费</text>
+    <text class="ar">排行</text>
+  </view>
+  <view class="rank-list">
+    <view class="rank-item" wx:for="{{rankList}}" wx:key="{{item.memberId}}">
+      <view class="rank-member">
+          <image src="{{item.memberImg}}" class="member-img"></image>
+          <text class="member-name">{{item.memberName}}</text>
+      </view>
+      <text class="promotion-money ac">{{item.promotionMoney}}</text>
+      <view class="rank-num-wrap ar">
+        <text class="rank-num {{index < 3 ? 'top-rank-num' : ''}}">{{index + 1}}</text>
+      </view>
+    </view>
+  </view>
+</view>

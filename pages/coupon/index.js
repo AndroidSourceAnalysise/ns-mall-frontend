@@ -1,16 +1,14 @@
-// pages/myMember/index.js
+// pages/coupon/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    curFilterType: '',
-    memberList: [
-      { nickName: '响叮当', memberId: '6788', memberImg: '', registerTiem: '2018-05-25 20:12:34', status: 1 },
-      { nickName: '当时明月在', memberId: '6789', memberImg: '', registerTiem: '2018-05-04 16:12:45', status: 1 },
-      { nickName: '花似梦', memberId: '6800', memberImg: '', registerTiem: '2018-01-15 20:12:34', status: 1 },
-      { nickName: '赵晓芳', memberId: '6899', memberImg: '', registerTiem: '2018-10-25 20:44:34', status: 0 }
+    couponList: [
+      { couponName: '新人专享30元优惠', couponTypeStr: '新人专享', discountConsume: 200, reduceMoney: 35, beginDate: '2018-05-21', endDate: '2018-06-21' },
+      { couponName: '老顾客专属20元优惠', couponTypeStr: '老客优惠', discountConsume: 200, reduceMoney: 20, beginDate: '2018-04-15', endDate: '2018-06-21' },
+      { couponName: '新人专享30元优惠', couponTypeStr: '新人专享', discountConsume: 200, reduceMoney: 35, beginDate: '2018-05-21', endDate: '2018-06-21' },
     ]
   },
 
@@ -69,10 +67,10 @@ Page({
   onShareAppMessage: function () {
   
   },
-  filterMember: function(evt) {
+  receiveCoupon: function(evt) {
     var target = evt.target,
-        filterType = target.dataset.filterType;
+        id = target.dataset.couponId;
 
-    this.setData({curFilterType: filterType});
+    console.log(id);
   }
 })

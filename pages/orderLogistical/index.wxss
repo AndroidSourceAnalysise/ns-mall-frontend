@@ -19,6 +19,7 @@
 .order-detail-info text{
   line-height: 40rpx;
   font-size: 28rpx;
+  color: #330000;
 }
 .gray-block {
   height: 20rpx;
@@ -47,6 +48,7 @@
 }
 .timer-bar-item .time {
   width: 100rpx;
+  color: #000;
 }
 .timer-bar-item .circle {
   position: relative;
@@ -56,12 +58,13 @@
   font-size: 20rpx;
   border-radius: 50%;
   color: #fff;
-  background-color: gray;
+  background-color: #b3b3b3;
   text-align: center;
 }
 .timer-bar-item .message {
   width: 400rpx;
   margin-left: 20rpx;
+  color: #321600;
 }
 .block {
   display: block;

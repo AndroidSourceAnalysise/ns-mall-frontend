@@ -1,14 +1,12 @@
 <!--pages/myMember/index.wxml-->
 <view class="container my-member">
   <view class="filter-area white-bg" bindtap="filterMember">
-    <text data-filter-type="">全部会员</text>
-    <text data-filter-type="1">已购买</text>
-    <text data-filter-type="0">未购买</text>
+    <text data-filter-type="" class="{{curFilterType === '' ? 'active-filter' : ''}}">全部会员</text>
+    <text data-filter-type="1" class="{{curFilterType === '1' ? 'active-filter' : ''}}">已购买</text>
+    <text data-filter-type="0" class="{{curFilterType === '0' ? 'active-filter' : ''}}">未购买</text>
   </view>
   <view class="member-item white-bg" wx:for="{{memberList}}" wx:key="{{item.memberId}}">
-    <text class="member-register-time common-border-bottom">
-      注册日期：{{item.registerTiem}}
-    </text>
+    <text class="member-register-time common-border-bottom">注册日期：{{item.registerTiem}}</text>
     <view class="member-item-detail">
       <image src="{{item.memberImg}}" class="member-img"></image>
       <text>昵称：{{item.nickName}}</text>
