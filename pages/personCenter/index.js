@@ -105,12 +105,17 @@ Page({
   },
   seeRankOfPromotion: function () {
     wx.navigateTo({
-      url: '../rankPromotion/index',
+      url: '../rankPromotion/index'
     });
+  },
+  goCouponCenter: function () {
+    wx.navigateTo({
+      url: '../coupon/index'
+    })
   },
   goMyMember: function() {
     wx.navigateTo({
-      url: '../myMember/index',
+      url: '../myMember/index'
     });
   }
 })

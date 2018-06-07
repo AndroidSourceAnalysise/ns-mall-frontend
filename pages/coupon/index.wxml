@@ -1,19 +1,19 @@
 <!--pages/coupon/index.wxml-->
 <view class="container coupon-center">
-  <view class="title-area common-border-bottom">
-    <text>待领取</text>
-    <text class="ac">已领取</text>
-    <text class="ar">已失效</text>
+  <view class="filter-area common-border-bottom" bindtap="filterCoupon">
+    <text data-filter-type="0" class="{{curFilterType === '0' ? 'active-filter' : ''}}">待领取</text>
+    <text data-filter-type="1" class="{{curFilterType === '1' ? 'active-filter' : ''}}">已领取</text>
+    <text data-filter-type="2" class="{{curFilterType === '2' ? 'active-filter' : ''}}">已失效</text>
   </view>
   <view class="coupon-list">
     <view class="coupon-item" wx:for="{{couponList}}" wx:key="{{item.couponId}}">
       <view class="coupon-name-wrap">
           <text class="coupon-type">{{item.couponTypeStr}}</text>
-          <text class="coupon-name">{{item.couponName}}</text>
+          <text class="coupon-name">{{item.reduceMoney}}<text class="unit">元</text></text>
       </view>
-      <view>
-        <text class="coupon-discount">{{item.discountDetail}}</text>
-        <text class="term-valid">{{item.validTime}}</text>
+      <view class="coupon-info">
+        <text class="coupon-discount">满{{item.discountConsume}}减{{item.reduceMoney}}</text>
+        <text class="term-valid">{{item.beginDate}}-{{item.endDate}}</text>
       </view>
       <text class="operate-btn" data-coupon-id="{{item.couponId}}" bindtap="receiveCoupon">立即领取</text>
     </view>

@@ -1,2 +1,19 @@
 <!--pages/shoppingCart/index.wxml-->
-<text>pages/shoppingCart/index.wxml</text>
+<view class="container shopping-cart">
+  <view class="product-item" wx:for="{{productList}}" wx:key="{{item.id}}">
+    <text value="{{item.id}}" color="#cd363d" class="check-box"></text>
+    <image src="{{item.productImg}}" class="product-img"></image>
+    <view class="product-item-detail">
+      <text class="product-name">[{{item.name}}]</text>
+      <text class="product-specific">{{item.desc}}*{{item.num}}</text>
+      <view class="product-statis">
+        <text class="product-amount">¥ {{item.price*item.num}}</text>
+        <view class="ns-counter shopping-counter">
+          <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
+          <text class="ns-counter-num">{{item.num}}</text>
+          <text class="ns-counter-symbol" data-index="{{index}}" bindtap="addNum">+</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

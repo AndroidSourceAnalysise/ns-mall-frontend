@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    productList: [
+      { id: '001', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味250g', num: 4, price: 55 },
+      { id: '002', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味250g', num: 4, price: 55 },
+      { id: '003', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味200g', num: 1, price: 45 }
+    ]
   },
 
   /**
@@ -62,5 +66,37 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  reduceNum: function (evt) {
+    var target = evt.target,
+        index = target.dataset.index,
+        pro,
+        key,
+        obj = {};
+
+    index = parseInt(index, 10);
+    if (!(pro = this.data.productList[index])) {
+      return;
+    }
+    if (pro.num > 1) {
+      key = 'productList[' + index + '].num';
+      obj[key] = pro.num - 1;
+      this.setData(obj);
+    }
+  },
+  addNum: function (evt) {
+    var target = evt.target,
+      index = target.dataset.index,
+      pro,
+      key,
+      obj = {};
+
+    index = parseInt(index, 10);
+    if (!(pro = this.data.productList[index])) {
+      return;
+    }
+    key = 'productList[' + index + '].num';
+    obj[key] = pro.num + 1;
+    this.setData(obj);
   }
 })

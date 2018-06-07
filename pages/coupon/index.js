@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    curFilterType: '0',
     couponList: [
       { couponName: '新人专享30元优惠', couponTypeStr: '新人专享', discountConsume: 200, reduceMoney: 35, beginDate: '2018-05-21', endDate: '2018-06-21' },
       { couponName: '老顾客专属20元优惠', couponTypeStr: '老客优惠', discountConsume: 200, reduceMoney: 20, beginDate: '2018-04-15', endDate: '2018-06-21' },
@@ -67,7 +68,14 @@ Page({
   onShareAppMessage: function () {
   
   },
-  receiveCoupon: function(evt) {
+  filterCoupon: function (evt) {
+    var target = evt.target,
+      filterType = target.dataset.filterType;
+
+    this.setData({ curFilterType: filterType });
+  },
+  receiveCoupon: function (evt) {
+    //领取优惠券
     var target = evt.target,
         id = target.dataset.couponId;
 

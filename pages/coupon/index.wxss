@@ -1,1 +1,53 @@
 /* pages/coupon/index.wxss */
+.coupon-item {
+  padding: 16rpx 0;
+  margin: 13rpx 0;
+  color: #cc3333;
+  background-color: #fff;
+}
+.coupon-name-wrap, .coupon-info, .operate-btn {
+  display: inline-block;
+  vertical-align: top;
+}
+.coupon-name-wrap {
+  width: 176rpx;
+}
+.coupon-type {
+  padding: 8rpx 25rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background-color: #cd363b;
+}
+.coupon-name {
+  display: block;
+  padding-left: 40rpx;
+  margin-top: 25rpx;
+  font-size: 45rpx;
+}
+.unit {
+  font-size: 30rpx;
+}
+.coupon-info {
+  width: 250rpx;
+  margin: 24rpx 50rpx 0 0;
+}
+.coupon-discount, .term-valid {
+  display: block;
+  line-height: 1;
+  margin-top: 21rpx;
+}
+.coupon-discount {
+  font-size: 24rpx;
+}
+.term-valid {
+  font-size: 20rpx;
+}
+.operate-btn {
+  padding: 12rpx 25rpx;
+  margin-top: 45rpx;
+  border-radius: 4rpx;
+  font-size: 25rpx;
+  color: #fff;
+  background-color: #cd363b;
+}

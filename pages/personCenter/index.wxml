@@ -43,7 +43,7 @@
       </view>
     </view>
   </view>
-  <view class="person-item common-border-bottom">
+  <view class="person-item common-border-bottom" bindtap="goCouponCenter">
     <text>领券中心</text>
     <text class="arrow">></text>
   </view>

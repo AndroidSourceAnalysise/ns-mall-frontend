@@ -5,7 +5,7 @@
     <view class="order-detail-info">
       <text class="block">{{order.productName}}*{{order.num}}袋</text>
       <text class="block">{{order.logisticalCompany}} {{order.logisticalNo}}</text>
-      <text class="block green-text">{{order.statusStr}}</text>
+      <text class="block order-status">{{order.statusStr}}</text>
     </view>
   </view>
   <view class="gray-block"></view>

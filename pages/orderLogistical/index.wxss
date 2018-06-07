@@ -3,7 +3,7 @@
   background-color: #fff;
 }
 .order-info {
-  padding: 60rpx;
+  padding: 40rpx;
 }
 .order-img {
   width: 160rpx;
@@ -12,27 +12,27 @@
 }
 .order-detail-info {
   display: inline-block;
-  width: 420rpx;
+  width: 440rpx;
   margin-left: 20rpx;
   vertical-align: top;
 }
 .order-detail-info text{
   line-height: 40rpx;
-  font-size: 28rpx;
+  font-size: 25rpx;
   color: #330000;
 }
 .gray-block {
   height: 20rpx;
-  background-color: darkgray;
+  background-color: #f0eeee;
 }
 .logistical-info {
-  padding: 60rpx;
+  padding: 40rpx;
 }
 .timer-bar-item {
   position: relative;
   padding-bottom: 80rpx;
-  font-size: 30rpx;
-  color: darkgray;
+  font-size: 25rpx;
+  color: #321600;
 }
 .timer-bar-item .line {
   position: absolute;
@@ -55,7 +55,7 @@
   width: 40rpx;
   height: 40rpx;
   line-height: 40rpx;
-  font-size: 20rpx;
+  font-size: 25rpx;
   border-radius: 50%;
   color: #fff;
   background-color: #b3b3b3;
@@ -69,6 +69,6 @@
 .block {
   display: block;
 }
-.green-text {
-  color: #009999;
+.order-detail-info .order-status {
+  color: #336666;
 }

@@ -27,15 +27,17 @@
   color: red;
 }
 .product-img {
-  width: 112.8rpx;
-  height: 78rpx;
+  width: 140rpx;
+  height: 90rpx;
   vertical-align:middle;
 }
 .product-name {
-  width: 240rpx;
-  margin: 0 20rpx 0 60rpx;
+  width: 340rpx;
+  margin: 0 20rpx 0 30rpx;
+  font-size: 25rpx;
 }
 .product-other-info {
+  width: 80rpx;
   text-align: right;
 }
 .product-price {
@@ -43,7 +45,7 @@
   color: red;
 }
 .order-statistic {
-  font-size: 32rpx;
+  font-size: 28rpx;
   text-align: right;
 }
 .operate-btns {

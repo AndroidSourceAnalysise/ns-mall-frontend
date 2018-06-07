@@ -4,7 +4,7 @@ page {
   box-sizing: border-box;
   font-size: 26rpx;
   background-color: #009999;
-  color: #666;
+  color: #757575;
 }
 view {
   width: 100%;
@@ -24,3 +24,18 @@ view {
 .common-border-bottom {
   border-bottom: 1rpx solid #009999;
 }
+/* =======筛选栏统一样式begin======= */
+.filter-area {
+  display: flex;
+  background-color: #fff;
+}
+.filter-area text {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+}
+.active-filter {
+  color: #009999;
+}
+/* =======筛选栏统一样式end======= */

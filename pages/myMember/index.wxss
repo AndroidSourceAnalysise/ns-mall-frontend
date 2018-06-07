@@ -2,18 +2,6 @@
 .white-bg {
   background-color: #fff;
 }
-.filter-area {
-  display: flex;
-}
-.filter-area text {
-  width: 100%;
-  height: 120rpx;
-  line-height: 120rpx;
-  text-align: center;
-}
-.active-filter {
-  color: #009999;
-}
 .member-item {
   margin: 10rpx 0;
   padding: 0 40rpx;
