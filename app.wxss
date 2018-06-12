@@ -6,6 +6,9 @@ page {
   background-color: #009999;
   color: #757575;
 }
+view, text, image, input, button {
+  box-sizing: border-box;
+}
 view {
   width: 100%;
   box-sizing: border-box;
@@ -39,3 +42,31 @@ view {
   color: #009999;
 }
 /* =======筛选栏统一样式end======= */
+
+/* =======数量加减器样式begin======= */
+.ns-counter {
+  width: auto;
+  height: 50rpx;
+  line-height: 48rpx;
+  border: 1px solid #b5b4b4;
+  border-radius: 6rpx;
+  font-size: 25rpx;
+  color: #321600;
+  text-align: center;
+}
+.ns-counter-symbol, .ns-counter-num {
+  display: inline-block;
+  vertical-align: top;
+}
+.ns-counter-symbol {
+  width: 80rpx;
+}
+.ns-counter-num {
+  min-width: 60rpx;
+  padding: 0 10rpx;
+  border: 1px solid #b5b4b4;
+  border-top: 0;
+  border-bottom: 0;
+  box-sizing: border-box;
+}
+/* =======数量加减器样式begin======= */

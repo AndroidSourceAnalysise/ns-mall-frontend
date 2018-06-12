@@ -16,4 +16,12 @@
       </view>
     </view>
   </view>
+  <view class="shopping-statisc-area">
+    <view class="shopping-statisc-wrap">
+      <text color="#cd363d" class="check-box"></text>
+      <text>全选</text>
+      <text class="total-money">合计：¥{{totalMoney}}</text>
+      <text class="pay-btn" bindtap="goSettlement">去结算</text>
+    </view>
+  </view>
 </view>

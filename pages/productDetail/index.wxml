@@ -1,0 +1,37 @@
+<!--pages/productDetail/index.wxml-->
+<view class="container product-detail">
+  <image src="{{product.img}}" class="product-img"></image>
+  <view class="product-info common-style">
+    <text class="product-name">[{{product.name}}]</text><text class="product-desc">{{product.desc}}</text>
+    <view class="product-price">¥{{product.price}}</view>
+    <view class="product-statisc">
+      <text>快递：{{product.isExpressFree ? '免运费' : '¥' + product.expressMoney}}</text>
+      <text>月销{{product.salesCount}}笔</text>
+    </view>
+  </view>
+  <view class="product-other-info common-style">
+    <view bindtap="selectCoupon" class="relative">优惠券：<text class="coupons">{{coupons}}</text><text class="right-arrow">></text></view>
+    <view class="product-services">服务：{{product.services}}</view>
+  </view>
+  <view class="product-comment-area common-style">
+    <view class="comment-statis">
+      <text>宝贝评价 （{{product.commentCount}}）</text>
+      <text class="see-all-comment" bindtap="seeAllComments">查看全部></text>
+    </view>
+    <view class="comment-tags">
+      <text class="comment-tag" wx:for="{{product.commentTags}}" wx:key="{{index}}">{{item.tagName}}（{{item.tagCount}}）</text>
+    </view>
+    <view class="comment-item {{index === commentList.length-1 ? 'last-comment-item': ''}}" wx:for="{{commentList}}" wx:key="{{item.id}}">
+      <image class="comment-img" src="{{item.img}}"></image>
+      <view class="comment-item-detail">
+        <view>{{item.commentator}}</view>
+        <view class="comment-content">{{item.content}}</view>
+        <view>{{item.time}}</view>
+      </view>
+    </view>
+    <view class="operate-btns-wrap">
+      <text class="buy-btn" bindtap="buyProduct">立即购买</text>
+      <text class="add-cart-btn" bindtap="putShoppingCart">加入购物车</text>
+    </view>
+  </view>
+</view>

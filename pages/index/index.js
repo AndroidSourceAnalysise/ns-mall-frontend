@@ -50,5 +50,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  goProductDetail: function () {
+    wx.navigateTo({
+      url: '../productDetail/index'
+    });
   }
 })

@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    totalMoney: 0,
     productList: [
       { id: '001', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味250g', num: 4, price: 55 },
       { id: '002', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味250g', num: 4, price: 55 },
@@ -23,7 +24,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.updateTotalMoney();
   },
 
   /**
@@ -82,6 +83,7 @@ Page({
       key = 'productList[' + index + '].num';
       obj[key] = pro.num - 1;
       this.setData(obj);
+      this.updateTotalMoney();
     }
   },
   addNum: function (evt) {
@@ -98,5 +100,16 @@ Page({
     key = 'productList[' + index + '].num';
     obj[key] = pro.num + 1;
     this.setData(obj);
+    this.updateTotalMoney();
+  },
+  updateTotalMoney: function () {
+    var list = this.data.productList,
+        total = 0;
+
+    list.forEach(function (item) {
+      total += (item.num * item.price);
+    });
+    
+    this.setData({ totalMoney: total});
   }
 })
