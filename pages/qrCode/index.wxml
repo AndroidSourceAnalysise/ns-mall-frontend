@@ -1,0 +1,9 @@
+<!--pages/qrCode/index.wxml-->
+<view class="container qrcode-page">
+  <view class="title">品质生活，从咪之猫开始</view>
+  <view class="desc-text">
+    夏威夷果仁营养丰富，七汗油量70%作业本，蛋白质9%，含有人体必须的8种氨基酸，还富含光物质和维生素。果仁香酥滑嫩可口，油独特的奶油香味，有“干果皇后”，“世界坚果之王”之美称。
+  </view>
+  <image class="qrcode-img" src="{{recommendQRcode}}"></image>
+  <view class="recommend-text">你的分享，不仅能够成就自己也许还能改变一个人！</view>
+</view>

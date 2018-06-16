@@ -91,6 +91,7 @@
   vertical-align: top;
 }
 .comment-content {
+  line-height: 1.2;
   margin: 16rpx 0;
   color: #000;
 }

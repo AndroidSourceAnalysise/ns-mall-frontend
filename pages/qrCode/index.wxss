@@ -1,0 +1,29 @@
+/* pages/qrCode/index.wxss */
+.qrcode-page {
+  padding: 0 120rpx;
+  background-color: #fff;
+}
+.title {
+  padding-top: 100rpx;
+  margin-bottom: 84rpx;
+  font-size: 40rpx;
+  color: #321600;
+  text-align: center;
+}
+.desc-text {
+  line-height: 64rpx;
+  font-size: 32rpx;
+  color: #384d43;
+}
+.qrcode-img {
+  display: blockl;
+  width: 346rpx;
+  height: 346rpx;
+  margin: 118rpx auto 100rpx;
+}
+.recommend-text {
+  line-height: 80rpx;
+  font-size: 36rpx;
+  color: #000;
+  text-align: center;
+}

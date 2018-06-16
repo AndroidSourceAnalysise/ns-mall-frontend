@@ -108,10 +108,15 @@ Page({
       url: '../rankPromotion/index'
     });
   },
+  goQRCode: function () {
+    wx.navigateTo({
+      url: '../qrCode/index'
+    });
+  },
   goCouponCenter: function () {
     wx.navigateTo({
       url: '../coupon/index'
-    })
+    });
   },
   goMyMember: function() {
     wx.navigateTo({

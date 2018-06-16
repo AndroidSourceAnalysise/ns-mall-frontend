@@ -1,0 +1,15 @@
+<!--pages/payResult/index.wxml-->
+<view class="container pay-result">
+  <view class="pay-info common-block-style">
+    <icon type="{{order.payStatus}}" size="70"/>
+    <view class="pay-status-text">{{order.payStatusText}}</view>
+    <view class="other-text">获得{{order.integral}}积分，积分后续可抵扣或购买其他商品哦，敬请期待~</view>
+    <text class="ns-button shopping-btn" bindtap="goHome">继续购物</text>
+  </view>
+  <view class="order-info common-block-style">
+    <view class="order-info-item">订单金额<text class="order-info-val">{{order.money}}元</text></view>
+    <view class="order-info-item">支付时间<text class="order-info-val">{{order.payTime}}</text></view>
+    <view class="order-info-item">订单编号<text class="order-info-val">{{order.id}}</text></view>
+    <view class="order-info-item">收货地址<text class="order-info-val">{{order.address}}  {{order.receiver}}  {{order.phone}}</text></view>
+  </view>
+</view>

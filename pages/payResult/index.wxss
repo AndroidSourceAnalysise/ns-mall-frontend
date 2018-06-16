@@ -1,0 +1,34 @@
+/* pages/payResult/index.wxss */
+.pay-info {
+  font-size: 32rpx;
+  color: #676767;
+  text-align: center;
+}
+.pay-status-text {
+  margin: 34rpx 0 50rpx;
+  color: #99cc33;
+}
+.other-text {
+  line-height: 40rpx;
+}
+.shopping-btn {
+  margin: 52rpx auto 20rpx;
+}
+.order-info {
+  font-size: 30rpx;
+  color: #676767;
+}
+.order-info-item {
+  margin-bottom: 32rpx;
+}
+.order-info-item:last-child {
+  margin-bottom: 0;
+}
+.order-info-val {
+  display: inline-block;
+  width: 430rpx;
+  line-height: 38rpx;
+  margin-left: 80rpx;
+  color: #070d0c;
+  vertical-align: top;
+}

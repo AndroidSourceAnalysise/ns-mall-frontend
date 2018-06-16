@@ -1,5 +1,17 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container home">
+  <swiper indicator-dots autoplay circular class="swiper-area">
+    <swiper-item wx:for="{{swiperImgs}}">
+      <image src="{{item.img}}" class="slide-img"></image>
+    </swiper-item>
+  </swiper>
+  <view class="product-list">
+    <view class="product-item">
+      <view class="product-item-name">{{item.name}}</view>
+      <image src="{{item.img}}" class="product-item-img"></image>
+      <view class="ns-button" bindtap="goProductDetail">立即购买</view>
+    </view>
+  </view>
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>

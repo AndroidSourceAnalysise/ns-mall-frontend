@@ -35,7 +35,7 @@
     <view>
       <view class="person-stat-item">
       <icon></icon>
-      <text>二维码></text>
+      <text bindtap="goQRCode">二维码></text>
       </view>
       <view class="person-stat-item">
         <icon></icon>

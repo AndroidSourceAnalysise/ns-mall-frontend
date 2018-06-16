@@ -10,6 +10,8 @@
     "pages/coupon/index",
     "pages/productDetail/index",
     "pages/orderConfirm/index",
+    "pages/payResult/index",
+    "pages/qrCode/index",
     "pages/logs/logs"
   ],
   "window":{
@@ -24,19 +26,27 @@
     "backgroundColor":"#fff",
     "list":[
       {
-        "pagePath":"pages/index/index",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/icon-home.png",
+        "selectedIconPath": "images/tabBar/icon-home-active.png",
          "text":"首页"
       },
       {
         "pagePath": "pages/shoppingCart/index",
+        "iconPath": "images/tabBar/icon-shop-cart.png",
+        "selectedIconPath": "images/tabBar/icon-shop-cart-active.png",
         "text": "购物车"
       },
       {
         "pagePath": "pages/orderCenter/index",
+        "iconPath": "images/tabBar/icon-order.png",
+        "selectedIconPath": "images/tabBar/icon-order-active.png",
         "text": "我的订单"
       },
       {
         "pagePath": "pages/personCenter/index",
+        "iconPath": "images/tabBar/icon-user.png",
+        "selectedIconPath": "images/tabBar/icon-user-active.png",
         "text": "个人中心"
       }
     ]

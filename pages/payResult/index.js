@@ -1,32 +1,20 @@
-// pages/orderConfirm/index.js
+// pages/payResult/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    distributionInfo: {
-      name: '殷紫萍',
-      phone: '15837692389',
-      address: '广东省  深圳市福田区  福民新村小区  24栋502C'
-    },
     order: {
-      distributionMoney: 0,
-      productsAmount: 8,
-      money: 258,
-      productList: [
-        {
-          id: '001', img: '', name: '咪之猫夏威夷果', desc: '奶油味200g', num: 6, price: 55
-        }
-      ],
-      distributionMoney: 0,
-      money: 330,
-      availableCoupon: {
-        id: '002',
-        name: '可用优惠卷满199减35元',
-        discountMoney: 35
-      },
-      realPayment: 295
+      id: 9354834,
+      payStatus: 'success',
+      payStatusText: '恭喜您支付成功!',
+      integral: 20,
+      money: 160,
+      payTime: '2018-06-15 12:15:25',
+      address: '四川省成都市金融中心财富大厦A座306',
+      receiver: '殷紫萍',
+      phone: '15832662758'
     }
   },
 
@@ -85,9 +73,9 @@ Page({
   onShareAppMessage: function () {
   
   },
-  goPay: function () {
-    wx.navigateTo({
-      url: '../payResult/index'
+  goHome: function () {
+    wx.redirectTo({
+      url: '../index/index'
     });
   }
 })
