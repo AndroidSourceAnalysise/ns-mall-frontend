@@ -29,8 +29,8 @@ view {
 }
 .ns-button {
   display: inline-block;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   padding: 0 56rpx;
   border: 1px solid #676767;
   border-radius: 10rpx;

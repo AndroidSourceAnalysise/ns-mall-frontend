@@ -2,14 +2,14 @@
 <view class="container home">
   <swiper indicator-dots autoplay circular class="swiper-area">
     <swiper-item wx:for="{{swiperImgs}}">
-      <image src="{{item.img}}" class="slide-img"></image>
+      <image src="{{item.url}}" class="slide-img" data-pro-id="{{item.id}}" bindtap="goProductDetail"></image>
     </swiper-item>
   </swiper>
   <view class="product-list">
-    <view class="product-item">
-      <view class="product-item-name">{{item.name}}</view>
-      <image src="{{item.img}}" class="product-item-img"></image>
-      <view class="ns-button" bindtap="goProductDetail">立即购买</view>
+    <view class="product-item {{index % 2 === 0 ? '' : 'mr0'}}" wx:for="{{productList}}">
+      <view class="product-item-name">{{item.product_name}}</view>
+      <image src="{{item.image_url}}" class="product-item-img"></image>
+      <view class="ns-button buy-btn" data-pro-id="{{item.id}}" bindtap="goProductDetail">立即购买</view>
     </view>
   </view>
   <view class="userinfo">

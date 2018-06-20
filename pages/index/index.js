@@ -1,13 +1,17 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+var util = require('../../utils/util.js'), 
+    interfacePrefix = app.globalData.interfacePrefix;
 
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    swiperImgs: [],
+    productList: []
   },
   //事件处理函数
   bindViewTap: function() {
@@ -42,18 +46,52 @@ Page({
         }
       })
     }
+    this.getSwiperImgsList();
+    this.getProductList();
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
   },
-  goProductDetail: function () {
+  getSwiperImgsList: function () {
+    var self = this,
+        list;
+
+    wx.request({
+      url: interfacePrefix + '/photos/getPhotos',
+      success: function (res) {
+        list = res.data.data.top.map(function (item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
+        self.setData({ 'swiperImgs': list});
+      }
+    });
+  },
+  getProductList: function () {
+    var self = this,
+        list;
+
+    wx.request({
+      url: interfacePrefix + '/pnt/getProductList',
+      success: function (res) {
+        list = res.data.data.map(function (item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
+        self.setData({ 'productList': list});
+      }
+    });
+  },
+  goProductDetail: function (evt) {
+    var id = evt.target.dataset.proId;
+
+    if(!id) {
+      return;
+    }
     wx.navigateTo({
-      url: '../productDetail/index'
+      url: '../productDetail/index?id=' + id
     });
   }
 })

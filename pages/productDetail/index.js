@@ -1,4 +1,8 @@
 // pages/productDetail/index.js
+var app = getApp(),
+    util = require('../../utils/util.js'),
+    interfacePrefix = app.globalData.interfacePrefix;
+
 Page({
 
   /**
@@ -31,7 +35,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(location);
+    var params = util.parseQueryString(location.href),
+        pId = params.id;
+
+    if (!pId) {
+      return;
+    }
+    this.setData({'pId': pId, curPage: 1});
+    this.getProductDetail(pId);
+    this.getProductCommentList(pId, this.curPage);
   },
 
   /**
@@ -73,7 +86,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.this.getProductCommentList(this.pId, this.curPage);
   },
 
   /**
@@ -81,6 +94,30 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  getProductDetail: function (pId) {
+    wx.request({
+      url: interfacePrefix + '/pnt/getProductById',
+      method: 'POST',
+      data: {
+        pnt_id: pId
+      },
+      success: function (res) {
+
+      }
+    });
+  },
+  getProductCommentList: function(pId, pageSize) {
+    wx.request({
+      url: interfacePrefix + '/pntcmt/getPntCmtList',
+      method: 'POST',
+      data: {
+        pnt_id: pId
+      },
+      success: function (res) {
+        console.log(res);
+      }
+    });
   },
   buyProduct: function () {
     wx.navigateTo({

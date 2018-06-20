@@ -1,4 +1,5 @@
 //app.js
+var interfacePrefix = 'https://m.nashengbuy.com/ns-api/api';
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,6 +11,16 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: interfacePrefix + '/applet/login',
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            code: res.code
+          }
+        });
       }
     })
     // 获取用户信息
@@ -34,6 +45,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    interfacePrefix: interfacePrefix
   }
 })
