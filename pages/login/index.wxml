@@ -1,0 +1,12 @@
+<!--pages/login/index.wxml-->
+<view class="container login">
+  <view class="top-area">
+    <image class="logo-img" src="../../images/login/logo.png"></image>
+    <view class="author-desc">该页面由咪之猫小程序开发，向其提供以下权限，即可继续操作</view>
+  </view>
+  <view class="bottom-area">
+    <image src="../../images/login/ck-box.png" class="ck-box"></image>
+    <text class="author-scope">获得你公开信息（昵称、头像等）</text>
+    <button bindgetuserinfo="getUserInfoCb" type="primary" open-type="getUserInfo" lang="zh_CN" class="author-btn">确认授权</button>
+  </view>
+</view>

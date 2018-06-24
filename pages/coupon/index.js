@@ -1,4 +1,7 @@
 // pages/coupon/index.js
+var util = require('../../utils/util.js'),
+    interfacePrefix = util.interfacePrefix;
+
 Page({
 
   /**
@@ -10,14 +13,17 @@ Page({
       { couponName: '新人专享30元优惠', couponTypeStr: '新人专享', discountConsume: 200, reduceMoney: 35, beginDate: '2018-05-21', endDate: '2018-06-21' },
       { couponName: '老顾客专属20元优惠', couponTypeStr: '老客优惠', discountConsume: 200, reduceMoney: 20, beginDate: '2018-04-15', endDate: '2018-06-21' },
       { couponName: '新人专享30元优惠', couponTypeStr: '新人专享', discountConsume: 200, reduceMoney: 35, beginDate: '2018-05-21', endDate: '2018-06-21' },
-    ]
+    ],
+    pageNum: 1,
+    pageSize: 20,
+    isLastPage: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getCouponList(this.data.pageNum, '');
   },
 
   /**
@@ -67,6 +73,25 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  getCouponList: function (pageNum, status) {
+    var self = this,
+        list = self.data.couponList;
+
+    wx.request({
+      url: interfacePrefix + '/coupon/getTldCouponList',
+      method: 'POST',
+      data: {
+        page_num: pageNum,
+        page_size: self.data.pageSize
+      },
+      success: function (res) {
+        console.log(list);
+        return;
+        list = list.concat(res.data);
+        self.setData({ couponList: list });
+      }
+    });
   },
   filterCoupon: function (evt) {
     var target = evt.target,

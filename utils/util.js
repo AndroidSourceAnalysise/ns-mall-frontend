@@ -26,24 +26,25 @@ function toLowerCaseForObjectProperty(obj) {
 
   return obj;
 }
-function parseQueryString(str) {
-  var regUrl = /^[^\?]+\?([\w\W]+)$/,
-    regPara = /([^&=]+)=([\w\W]*?)(&|$|#)/g,
-    arrUrl = regUrl.exec(str),
-    arrPara,
-    strPara,
-    rs = {};
+/*获取当前页Info*/
+function getCurrentPageInfo() {
+  //获取加载的页面
+  var pages = getCurrentPages(),
+      //获取当前页面的对象
+      currentPage = pages[pages.length - 1],
+      //当前页面url
+      url = currentPage.route,
+      options = currentPage.options;
 
-  if (arrUrl && arrUrl[1]) {
-    strPara = arrUrl[1];
-    while ((arrPara = regPara.exec(strPara)) != null) {
-      rs[arrPara[1]] = arrPara[2];
-    }
-  }
-  return rs;
-};
+  return {
+    url: url,
+    params: options
+  };
+}
+
 module.exports = {
   formatTime: formatTime,
   toLowerCaseForObjectProperty: toLowerCaseForObjectProperty,
-  parseQueryString: parseQueryString
+  getCurrentPageInfo: getCurrentPageInfo,
+  interfacePrefix: 'https://m.nashengbuy.com/ns-api/api'
 }

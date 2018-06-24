@@ -1,9 +1,13 @@
 <!--pages/orderConfirm/index.wxml-->
 <view class="container order-confirm">
-  <view class="distribution-info common-block-style">
+  <view class="distribution-info common-block-style" wx:if="{{distributionInfo}}">
     <text>{{distributionInfo.name}}</text>
     <text class="distribution-phone">{{distributionInfo.phone}}</text>
     <view class="distribution-address">{{distributionInfo.address}}</view>
+    <text class="right-arrow">></text>
+  </view>
+  <view class="distribution-info common-block-style" wx:else bindtap="showAddressPop">
+    <text>您还没配置收货地址，点击去添加收货地址</text>
     <text class="right-arrow">></text>
   </view>
   <view class="product-info-wrap common-block-style" wx:for="{{order.productList}}" wx:for-item="product" wx:key="{{product.id}}">

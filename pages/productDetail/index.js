@@ -1,7 +1,6 @@
 // pages/productDetail/index.js
-var app = getApp(),
-    util = require('../../utils/util.js'),
-    interfacePrefix = app.globalData.interfacePrefix;
+var util = require('../../utils/util.js'),
+    interfacePrefix = util.interfacePrefix;
 
 Page({
 
@@ -10,33 +9,34 @@ Page({
    */
   data: {
     product: {
-      img: '',
-      name: '咪之猫-夏威夷果200gx3袋',
-      desc: '坚果零食组合大礼包',
-      price: 98,
-      isExpressFree: true,
-      salesCount: 6888,
-      coupons: [],
-      services: ['订单险', '7天无理由退货'],
-      commentCount: 128345,
-      commentTags: [
-        { id: '001', tagName: '物流速度快', tagCount: 999},
-        { id: '001', tagName: '质量好', tagCount: 689 },
-        { id: '001', tagName: '味道不错', tagCount: 1200 }
-      ]
+      // img: '',
+      // name: '咪之猫-夏威夷果200gx3袋',
+      // desc: '坚果零食组合大礼包',
+      // price: 98,
+      // isExpressFree: true,
+      // salesCount: 6888,
+      // coupons: [],
+      // services: ['订单险', '7天无理由退货'],
+      // commentCount: 128345,
+      // commentTags: [
+      //   { id: '001', tagName: '物流速度快', tagCount: 999},
+      //   { id: '001', tagName: '质量好', tagCount: 689 },
+      //   { id: '001', tagName: '味道不错', tagCount: 1200 }
+      // ]
     },
     commentList: [
       { id: '001', img: '', commentator: '响叮当', content: '好吃非常划算，店家很有耐心', time: '2018-05-14 10:44:08' },
       { id: '002', img: '', commentator: '花似梦', content: '味道非常棒，服务很贴心，真的很有顾客是上帝的感觉', time: '2018-05-15 18:22:08' }
-    ]
+    ],
+    services: '',
+    isCommentLastPage: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(location);
-    var params = util.parseQueryString(location.href),
+    var params = util.getCurrentPageInfo().params,
         pId = params.id;
 
     if (!pId) {
@@ -44,7 +44,8 @@ Page({
     }
     this.setData({'pId': pId, curPage: 1});
     this.getProductDetail(pId);
-    this.getProductCommentList(pId, this.curPage);
+    this.getServices();
+    this.getProductCommentList(pId, this.data.curPage);
   },
 
   /**
@@ -86,7 +87,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.this.getProductCommentList(this.pId, this.curPage);
+    !this.data.isCommentLastPage && this.getProductCommentList(this.data.pId, this.data.curPage);
   },
 
   /**
@@ -96,6 +97,9 @@ Page({
   
   },
   getProductDetail: function (pId) {
+    var self = this,
+        p;
+
     wx.request({
       url: interfacePrefix + '/pnt/getProductById',
       method: 'POST',
@@ -103,28 +107,100 @@ Page({
         pnt_id: pId
       },
       success: function (res) {
-
+        p = util.toLowerCaseForObjectProperty(res.data.product);
+        p.productNum = 1;
+        self.setData({ product:  p });
       }
     });
   },
-  getProductCommentList: function(pId, pageSize) {
+  getProductCommentList: function(pId, curPage) {
+    var self = this,
+        list = this.data.commentList;
+
     wx.request({
       url: interfacePrefix + '/pntcmt/getPntCmtList',
       method: 'POST',
       data: {
-        pnt_id: pId
+        pnt_id: pId,
+        page_size: 20,
+        page_number: curPage
       },
       success: function (res) {
-        console.log(res);
+        if(!res.data.lastPage) {
+          list = list.concat(res.data.list);
+          self.setData({ commentList: list });
+        }else {
+          self.setData({ isCommentLastPage: true });
+        }
       }
     });
   },
+  reduceNum: function (evt) {
+    var target = evt.target,
+        num,
+        key,
+        obj = {};
+
+    num = this.data.product.productNum;
+    if (num > 1) {
+      key = 'product.productNum';
+      obj[key] = num - 1;
+      this.setData(obj);
+    }
+  },
+  addNum: function (evt) {
+    var target = evt.target,
+        num,
+        key,
+        obj = {};
+
+    num = this.data.product.productNum;
+    key = 'product.productNum';
+    obj[key] = num + 1;
+    this.setData(obj);
+  },
   buyProduct: function () {
     wx.navigateTo({
-      url: '../orderConfirm/index'
+      url: '../orderConfirm/index?id=' + this.data.pId
+    });
+  },
+  getServices: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/sys/dict/getByParamKey',
+      method: 'POST',
+      data: {
+        paramKey: 'service_desc'
+      },
+      success: function (res) {
+        self.setData({services: res.data});
+      }
     });
   },
   putShoppingCart: function () {
+    var self = this,
+        product = self.data.product;
 
+    wx.request({
+      url: interfacePrefix + '/cart/add',
+      method: 'POST',
+      data: {
+        product_id: product.id,
+        product_name: product.product_name,
+        product_image_url: product.image_url,
+        product_num: product.productNum,
+        product_price: product.sal_price,
+        re_product_price: product.sal_price
+      },
+      success: function (res) {
+        wx.showToast({
+          title: '添加到购物车成功，在购车里等你哦~',
+          icon: 'none',
+          duration: 2000,
+          mask: true
+        });
+      }
+    });
   }
 })

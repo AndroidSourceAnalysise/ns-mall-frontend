@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    
     "pages/orderCenter/index",
     "pages/shoppingCart/index",
     "pages/personCenter/index",
@@ -12,7 +13,7 @@
     "pages/orderConfirm/index",
     "pages/payResult/index",
     "pages/qrCode/index",
-    "pages/logs/logs"
+    "pages/login/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

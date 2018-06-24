@@ -1,0 +1,40 @@
+/* pages/login/index.wxss */
+page {
+  padding: 0;
+  background-color: #fff;
+}
+.login {
+  font-size: 36rpx;
+}
+.top-area {
+  padding: 0 0 76rpx;
+  background-color: #019e97;
+  text-align: center;
+}
+.author-desc {
+  width: 540rpx;
+  line-height: 50rpx;
+  margin: 100rpx auto 76rpx;
+  color: #fff;
+}
+.bottom-area {
+  padding: 80rpx 50rpx 100rpx;
+  background-color: #fff;
+  text-align: center;
+}
+.ck-box {
+  width: 44rpx;
+  height: 44rpx;
+  vertical-align: middle;
+}
+.author-scope {
+  margin-left: 50rpx;
+  color: #999;
+  vertical-align: middle;
+}
+.author-btn {
+  margin-top: 70rpx;
+}
+button[type=primary] {
+  background-color: #019e97;
+}

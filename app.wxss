@@ -40,6 +40,7 @@ view {
 /* =======筛选栏统一样式begin======= */
 .filter-area {
   display: flex;
+  margin-bottom: 16rpx;
   background-color: #fff;
 }
 .filter-area text {
