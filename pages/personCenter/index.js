@@ -118,6 +118,11 @@ Page({
       url: '../coupon/index'
     });
   },
+  goAddress: function () {
+    wx.navigateTo({
+      url: '../address/index'
+    });
+  },
   goMyMember: function() {
     wx.navigateTo({
       url: '../myMember/index'

@@ -1,5 +1,6 @@
 /**app.wxss**/
 page {
+  height: 100%;
   padding: 20rpx;
   box-sizing: border-box;
   font-size: 26rpx;
@@ -36,6 +37,7 @@ view {
   border-radius: 10rpx;
   font-size: 32rpx;
   color: #676767;
+  text-align: center;
 }
 /* =======筛选栏统一样式begin======= */
 .filter-area {

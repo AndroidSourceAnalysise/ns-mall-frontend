@@ -1,0 +1,24 @@
+<!--pages/adress/index.wxml-->
+<view class="container address">
+  <view class="section">
+    <text>收货人</text><input class="input-item" placeholder="请输入收货人" />
+  </view>
+  <view class="section">
+    <text>联系电话</text><input class="input-item" placeholder="请输入收货人" type="number"/>
+  </view>
+  <view class="section">
+    <text>所在地区</text>
+    <picker mode="region" bindchange="getSelectedAddress" class="input-item" value="{{region}}">
+      <view class="selected-region">
+        {{region.length ? region[0] + '  ' + region[1] + '  ' + region[1] : '请选择所在地区'}}
+      </view>
+    </picker>
+  </view>
+  <view class="section">
+    <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" />
+  </view>
+  <view class="section">
+    <text>设置默认地址</text><switch class="switch-btn"/>
+  </view>
+  <view class="ns-button save-btn" bindtap="saveAddress">保存</view>
+</view>

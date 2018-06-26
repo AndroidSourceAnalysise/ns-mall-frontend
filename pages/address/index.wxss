@@ -1,0 +1,43 @@
+/* pages/adress/index.wxss */
+.address {
+  background-color: #fff;
+}
+.section {
+  position: relative;
+  height: 121rpx;
+  line-height: 120rpx;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #81cfcc;
+  font-size: 32rpx;
+  color: #000;
+}
+.section text {
+  display: inline-block;
+  width: 200rpx;
+  vertical-align: middle;
+}
+.section .input-item {
+  display: inline-block;
+  width: 460rpx;
+  vertical-align: middle;
+}
+.selected-region {
+  padding-right: 16rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.switch-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -60rpx;
+}
+.save-btn {
+  display: block;
+  width: 600rpx;
+  margin: 40rpx auto 0;
+  border: 0;
+  color: #fff;
+  background-color: #339999;
+}

@@ -47,7 +47,7 @@
     <text>领券中心</text>
     <text class="arrow">></text>
   </view>
-  <view class="person-item common-border-bottom">
+  <view class="person-item common-border-bottom" bindtap="goAddress">
     <text>收货地址</text>
     <text class="arrow">></text>
   </view>
