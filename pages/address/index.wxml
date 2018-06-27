@@ -1,24 +1,43 @@
 <!--pages/adress/index.wxml-->
 <view class="container address">
-  <view class="section">
-    <text>收货人</text><input class="input-item" placeholder="请输入收货人" />
-  </view>
-  <view class="section">
-    <text>联系电话</text><input class="input-item" placeholder="请输入收货人" type="number"/>
-  </view>
-  <view class="section">
-    <text>所在地区</text>
-    <picker mode="region" bindchange="getSelectedAddress" class="input-item" value="{{region}}">
-      <view class="selected-region">
-        {{region.length ? region[0] + '  ' + region[1] + '  ' + region[1] : '请选择所在地区'}}
+  <view wx:if="{{!isAdd}}">
+    <view class="address-item" wx:for="{{addressList}}" wx:key="{{item.id}}">
+      <view class="relative"><text>{{item.receiver}}</text><text class="address-phone">{{item.phone}}</text></view>
+      <view class="address-detail-item">{{item.detailAddress}}</view>
+      <view class="address-operate-item">
+        <view class="operate-wrap">
+          <view class="operate-btn-item" data-index="{{index}}" bindtap="editAddress">
+            <image src="../../images/address/edit.png" class="operate-img edit-img"/>  编辑
+          </view>
+          <view class="operate-btn-item" data-index="{{index}}" bindtap="deleteAddress">
+            <image src="../../images/address/delete.png" class="operate-img delete-img"/>  删除
+          </view>
+        </view>
       </view>
-    </picker>
+    </view>
+    <button class="save-btn" bindtap="addNewAddress">添加新地址</button>
   </view>
-  <view class="section">
-    <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" />
-  </view>
-  <view class="section">
-    <text>设置默认地址</text><switch class="switch-btn"/>
-  </view>
-  <view class="ns-button save-btn" bindtap="saveAddress">保存</view>
+  <form bindsubmit="saveAddress" wx:else>
+    <view class="section">
+      <text>收货人</text><input class="input-item" placeholder="请输入收货人" value="{{address.receiver}}" name="receiver"/>
+    </view>
+    <view class="section">
+      <text>联系电话</text><input class="input-item" placeholder="请输入收货人" type="number" value="{{address.phone}}" name="phone"/>
+    </view>
+    <view class="section">
+      <text>所在地区</text>
+      <picker mode="region" bindchange="getSelectedAddress" class="input-item" value="{{address.region}}" name="region">
+        <view class="selected-region">
+          {{address.region.length ? address.region[0] + '  ' + address.region[1] + '  ' + address.region[2] : '请选择所在地区'}}
+        </view>
+      </picker>
+    </view>
+    <view class="section">
+      <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" value="{{address.detailAddress}}" name="detailAddress"/>
+    </view>
+    <view class="section">
+      <text>设置默认地址</text><switch class="switch-btn" checked="{{address.isDefault}}" name="isDefault"/>
+    </view>
+    <button formType="submit" class="save-btn">保存</button>
+  </form>
 </view>

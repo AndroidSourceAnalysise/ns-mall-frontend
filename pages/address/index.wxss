@@ -2,6 +2,57 @@
 .address {
   background-color: #fff;
 }
+.address-item {
+  padding: 60rpx 0 0;
+  color: #000;
+}
+.relative, .address-detail-item, .address-operate-item {
+  padding: 0 40rpx;
+}
+.relative {
+  position: relative;
+  font-size: 32rpx;
+}
+.address-phone {
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+}
+.address-detail-item {
+  margin: 60rpx 0 40rpx;
+  font-size: 30rpx;
+}
+.address-operate-item {
+  position: relative;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: 1px solid #019e97;
+  border-left: 0;
+  border-right: 0;
+}
+.operate-wrap {
+  position: absolute;
+  right: 40rpx;
+  top: 50%;
+  width: auto;
+  line-height: 1;
+  margin-top: -30rpx;
+}
+.operate-btn-item {
+  display: inline-block;
+  width: auto;
+  margin-left: 20rpx;
+}
+.operate-img {
+  height: 60rpx;
+  vertical-align: middle;
+}
+.edit-img {
+  width: 55rpx;
+}
+.delete-img {
+  width: 70rpx;
+}
 .section {
   position: relative;
   height: 121rpx;
