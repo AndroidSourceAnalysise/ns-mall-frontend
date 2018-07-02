@@ -126,7 +126,7 @@ Page({
   },
   deleteAddress: function (evt) {
     var self = this,
-      target = evt.currentTarget,
+        target = evt.currentTarget,
         idx = target.dataset.index,
         list = this.data.addressList,
         addId;

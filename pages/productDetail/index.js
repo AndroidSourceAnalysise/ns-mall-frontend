@@ -28,7 +28,7 @@ Page({
       { id: '001', img: '', commentator: '响叮当', content: '好吃非常划算，店家很有耐心', time: '2018-05-14 10:44:08' },
       { id: '002', img: '', commentator: '花似梦', content: '味道非常棒，服务很贴心，真的很有顾客是上帝的感觉', time: '2018-05-15 18:22:08' }
     ],
-    services: '',
+    services: [],
     isCommentLastPage: false
   },
 
@@ -135,33 +135,10 @@ Page({
       }
     });
   },
-  reduceNum: function (evt) {
-    var target = evt.target,
-        num,
-        key,
-        obj = {};
-
-    num = this.data.product.productNum;
-    if (num > 1) {
-      key = 'product.productNum';
-      obj[key] = num - 1;
-      this.setData(obj);
-    }
-  },
-  addNum: function (evt) {
-    var target = evt.target,
-        num,
-        key,
-        obj = {};
-
-    num = this.data.product.productNum;
-    key = 'product.productNum';
-    obj[key] = num + 1;
-    this.setData(obj);
-  },
   buyProduct: function () {
+    wx.setStorageSync('ns-products', [this.data.product]);
     wx.navigateTo({
-      url: '../orderConfirm/index?id=' + this.data.pId
+      url: '../orderConfirm/index'
     });
   },
   getServices: function () {
@@ -174,7 +151,7 @@ Page({
         paramKey: 'service_desc'
       },
       success: function (res) {
-        self.setData({services: res.data});
+        self.setData({services: res.data.split('@')});
       }
     });
   },

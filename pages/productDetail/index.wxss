@@ -27,9 +27,9 @@
   color: #fa0808;
 }
 .shopping-counter {
-  position:absolute;
-  top:32rpx;
-  right:40rpx;
+  position: absolute;
+  top: 32rpx;
+  right: 40rpx;
 }
 .product-statisc text {
   margin-right: 140rpx;
@@ -45,8 +45,8 @@
   right: 0;
   top: 0;
 }
-.product-services {
-  margin-top: 40rpx;
+.service-item {
+  line-height: 40rpx;
 }
 .product-comment-area {
   padding-top: 80rpx;

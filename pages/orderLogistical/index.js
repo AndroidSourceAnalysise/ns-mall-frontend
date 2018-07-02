@@ -1,4 +1,7 @@
 // pages/orderLogistical/index.js
+var util = require('../../utils/util.js'),
+    interfacePrefix = util.interfacePrefix;
+
 Page({
 
   /**
@@ -34,10 +37,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var logistArr = this.data.logistMessageList.concat();
+    var self = this,
+        params = util.getCurrentPageInfo().params,
+        orderId = params.orderId,
+        logistArr;
 
+    if (!orderId) {
+      return;
+    }
+    this.getExpressInfo(orderId).then(function (expressNo) {
+      self.getLogisticalInfo(expressNo);
+    });
+    logistArr = this.data.logistMessageList.concat();
     logistArr.unshift({ time: '', message: this.data.order.receiveAddress});
-    console.log(logistArr);
     this.setData({
       logistMessageList: logistArr
     });
@@ -90,5 +102,43 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  getExpressInfo: function (orderId) {
+    return new Promise(function (resolve, reject) {
+      if (!orderId) {
+        reject('订单号不能为空!');
+      }
+      wx.request({
+        url: interfacePrefix + '/order/getOrderSplit',
+        method: 'POST',
+        data: {
+          order_id: orderId
+        },
+        success: function (res) {
+          resolve(res.data);
+        }
+      });
+    });
+  },
+  getLogisticalInfo: function (expressNo) {
+    var self = this;
+
+    if(!expressNo) {
+      return;
+    }
+    wx.request({
+      url: interfacePrefix + '/order/getWaybill',
+      method: 'POST',
+      data: {
+        billNo: expressNo
+      },
+      success: function (res) {
+        console.log(res);
+        return;
+        self.setData({
+          logistMessageList: res.data
+        });
+      }
+    })
   }
 })

@@ -16,8 +16,8 @@
     </view> -->
   </view>
   <view class="product-other-info common-style">
-    <view bindtap="selectCoupon" class="relative">优惠券：<text class="coupons">{{coupons}}</text><text class="right-arrow">></text></view>
-    <view class="product-services">服务：{{services}}</view>
+    <view class="product-services">服务：</view>
+    <view wx:for="{{services}}" class="service-item">{{index + 1}}.{{item}}</view>
   </view>
   <view class="product-comment-area common-style" wx:if="{{commentList.length}}">
     <view class="comment-statis">

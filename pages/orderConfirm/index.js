@@ -9,39 +9,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    distributionInfo: {},
+    distributionInfo: "",
     order: {
+      productsAmount: 0,
+      productList: [],
       distributionMoney: 0,
-      productsAmount: 8,
-      money: 258,
-      productList: [
-        {
-          id: '001', img: '', name: '咪之猫夏威夷果', desc: '奶油味200g', num: 6, price: 55
-        }
-      ],
-      distributionMoney: 0,
-      money: 330,
-      availableCoupon: {
-        id: '002',
-        name: '可用优惠卷满199减35元',
-        discountMoney: 35
-      },
-      realPayment: 295
-    }
+      money: 0,
+      availableCoupon: {},
+      realPayment: 0
+    },
+    useableCouponList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var params = util.getCurrentPageInfo().params,
-        pId = params.id;
-
     this.getReceiverAddress();
-    if (!pId) {
-      return;
-    }
-    this.setData({ 'pId': pId });
+    this.getProductList();
+    this.getUseableCouponList();
   },
 
   /**
@@ -92,19 +78,134 @@ Page({
   onShareAppMessage: function () {
   
   },
+  getProductList: function () {
+    var list = wx.getStorageSync('ns-products'),
+        counter = 0,
+        productNum,
+        totalMoney = 0;
+
+    list.forEach(function(item, idx) {
+      productNum = item.num || 1;
+      counter += productNum;
+      totalMoney += parseFloat((productNum * item.sal_price).toFixed(2));
+      list[idx].num = productNum;
+      list[idx].amount = (productNum * item.sal_price).toFixed(2);
+    });
+    if(list) {
+      this.setData({ 'order.productList': list, 'order.productsAmount': counter, 'order.money': totalMoney });
+    }
+  },
   getReceiverAddress: function () {
     //获取默认收货地址
-    var self = this;
+    var self = this,
+        info;
 
     wx.request({
       url: interfacePrefix + '/address/getDefault',
       success: function (res) {
-        self.setData({ distributionInfo: res.data});
+        info = util.toLowerCaseForObjectProperty(res.data);
+        info.addressDetail = info.province + info.city + info.district + info.address;
+        self.setData({ distributionInfo: info});
       }
     });
   },
   showAddressPop: function () {
     this.setData({showAddressPop: true});
+  },
+  getUseableCouponList: function () {
+    var self = this,
+        list,
+        typeMap = {
+          1: '满额优惠券',
+          0: '立减券'
+        },
+        maxCoupon;
+
+    wx.request({
+      url: interfacePrefix + '/coupon/getTldCouponList',
+      method: 'POST',
+      data: {
+        status: 0
+      },
+      success: function (res) {
+        list = res.data.map(function (item) {
+          item = util.toLowerCaseForObjectProperty(item);
+          item.type_str = typeMap[item.coupon_type];
+          item.desc = item.coupon_type == 1 ? '满' + item.safety_amount + '元减' + item.discount_amount + '元' : '立减' + item.discount_amount + '元';
+          return item;
+        });
+        self.setData({ useableCouponList: list });
+        maxCoupon = self.getMaxDiscountCoupon();
+        self.setData({ 'order.couponId': maxCoupon.id || '', 'order.availableCoupon': maxCoupon });
+      }
+    });
+  },
+  getMaxDiscountCoupon: function () {
+    var self = this,
+        list = self.data.useableCouponList,
+        money = 0,
+        index,
+        orderMoney = self.data.order.money;
+
+    list.forEach(function(item, idx) {
+      if (item.coupon_type == 1) {
+        if (item.safety_amount <= orderMoney && money < item.discount_amount) {
+          money = item.discount_amount;
+          index = idx;
+        }
+      }else {
+        //直减券
+        if (orderMoney >= item.discount_amount && money < item.discount_amount) {
+          money = item.discount_amount;
+          index = idx;
+        }
+      }
+    });
+
+    return typeof index !== 'undefined' ? list[index] : {};
+  },
+  reduceNum: function (evt) {
+    var target = evt.target,
+        index = target.dataset.index,
+        num,
+        price,
+        key,
+        obj = {};
+
+    num = this.data.order.productList[index].num;
+    price = this.data.order.productList[index].sal_price;
+    if (num > 1) {
+      key = 'order.productList[' + index + '].num';
+      obj[key] = num - 1;
+      key = 'order.productList[' + index + '].amount';
+      obj[key] = ((num - 1) * price).toFixed(2);
+      obj['order.money'] = this.data.order.money - price;
+      obj['order.productsAmount'] = this.data.order.productsAmount - 1;
+      this.setData(obj);
+      this.setData({ 'order.availableCoupon': this.getMaxDiscountCoupon() });
+    }
+  },
+  addNum: function (evt) {
+    var target = evt.target,
+        index = target.dataset.index,
+        num,
+        price,
+        key,
+        obj = {};
+
+    num = this.data.order.productList[index].num;
+    price = this.data.order.productList[index].sal_price;
+    key = 'order.productList[' + index + '].num';
+    obj[key] = num + 1;
+    key = 'order.productList[' + index + '].amount';
+    obj[key] = ((num + 1) * price).toFixed(2);
+    obj['order.money'] = this.data.order.money + price;
+    obj['order.productsAmount'] = this.data.order.productsAmount + 1;
+    this.setData(obj);
+    this.setData({ 'order.availableCoupon': this.getMaxDiscountCoupon() });
+  },
+  toFixed: function (num, precis) {
+    return num.toFixed(precis || 2);
   },
   goPay: function () {
     var self = this,

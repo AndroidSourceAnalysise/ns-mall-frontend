@@ -82,7 +82,7 @@ Page({
       url: interfacePrefix + '/cart/list',
       method: 'POST',
       data: {
-        page_number: pageNum,
+        page_num: pageNum,
         page_size: self.data.pageSize
       },
       success: function (res) {

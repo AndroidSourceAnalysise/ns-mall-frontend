@@ -29,8 +29,8 @@
   font-size: 30rpx;
 }
 .coupon-info {
-  width: 250rpx;
-  margin: 24rpx 50rpx 0 0;
+  width: 340rpx;
+  margin: 24rpx 30rpx 0 0;
 }
 .coupon-discount, .term-valid {
   display: block;
