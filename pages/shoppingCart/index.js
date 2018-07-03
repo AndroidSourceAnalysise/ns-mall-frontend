@@ -9,11 +9,7 @@ Page({
    */
   data: {
     totalMoney: 0,
-    productList: [
-      { id: '001', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味250g', num: 4, price: 55 },
-      { id: '002', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味250g', num: 4, price: 55 },
-      { id: '003', productImg: '', name: '咪之猫-夏威夷果', desc: '奶油味200g', num: 1, price: 45 }
-    ],
+    productList: [],
     pageNum: 1,
     pageSize: 20,
     isLastPage: false
@@ -65,7 +61,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.isLastPage(this.data.pageNum + 1);
+    !this.data.isLastPage && this.getProductList(this.data.pageNum + 1);
   },
 
   /**
@@ -104,25 +100,25 @@ Page({
       return;
     }
     if (pro.num > 1) {
-      key = 'productList[' + index + '].num';
-      obj[key] = pro.num - 1;
+      key = 'productList[' + index + '].product_num';
+      obj[key] = pro.product_num - 1;
       this.setData(obj);
       this.updateTotalMoney();
     }
   },
   addNum: function (evt) {
     var target = evt.target,
-      index = target.dataset.index,
-      pro,
-      key,
-      obj = {};
+        index = target.dataset.index,
+        pro,
+        key,
+        obj = {};
 
     index = parseInt(index, 10);
     if (!(pro = this.data.productList[index])) {
       return;
     }
-    key = 'productList[' + index + '].num';
-    obj[key] = pro.num + 1;
+    key = 'productList[' + index + '].product_num';
+    obj[key] = pro.product_num + 1;
     this.setData(obj);
     this.updateTotalMoney();
   },
@@ -131,9 +127,15 @@ Page({
         total = 0;
 
     list.forEach(function (item) {
-      total += (item.num * item.price);
+      total += (item.product_num * item.product_price);
     });
     
     this.setData({ totalMoney: total});
+  },
+  goSettlement: function () {
+    wx.setStorageSync('ns-products', [this.data.productList]);
+    wx.navigateTo({
+      url: '../orderConfirm/index'
+    });
   }
 })

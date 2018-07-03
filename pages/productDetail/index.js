@@ -165,10 +165,9 @@ Page({
       data: {
         product_id: product.id,
         product_name: product.product_name,
-        product_image_url: product.image_url,
+        image_url: product.image_url,
         product_num: product.productNum,
-        product_price: product.sal_price,
-        re_product_price: product.sal_price
+        sal_price: product.sal_price
       },
       success: function (res) {
         wx.showToast({

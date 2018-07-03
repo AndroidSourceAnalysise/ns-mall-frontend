@@ -18,7 +18,15 @@ Page({
       availableCoupon: {},
       realPayment: 0
     },
-    useableCouponList: []
+    useableCouponList: [],
+    //总可用积分
+    integral: 0,
+    //抵扣积分
+    useIntegral: 0,
+    //积分抵扣金额
+    deductMoney: 0,
+    //1积分抵扣多少钱
+    deuctRule: 0
   },
 
   /**
@@ -28,6 +36,9 @@ Page({
     this.getReceiverAddress();
     this.getProductList();
     this.getUseableCouponList();
+    this.getUseableIntegral();
+    this.getDeuctRuleIntegral();
+    this.getFreight();
   },
 
   /**
@@ -109,6 +120,22 @@ Page({
       }
     });
   },
+  getFreight: function () {
+    //获取运费
+    var self = this;
+
+    wx.request({
+      url: '/order/getFreight',
+      method: 'POST',
+      data: {
+        province: self.data.distributionInfo.province,
+        num: self.data.productsAmount
+      },
+      success: function (res) {
+        self.setData({ 'order.distributionMoney': res.data });
+      }
+    });
+  },
   showAddressPop: function () {
     this.setData({showAddressPop: true});
   },
@@ -164,6 +191,36 @@ Page({
 
     return typeof index !== 'undefined' ? list[index] : {};
   },
+  getUseableIntegral: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/ext/getMyPoints',
+      method: 'POST',
+      success: function (res) {
+        self.setData({ integral: res.data.points_enabled });
+      }
+    });
+  },
+  getDeuctRuleIntegral: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/ext/pointsDeduction',
+      method: 'POST',
+      data: {
+        point: 1
+      },
+      success: function (res) {
+        self.setData({ deuctRule: res.data });
+      }
+    });
+  },
+  getDeuctMoney: function (evt) {
+    var val = evt.detail.value;
+
+    this.setData({ useIntegral: val, deductMoney: val * this.data.deuctRule });
+  },
   reduceNum: function (evt) {
     var target = evt.target,
         index = target.dataset.index,
@@ -183,6 +240,7 @@ Page({
       obj['order.productsAmount'] = this.data.order.productsAmount - 1;
       this.setData(obj);
       this.setData({ 'order.availableCoupon': this.getMaxDiscountCoupon() });
+      this.getFreight();
     }
   },
   addNum: function (evt) {
@@ -203,6 +261,7 @@ Page({
     obj['order.productsAmount'] = this.data.order.productsAmount + 1;
     this.setData(obj);
     this.setData({ 'order.availableCoupon': this.getMaxDiscountCoupon() });
+    this.getFreight();
   },
   toFixed: function (num, precis) {
     return num.toFixed(precis || 2);

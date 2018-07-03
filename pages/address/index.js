@@ -16,7 +16,10 @@ Page({
       detailAddress: '',
       isDefault: false
     },
-    addressList: []
+    addressList: [],
+    selfMobile: '',
+    mobileCode: '',
+    isBindMobile: false
   },
 
   /**
@@ -24,6 +27,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAddressList();
+    this.checkBindMobile();
   },
 
   /**
@@ -103,6 +107,48 @@ Page({
       }
     })
   },
+  checkBindMobile: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/customer/checkMobileBind',
+      method: 'POST',
+      success: function (res) {
+        self.setData({ isBindMobile: res.data });
+      }
+    });
+  },
+  getVerifyCode: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/customer/bindMobile',
+      method: 'POST',
+      data: {
+        mobile: self.data.selfMobile
+      },
+      success: function (res) {
+      }
+    });
+  },
+  bindSelfMobile: function () {
+    var self = this;
+
+    return new Promise(function (resolve, reject) {
+        wx.request({
+        url: interfacePrefix + '/customer/bindMobile',
+        method: 'POST',
+        data: {
+          mobile: self.data.selfMobile,
+          code: self.data.mobileCode
+        },
+        success: function (res) {
+          resolve();
+          self.setData({ isBindMobile: true });
+        }
+      });
+    });
+  },
   addNewAddress: function () {
     this.setData({
       address: {
@@ -154,11 +200,23 @@ Page({
       }
     });
   },
+  save: function (evt) {
+    var self = this;
+
+    if (!this.data.isBindMobile) {
+      this.bindSelfMobile().then(function() {
+        self.saveAddress(evt);
+      });
+    }else {
+      this.saveAddress(evt);
+    }
+  },
   saveAddress: function (evt) {
     var self = this,
         add = evt.detail.value,
         url,
         param;
+
 
     param = {
       MOBILE: add.phone,

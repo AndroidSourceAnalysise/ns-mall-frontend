@@ -14,6 +14,9 @@ function _request(params) {
   if (sk) {
     params.header ? (params.header.sk = sk) : (params.header = {sk: sk});
   }
+  params.complete = function () {
+    wx.hideLoading();
+  };
   params.success = function (res) {
     var data = res.data;
 
@@ -47,6 +50,10 @@ function _request(params) {
       originSuccess(data);
     }
   };
+  wx.showLoading({
+    title: '玩命为您处理中...',
+    mask: true,
+  });
   originRequest(params);
 };
 (function() {

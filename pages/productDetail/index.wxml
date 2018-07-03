@@ -17,7 +17,7 @@
   </view>
   <view class="product-other-info common-style">
     <view class="product-services">服务：</view>
-    <view wx:for="{{services}}" class="service-item">{{index + 1}}.{{item}}</view>
+    <view wx:for="{{services}}" class="service-item" wx:key="{{index}}">{{index + 1}}.{{item}}</view>
   </view>
   <view class="product-comment-area common-style" wx:if="{{commentList.length}}">
     <view class="comment-statis">
