@@ -127,13 +127,13 @@ Page({
         total = 0;
 
     list.forEach(function (item) {
-      total += (item.product_num * item.product_price);
+      total += (item.product_num * item.sal_price);
     });
     
     this.setData({ totalMoney: total});
   },
   goSettlement: function () {
-    wx.setStorageSync('ns-products', [this.data.productList]);
+    wx.setStorageSync('ns-products', this.data.productList);
     wx.navigateTo({
       url: '../orderConfirm/index'
     });

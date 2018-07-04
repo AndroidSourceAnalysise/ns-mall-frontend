@@ -13,19 +13,32 @@
   <view class="product-info-wrap common-block-style" wx:for="{{order.productList}}" wx:for-item="product" wx:key="{{product.id}}">
     <image src="{{product.image_url}}" class="product-img"></image>
     <view class="product-other-info">
-      <text class="product-name">[{{product.product_name}}]</text><text class="product-desc">{{product.brief_description}}*{{product.num}}</text>
+      <text class="product-name">[{{product.product_name}}]</text><text class="product-desc">{{product.brief_description}}*{{product.product_num}}</text>
       <view class="product-price red-text">¥{{product.amount}}</view>
       <view class="ns-counter shopping-counter">
           <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
-          <text class="ns-counter-num">{{product.num}}</text>
+          <text class="ns-counter-num">{{product.product_num}}</text>
           <text class="ns-counter-symbol" data-index="{{index}}" bindtap="addNum">+</text>
       </view>
     </view>
   </view>
   <view bindtap="selectCoupon" class="relative common-block-style">优惠券：<text class="coupons">{{order.availableCoupon.desc}}</text><text class="right-arrow">></text></view>
-  <view class="relative common-block-style" wx:if="{{integral}}">积分抵现：<text class="coupons">{{integral}}</text><input class="message-input" bindinput="getDeuctMoney" value="{{integral}}"/>
-  <view>共{{integral}}积分,使用{{useIntegral}}积分抵扣{{deductMoney}}元</view>
+  <view class="relative common-block-style" wx:if="{{integral}}">积分抵现：<input class="message-input" bindinput="getDeuctMoney" value="{{integral}}"/>
+    <view class="block-desc-text">共{{integral}}积分,使用{{useIntegral}}积分抵扣<text class="red-text">{{deductMoney}}</text>元</view>
   </view>
+<view class="common-block-style" wx:if="{{canBindRecommender}}">绑定推荐人：
+  <radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio">
+      <radio value="manual" checked/>填写推荐人
+    </label>
+    <label class="radio">
+      <radio value="auto"/>系统自动推荐
+    </label>
+  </radio-group>
+    <view class="block-desc-text">
+      <input placeholder="请输入推荐人会员号" class="message-input" bindtap="setRecommender"></input>
+    </view>
+</view>
   <!-- <view class="distribution-way common-block-style">配送方式：{{order.distributionWay || '圆通快递'}}</view> -->
   <view class="order-message common-block-style">
     卖家留言：<input placeholder="请输入留言内容" class="message-input"></input>

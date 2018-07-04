@@ -108,7 +108,7 @@ Page({
       },
       success: function (res) {
         p = util.toLowerCaseForObjectProperty(res.data.product);
-        p.productNum = 1;
+        p.product_num = 1;
         self.setData({ product:  p });
       }
     });
@@ -166,7 +166,7 @@ Page({
         product_id: product.id,
         product_name: product.product_name,
         image_url: product.image_url,
-        product_num: product.productNum,
+        product_num: product.product_num,
         sal_price: product.sal_price
       },
       success: function (res) {

@@ -2,12 +2,12 @@
 <view class="container shopping-cart">
   <view class="product-item" wx:for="{{productList}}" wx:key="{{item.cart_id}}">
     <text value="{{item.cart_id}}" color="#cd363d" class="check-box"></text>
-    <image src="{{item.product_image_url}}" class="product-img"></image>
+    <image src="{{item.image_url}}" class="product-img"></image>
     <view class="product-item-detail">
       <text class="product-name">[{{item.product_name}}]</text>
       <text class="product-specific">{{item.desc}}*{{item.product_num}}</text>
       <view class="product-statis">
-        <text class="product-amount">¥ {{item.product_price*item.product_num}}</text>
+        <text class="product-amount">¥ {{item.sal_price*item.product_num}}</text>
         <view class="ns-counter shopping-counter">
           <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
           <text class="ns-counter-num">{{item.product_num}}</text>

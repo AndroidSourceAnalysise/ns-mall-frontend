@@ -60,6 +60,9 @@
   border: 1px solid #999;
   vertical-align: middle;
 }
+.block-desc-text {
+  margin-top: 20rpx;
+}
 .red-text {
   color: #cd363d;
 }
