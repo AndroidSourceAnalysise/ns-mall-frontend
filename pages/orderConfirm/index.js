@@ -13,6 +13,7 @@ Page({
     order: {
       productsAmount: 0,
       productList: [],
+      remark: '',
       distributionMoney: 0,
       money: 0,
       availableCoupon: {},
@@ -298,10 +299,7 @@ Page({
   },
   goPay: function () {
     var self = this,
-        params = {},
-        list = self.data.order.productList,
-        items = '',
-        orderData;
+        list = self.data.order.productList;
 
     if(!list.length) {
       return;
@@ -315,53 +313,68 @@ Page({
       });
       return;
     }
+    if (!self.data.canBindRecommender) {
+      self.submitOrder();
+      return;
+    }
     self.saveRecommender().then(function () {
-      list.forEach(function (item) {
-        items += item.id + '&null&' + item.product_num + '|';
-      });
-      items = items.substr(0, items.length - 1);
-      Object.assign(params, self.data.distributionInfo, {
-        payment_typeid: '0',
-        payment_type: '微信支付',
-        order_source: '1',
-        order_type: '1',
-        items: items,
-        coupon_grant_id: self.data.order.availableCoupon.coupon_id || ''
-      });
-      for (var p in params) {
-        if (params.hasOwnProperty(p)) {
-          params[p.toUpperCase()] = params[p];
-          delete params[p];
-        }
+      self.submitOrder();
+    });
+  },
+  submitOrder: function () {
+    var self = this,
+      params = {},
+      list = self.data.order.productList,
+      items = '',
+      orderData;
+
+    list.forEach(function (item) {
+      items += item.id + '&null&' + item.product_num + '|';
+    });
+    items = items.substr(0, items.length - 1);
+    Object.assign(params, self.data.distributionInfo, {
+      payment_typeid: '0',
+      payment_type: '微信支付',
+      order_source: '1',
+      order_type: '1',
+      items: items,
+      point: parseInt(self.data.useIntegral, 10),
+      remark: self.data.order.remark,
+      coupon_grant_id: self.data.order.availableCoupon.coupon_id || ''
+    });
+    for (var p in params) {
+      if (params.hasOwnProperty(p)) {
+        params[p.toUpperCase()] = params[p];
+        delete params[p];
       }
-      wx.request({
-        url: interfacePrefix + '/order/newOrder',
-        method: 'POST',
-        data: params,
-        success: function (res) {
-          orderData = res.data;
-          //订单创建成功发起支付请求
-          wx.requestPayment({
-            appId: orderData.appId,
-            timeStamp: orderData.timeStamp,
-            nonceStr: orderData.nonceStr,
-            package: orderData.package,
-            signType: orderData.signType,
-            paySign: orderData.paySign,
-            success: function (_res) {
-              //跳转到支付成功页
-              console.log(_res);
-              self.goPayResult(res.orderId);
-            },
-            fail: function (_res) {
-              console.log(_res);
-            },
-            complete: function (_res) {
-              console.log(_res);
-            }
-          });
-        }
-      });
+    }
+    wx.request({
+      url: interfacePrefix + '/order/newOrder',
+      method: 'POST',
+      data: params,
+      success: function (res) {
+        orderData = res.data;
+        //订单创建成功发起支付请求
+        wx.requestPayment({
+          appId: orderData.appId,
+          timeStamp: orderData.timeStamp,
+          nonceStr: orderData.nonceStr,
+          package: orderData.package,
+          signType: orderData.signType,
+          paySign: orderData.paySign,
+          success: function (_res) {
+            //跳转到支付成功页
+            console.log(_res);
+            self.goPayResult(res.orderId);
+          },
+          fail: function (_res) {
+            console.log(_res);
+          },
+          complete: function (_res) {
+            console.log(_res);
+          }
+        });
+      }
     });
   },
   goPayResult: function (orderId) {
@@ -374,6 +387,9 @@ Page({
   },
   setRecommender: function (evt) {
     this.setData({ recommenderNo: evt.detail.value });
+  },
+  getCustomerMessage: function (evt) {
+    this.setData({ 'order.remark': evt.detail.value });
   },
   validRecommender: function () {
     var d = this.data,

@@ -51,7 +51,7 @@ function _request(params) {
     }
   };
   wx.showLoading({
-    title: '玩命为您处理中...',
+    title: '玩命为您加载中...',
     mask: true,
   });
   originRequest(params);

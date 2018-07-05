@@ -119,15 +119,24 @@ Page({
     });
   },
   getVerifyCode: function () {
-    var self = this;
+    var self = this,
+        txt;
 
     wx.request({
-      url: interfacePrefix + '/customer/bindMobile',
+      url: interfacePrefix + '/identifycode/getCode',
       method: 'POST',
       data: {
-        mobile: self.data.selfMobile
+        mobile: self.data.selfMobile,
+        type: 0
       },
       success: function (res) {
+        txt = res.data ? '成功' : '失败，请重试';
+        wx.showToast({
+          title: '验证码发送' + txt,
+          icon: 'none',
+          mask: true,
+          duration: 2000
+        });
       }
     });
   },
@@ -148,6 +157,12 @@ Page({
         }
       });
     });
+  },
+  updateMobile: function (evt) {
+    this.setData({ selfMobile: evt.detail.value });
+  },
+  updateVerifyCode: function (evt) {
+    this.setData({ mobileCode: evt.detail.value });
   },
   addNewAddress: function () {
     this.setData({
@@ -253,5 +268,8 @@ Page({
         });
       }
     });
+  },
+  cancel: function () {
+    this.setData({ isAdd: false });
   }
 })

@@ -17,12 +17,16 @@
     </view>
     <button class="save-btn" bindtap="addNewAddress">添加新地址</button>
   </view>
-  <form bindsubmit="saveAddress" wx:else>
+  <form bindsubmit="save" bindreset="cancel" wx:else>
     <view class="section">
       <text>收货人</text><input class="input-item" placeholder="请输入收货人" value="{{address.receiver}}" name="receiver"/>
     </view>
     <view class="section" wx:if="{{!isBindMobile}}">
-      <text>本人手机号</text><input class="input-item" placeholder="请输入自己手机号" value="{{address.receiver}}" name="selfMobile"/>
+      <text>绑定手机号</text><input class="input-item" placeholder="请输入自己手机号" name="selfMobile" type="number" bindinput="updateMobile"/>
+      <button class="save-btn valid-code-btn" bindtap="getVerifyCode">获取验证码</button>
+    </view>
+    <view class="section" wx:if="{{!isBindMobile}}">
+      <text>输入验证码</text><input class="input-item" placeholder="请输入验证码" name="mobileCode" type="number" bindinput="updateVerifyCode"/>
     </view>
     <view class="section">
       <text>联系电话</text><input class="input-item" placeholder="请输入收货人手机号" type="number" value="{{address.phone}}" name="phone"/>
@@ -39,8 +43,9 @@
       <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" value="{{address.detailAddress}}" name="detailAddress"/>
     </view>
     <view class="section">
-      <text>设置默认地址</text><switch class="switch-btn" checked="{{address.isDefault}}" name="isDefault"/>
+      <text class="w200">设置默认地址</text><switch class="switch-btn" checked="{{address.isDefault}}" name="isDefault"/>
     </view>
     <button formType="submit" class="save-btn">保存</button>
+    <button formType="reset" type="warn" class="save-btn">取消</button>
   </form>
 </view>

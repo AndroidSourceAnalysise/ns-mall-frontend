@@ -38,10 +38,10 @@
   margin-top: 21rpx;
 }
 .coupon-discount {
-  font-size: 24rpx;
+  font-size: 32rpx;
 }
 .term-valid {
-  font-size: 20rpx;
+  font-size: 26rpx;
 }
 .operate-btn {
   padding: 12rpx 25rpx;
