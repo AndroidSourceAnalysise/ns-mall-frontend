@@ -30,7 +30,8 @@ Page({
     deuctRule: 0,
     canBindRecommender: false,
     recommenderType: 'manual',
-    recommenderNo: ''
+    recommenderNo: '',
+    isShowCouponPop: false
   },
 
   /**
@@ -107,6 +108,7 @@ Page({
       productNum = item.product_num || 1;
       counter += productNum;
       totalMoney += parseFloat((productNum * item.sal_price).toFixed(2));
+      list[idx].id = item.product_id || item.id;
       list[idx].product_num = productNum;
       list[idx].amount = (productNum * item.sal_price).toFixed(2);
     });
@@ -180,27 +182,48 @@ Page({
   },
   getMaxDiscountCoupon: function () {
     var self = this,
+        list;
+
+    list = self.filterCanUseCouponList();
+
+    return list.length > 0 ? list[0] : {};
+  },
+  filterCanUseCouponList: function () {
+    //从已领取并有效的优惠券列表中筛选出满足减免条件的优惠券并将优惠金额进行倒序排列
+    var self = this,
         list = self.data.useableCouponList,
         money = 0,
         index,
-        orderMoney = self.data.order.money;
+        orderMoney = self.data.order.money,
+        use = [],
+        disabled = [];
 
-    list.forEach(function(item, idx) {
+    list.forEach(function (item, idx) {
       if (item.coupon_type == 1) {
-        if (item.safety_amount <= orderMoney && money < item.discount_amount) {
-          money = item.discount_amount;
-          index = idx;
+        //safety_amount为满多少钱
+        if (item.safety_amount <= orderMoney) {
+          use.push(item);
+        }else {
+          item.disabled = true;
+          disabled.push(item);
         }
-      }else {
+      } else {
         //直减券
-        if (orderMoney >= item.discount_amount && money < item.discount_amount) {
-          money = item.discount_amount;
-          index = idx;
+        if (orderMoney >= item.discount_amount) {
+          use.push(item);
+        }else {
+          item.disabled = true;
+          disabled.push(item);
         }
       }
     });
+    use.sort(function(a, b) {
+      return a.discount_amount >= b.discount_amount ? -1 : 1;
+    });
+    use = use.concat(disabled);
+    self.setData({ useableCouponList: use });
 
-    return typeof index !== 'undefined' ? list[index] : {};
+    return use;
   },
   getUseableIntegral: function () {
     var self = this,
@@ -236,8 +259,21 @@ Page({
     });
   },
   getDeuctMoney: function (evt) {
-    var val = evt.detail.value;
+    //计算抵扣积分金额
+    var val = evt.detail.value,
+      orderMoney = this.data.order.money - this.data.order.availableCoupon.discount_amount;
 
+    val = val && parseInt(val, 10);
+    if(val > orderMoney) {
+      wx.showToast({
+        title: '积分抵现金额超过订单优惠应付金额，请重新输入!',
+        icon: 'none',
+        mask: true,
+        duration: 2000
+      });
+      this.setData({ useIntegral: 0 });
+      return;
+    }
     this.setData({ useIntegral: val, deductMoney: val * this.data.deuctRule });
   },
   checkHasRecommender: function () {
@@ -428,5 +464,12 @@ Page({
       });
       wx.request(conf);
     });
+  },
+  selectCoupon: function () {
+    this.filterCanUseCouponList();
+    this.setData({ isShowCouponPop: true });
+  },
+  submitSelectedCoupon: function () {
+    this.setData({ isShowCouponPop: false });
   }
 })

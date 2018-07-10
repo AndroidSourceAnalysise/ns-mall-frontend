@@ -1,15 +1,17 @@
 /* pages/shoppingCart/index.wxss */
+.shopping-cart {
+  padding-bottom: 77.5rpx;
+}
 .product-item {
   padding: 45rpx 20rpx;
   margin: 12.5rpx 0;
   background-color: #fff;
 }
-.check-box {
+.cr-box {
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
-  background-color: #cd363d;
   vertical-align: middle;
 }
 .product-img {
@@ -57,6 +59,11 @@
   height: 90rpx;
   line-height: 90rpx;
   background-color: #fff;
+}
+.select-all {
+  width: 110rpx;
+  line-height: 50rpx;
+  margin-left: 40rpx;
 }
 .total-money {
   margin-left: 40rpx;

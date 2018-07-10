@@ -11,11 +11,7 @@ Page({
   data: {
     hasUserInfo: false,
     userInfo: {},
-    person: {
-      businessMoney: 564,
-      integral: 186,
-      businessMoney: 40
-    }
+    servicePhone: ''
   },
 
   /**
@@ -23,6 +19,7 @@ Page({
    */
   onLoad: function (options) {
     this.getPersonInfo();
+    this.getServicePhone();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -81,6 +78,25 @@ Page({
       success: function (res) {
         self.setData({ userInfo: util.toLowerCaseForObjectProperty(res.data) });
       }
+    });
+  },
+  getServicePhone: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/sys/dict/getByParamKey',
+      method: 'POST',
+      data: {
+        paramKey: 'service_phone '
+      },
+      success: function (res) {
+        self.setData({ servicePhone: res.data });
+      }
+    });
+  },
+  seeRankOfIntegral: function () {
+    wx.navigateTo({
+      url: '../rankIntegral/index'
     })
   },
   seeRankOfPromotion: function () {
@@ -101,6 +117,11 @@ Page({
   goAddress: function () {
     wx.navigateTo({
       url: '../address/index'
+    });
+  },
+  callPhone: function () {
+    wx.makePhoneCall({
+      phoneNumber: this.data.servicePhone
     });
   },
   goMyMember: function() {

@@ -45,7 +45,7 @@
     <view class="section">
       <text class="w200">设置默认地址</text><switch class="switch-btn" checked="{{address.isDefault}}" name="isDefault"/>
     </view>
-    <button formType="submit" class="save-btn">保存</button>
-    <button formType="reset" type="warn" class="save-btn">取消</button>
+    <button formType="submit" class="green-btn">保存</button>
+    <button formType="reset" type="warn" class="green-btn">取消</button>
   </form>
 </view>

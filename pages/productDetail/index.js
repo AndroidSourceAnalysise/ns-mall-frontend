@@ -29,6 +29,7 @@ Page({
       { id: '002', img: '', commentator: '花似梦', content: '味道非常棒，服务很贴心，真的很有顾客是上帝的感觉', time: '2018-05-15 18:22:08' }
     ],
     services: [],
+    photos: {},
     isCommentLastPage: false
   },
 
@@ -98,7 +99,9 @@ Page({
   },
   getProductDetail: function (pId) {
     var self = this,
-        p;
+        p,
+        obj,
+        photos = {};
 
     wx.request({
       url: interfacePrefix + '/pnt/getProductById',
@@ -107,9 +110,19 @@ Page({
         pnt_id: pId
       },
       success: function (res) {
+        obj = res.data.photosList;
+        photos.top = obj.top.map(function(item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
+        photos.detail = obj.detail.map(function (item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
+        photos.params = obj.params.map(function (item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
         p = util.toLowerCaseForObjectProperty(res.data.product);
         p.product_num = 1;
-        self.setData({ product:  p });
+        self.setData({ product: p, photos: photos });
       }
     });
   },
@@ -123,7 +136,7 @@ Page({
       data: {
         pnt_id: pId,
         page_size: 20,
-        page_number: curPage
+        page_num: curPage
       },
       success: function (res) {
         if(!res.data.lastPage) {
@@ -167,7 +180,8 @@ Page({
         product_name: product.product_name,
         image_url: product.image_url,
         product_num: product.product_num,
-        sal_price: product.sal_price
+        sal_price: product.sal_price,
+        brief_description: product.brief_description
       },
       success: function (res) {
         wx.showToast({

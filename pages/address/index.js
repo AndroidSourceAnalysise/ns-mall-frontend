@@ -149,7 +149,8 @@ Page({
         method: 'POST',
         data: {
           mobile: self.data.selfMobile,
-          code: self.data.mobileCode
+          code: self.data.mobileCode,
+          type: 0
         },
         success: function (res) {
           resolve();

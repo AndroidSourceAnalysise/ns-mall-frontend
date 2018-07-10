@@ -7,6 +7,7 @@
     "pages/myMember/index",
     "pages/orderLogistical/index",
     "pages/rankPromotion/index",
+    "pages/rankIntegral/index",
     "pages/coupon/index",
     "pages/productDetail/index",
     "pages/orderConfirm/index",

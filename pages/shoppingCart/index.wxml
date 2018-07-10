@@ -1,11 +1,15 @@
 <!--pages/shoppingCart/index.wxml-->
 <view class="container shopping-cart">
   <view class="product-item" wx:for="{{productList}}" wx:key="{{item.cart_id}}">
-    <text value="{{item.cart_id}}" color="#cd363d" class="check-box"></text>
+    <checkbox-group class="cr-box" bindchange="checkboxChange" data-index="{{index}}">
+      <label class="checkbox">
+        <checkbox value="selected" checked="{{item.checked}}"/>
+      </label>
+    </checkbox-group>
     <image src="{{item.image_url}}" class="product-img"></image>
     <view class="product-item-detail">
       <text class="product-name">[{{item.product_name}}]</text>
-      <text class="product-specific">{{item.desc}}*{{item.product_num}}</text>
+      <text class="product-specific">{{item.brief_description}}*{{item.product_num}}</text>
       <view class="product-statis">
         <text class="product-amount">¥ {{item.sal_price*item.product_num}}</text>
         <view class="ns-counter shopping-counter">
@@ -18,8 +22,11 @@
   </view>
   <view class="shopping-statisc-area">
     <view class="shopping-statisc-wrap">
-      <text color="#cd363d" class="check-box"></text>
-      <text>全选</text>
+      <checkbox-group class="cr-box select-all" bindchange="sellAllChange">
+        <label class="checkbox">
+          <checkbox value="selected" checked="{{isSelectAll}}"/>全选
+        </label>
+      </checkbox-group>
       <text class="total-money">合计：¥{{totalMoney}}</text>
       <text class="pay-btn" bindtap="goSettlement">去结算</text>
     </view>

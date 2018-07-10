@@ -1,4 +1,8 @@
 /* pages/productDetail/index.wxss */
+.slide-img {
+  width: 100%;
+  height: 425rpx;
+}
 .product-info {
   position: relative;
 }

@@ -23,7 +23,7 @@
     </view>
   </view>
   <view bindtap="selectCoupon" class="relative common-block-style">优惠券：<text class="coupons">{{order.availableCoupon.desc}}</text><text class="right-arrow">></text></view>
-  <view class="relative common-block-style" wx:if="{{integral}}">积分抵现：<input class="message-input" bindinput="getDeuctMoney" value="{{integral}}" type="number"/>
+  <view class="relative common-block-style" wx:if="{{integral}}">积分抵现：<input class="message-input" bindinput="getDeuctMoney" value="{{useIntegral}}" type="number"/>
     <view class="block-desc-text">共{{integral}}积分,使用{{useIntegral}}积分抵扣<text class="red-text">{{deductMoney}}</text>元</view>
   </view>
 <view class="common-block-style" wx:if="{{canBindRecommender}}">绑定推荐人：
@@ -50,5 +50,24 @@
   <view class="operate-btns-wrap">
     <text class="order-payment">应付金额：<text class="red-text">¥{{order.realPayment}}</text></text>
     <text class="add-cart-btn" bindtap="goPay">去支付</text>
+  </view>
+  <view class="ns-pop coupon-pop" wx:if="{{isShowCouponPop}}">
+    <view class="ns-pop-mask"></view>
+    <view class="ns-pop-container">
+      <view class="coupon-list">
+        <view class="coupon-item" wx:for="{{useableCouponList}}" wx:key="{{item.id}}">
+          <view class="coupon-name-wrap">
+              <text class="coupon-type">{{item.type_str}}</text>
+              <text class="coupon-name">{{item.discount_amount}}<text class="unit">元</text></text>
+          </view>
+          <view class="coupon-info">
+            <text class="coupon-discount" wx:if="{{item.coupon_type != 0}}">满{{item.safety_amount}}减{{item.discount_amount}}</text>
+            <text class="coupon-discount" wx:else>立减{{item.discount_amount}}</text>
+            <text class="term-valid">{{item.start_dt}}-{{item.end_dt}}</text>
+          </view>
+        </view>
+      </view>
+      <button class="green-btn" bindtap="submitSelectedCoupon">确定</button>
+    </view>
   </view>
 </view>

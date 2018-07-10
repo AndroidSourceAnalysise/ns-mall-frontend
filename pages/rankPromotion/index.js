@@ -1,4 +1,7 @@
 // pages/rankPromotion/index.js
+var util = require('../../utils/util.js'),
+    interfacePrefix = util.interfacePrefix;
+
 Page({
 
   /**
@@ -17,7 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getRankList();
   },
 
   /**
@@ -67,5 +70,22 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  getRankList: function () {
+    //推广排行
+    var self = this,
+        data,
+        list;
+
+    wx.request({
+      url: interfacePrefix + '/ext/pointsRanking',
+      method: 'POST',
+      success: function (res) {
+        list = res.data.map(function (item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
+        self.setData({ rankList: list });
+      }
+    });
   }
 })

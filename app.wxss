@@ -17,6 +17,7 @@ view {
 .container {
   height: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 .inline-block {
   display: inline-block;
@@ -38,6 +39,37 @@ view {
   font-size: 32rpx;
   color: #676767;
   text-align: center;
+}
+.green-btn {
+  display: block;
+  width: 600rpx;
+  margin: 40rpx auto 0;
+  border: 0;
+  color: #fff;
+  background-color: #339999;
+}
+.ns-pop-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  background-color: #aaa6a4;
+  opacity: 0.6;
+}
+.ns-pop-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 40rpx 20rpx;
+  border-radius: 8rpx;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #fff;
 }
 /* =======筛选栏统一样式begin======= */
 .filter-area {
@@ -93,3 +125,8 @@ view {
   color: #0b0707;
 }
 /* =======页面区块公共样式end======= */
+.text-ellipsis {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}

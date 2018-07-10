@@ -1,5 +1,10 @@
 <!--pages/productDetail/index.wxml-->
 <view class="container product-detail">
+  <swiper indicator-dots autoplay circular class="swiper-area">
+    <swiper-item wx:for="{{photos.top}}">
+      <image src="{{item.url}}" class="slide-img" data-pro-id="{{item.id}}" bindtap="goProductDetail"></image>
+    </swiper-item>
+  </swiper>
   <image src="{{product.image_url}}" class="product-img"></image>
   <view class="product-info common-style">
     <text class="product-name">[{{product.product_name}}]</text>

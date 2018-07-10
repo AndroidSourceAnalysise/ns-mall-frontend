@@ -87,14 +87,6 @@
   top: 50%;
   margin-top: -60rpx;
 }
-.save-btn {
-  display: block;
-  width: 600rpx;
-  margin: 40rpx auto 0;
-  border: 0;
-  color: #fff;
-  background-color: #339999;
-}
 .valid-code-btn {
   position: absolute;
   top: 50%;

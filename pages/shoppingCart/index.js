@@ -12,6 +12,7 @@ Page({
     productList: [],
     pageNum: 1,
     pageSize: 20,
+    isSelectAll: false,
     isLastPage: false
   },
 
@@ -40,7 +41,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
@@ -89,7 +90,8 @@ Page({
     });
   },
   reduceNum: function (evt) {
-    var target = evt.target,
+    var self = this,
+        target = evt.target,
         index = target.dataset.index,
         pro,
         key,
@@ -99,11 +101,25 @@ Page({
     if (!(pro = this.data.productList[index])) {
       return;
     }
-    if (pro.num > 1) {
+    if (pro.product_num > 1) {
       key = 'productList[' + index + '].product_num';
       obj[key] = pro.product_num - 1;
       this.setData(obj);
       this.updateTotalMoney();
+    }else {
+      wx.showModal({
+        title: '提示',
+        content: '确认从购物车中删除宝贝吗？',
+        success: function (res) {
+          if(res.confirm) {
+            self.deleteProduct(pro.cart_id).then(function () {
+              self.data.productList.splice(index, 1);
+              self.setData({ productList: self.data.productList });
+              self.updateTotalMoney();
+            });
+          }
+        }
+      });
     }
   },
   addNum: function (evt) {
@@ -132,8 +148,71 @@ Page({
     
     this.setData({ totalMoney: total});
   },
+  deleteProduct: function (cartId) {
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: interfacePrefix + '/cart/delete',
+        method: 'POST',
+        data: {
+          cart_id: cartId
+        },
+        success: function (res) {
+          resolve();
+        }
+      });
+    });
+  },
+  checkboxChange: function (evt) {
+    var target = evt.target,
+        dataset = target.dataset,
+        index = dataset.index,
+        list = this.data.productList,
+        isSelect = !!evt.detail.value.length,
+        flag = true;
+
+    list[index].checked = isSelect;
+    if(isSelect) {
+      list.some(function(item) {
+        flag = item.checked;
+
+        return !flag;
+      });
+    }else {
+      flag = false;
+    }
+    this.setData({ productList: list, isSelectAll: flag });
+  },
+  sellAllChange: function (evt) {
+    var list = this.data.productList,
+        isSelect;
+
+    isSelect = !!evt.detail.value.length;
+    list = list.map(function (item) {
+      item.checked = isSelect;
+      return item;
+    });
+
+    this.setData({ productList: list});
+  },
+  updateShoppingCart: function () {
+    
+  },
   goSettlement: function () {
-    wx.setStorageSync('ns-products', this.data.productList);
+    var list = [];
+
+    this.data.productList.forEach(function (item) {
+      item.checked && list.push(item); 
+    });
+    if(!list.length) {
+      wx.showToast({
+        title: '你还没选择宝贝哦~',
+        icon: 'none',
+        duration: 1800,
+        mask: true
+      });
+      return;
+    }
+    wx.setStorageSync('ns-products', list);
     wx.navigateTo({
       url: '../orderConfirm/index'
     });

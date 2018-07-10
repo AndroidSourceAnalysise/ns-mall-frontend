@@ -1,4 +1,4 @@
-// pages/qrCode/index.js
+// pages/rankIntegral/index.js
 var util = require('../../utils/util.js'),
     interfacePrefix = util.interfacePrefix;
 
@@ -8,18 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    recommendQRcodeUrl: ''
+    rankList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var self = this;
-    
-    this.getQRCodeTemplates().then(function(d) {
-      self.getQRCode(d);
-    });
+    this.getRankList();
   },
 
   /**
@@ -70,31 +66,20 @@ Page({
   onShareAppMessage: function () {
   
   },
-  getQRCodeTemplates: function () {
-    return new Promise(function(resolve, reject) {
-      var list;
-
-      wx.request({
-        url: interfacePrefix + '/qrcode/getQrBgmList',
-        method: 'POST',
-        success: function (res) {
-          resolve(res.data[0].id);
-        }
-      })
-    });
-  },
-  getQRCode: function (templateId) {
-    var self = this;
+  getRankList: function () {
+    //推广排行
+    var self = this,
+        data,
+        list;
 
     wx.request({
-      url: interfacePrefix + '/qrcode/getQrcode',
+      url: interfacePrefix + '/ext/pointsRanking',
       method: 'POST',
-      data: {
-        type: 1,
-        bgmTemplateId: templateId
-      },
       success: function (res) {
-        self.setData({ recommendQRcodeUrl: res.data.url });
+        list = res.data.map(function (item) {
+          return util.toLowerCaseForObjectProperty(item);
+        });
+        self.setData({ rankList: list });
       }
     });
   }
