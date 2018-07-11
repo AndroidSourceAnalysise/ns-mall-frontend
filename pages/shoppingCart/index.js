@@ -20,14 +20,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getProductList(this.data.pageNum);
+    var self = this;
+
+    this.getProductList(1).then(function () {
+      self.updateTotalMoney();
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.updateTotalMoney();
+
   },
 
   /**
@@ -55,7 +59,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('====');
+    this.onLoad();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -75,18 +80,21 @@ Page({
     var self = this,
         list;
 
-    wx.request({
-      url: interfacePrefix + '/cart/list',
-      method: 'POST',
-      data: {
-        page_num: pageNum,
-        page_size: self.data.pageSize
-      },
-      success: function (res) {
-        list = self.data.productList;
-        list = list.concat(res.data.list);
-        self.setData({ productList: list, isLastPage: res.data.lastPage, pageNum: pageNum });
-      }
+    return new Promise(function(resolve, reject){
+      wx.request({
+        url: interfacePrefix + '/cart/list',
+        method: 'POST',
+        data: {
+          page_num: pageNum,
+          page_size: self.data.pageSize
+        },
+        success: function (res) {
+          list = pageNum === 1 ? [] : self.data.productList;
+          list = list.concat(res.data.list);
+          self.setData({ productList: list, isLastPage: res.data.lastPage, pageNum: pageNum });
+          resolve();
+        }
+      });
     });
   },
   reduceNum: function (evt) {

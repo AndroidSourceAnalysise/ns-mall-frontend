@@ -17,11 +17,12 @@
     "pages/login/index"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "咪之猫",
     "navigationBarTextStyle":"black",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 10
   },
   "tabBar":{
     "color":"#333",

@@ -15,7 +15,7 @@
         </view>
       </view>
     </view>
-    <button class="save-btn" bindtap="addNewAddress">添加新地址</button>
+    <button class="green-btn" bindtap="addNewAddress">添加新地址</button>
   </view>
   <form bindsubmit="save" bindreset="cancel" wx:else>
     <view class="section">

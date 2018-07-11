@@ -31,15 +31,7 @@ Page({
       2: '/order/refund',
       11: '/order/deleteOrder'
     },
-    orderList: [
-      // {orderId: '01', status: 1, statusStr: '已发货', products: [
-      //   {pid: '01', productName: '夏威夷果奶油味，入口爽滑奶香四溢200g', productPrice: 50, productNum: 3}
-      // ], num: 3, money: 150, transportMoney: 6},
-      // { orderId: '02', status: 2, statusStr: '已完成', products: [
-      //   { pid: '01', productName: '夏威夷果奶油味，入口爽滑奶香四溢150g', productPrice: 45, productNum: 2},
-      //   { pid: '02', productName: '夏威夷果原味，入口爽滑奶香四溢150g', productPrice: 55, productNum: 4 }
-      // ], num: 6, money: 310, transportMoney: 0 }
-    ],
+    orderList: [],
     pageSize: 20,
     pageNum: 1,
     isLastPage: false,
@@ -85,7 +77,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('=====');
+    this.getOrderList(1, null);
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -122,7 +115,8 @@ Page({
   },
   getOrderList: function (pageNum, orderStatus) {
     var self = this,
-        list = self.data.orderList;
+        list = self.data.orderList,
+        count;
 
     if (self.data.orderStatus != orderStatus) {
       pageNum = 1;
@@ -140,11 +134,15 @@ Page({
       success: function (res) {
         list = list.concat(res.data.list);
         list = list.map(function (item) {
+          count = 0;
           item = util.toLowerCaseForObjectProperty(item);
           item.items = item.items.map(function(t){
-            return util.toLowerCaseForObjectProperty(t);
+            util.toLowerCaseForObjectProperty(t);
+            count += t.quantity;
+
+            return t;
           });
-          
+          item.quantity = count;
           return item;
         });
         self.setData({ orderList: list, isLastPage: res.data.lastPage });

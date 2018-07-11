@@ -4,7 +4,7 @@ function toLowerCaseForObjectProperty(obj) {
   for(p in obj) {
     if(obj.hasOwnProperty(p)) {
       obj[p.toLowerCase()] = obj[p];
-      delete obj[p];
+      p.toLowerCase() !== p && delete obj[p];
     }
   }
 
