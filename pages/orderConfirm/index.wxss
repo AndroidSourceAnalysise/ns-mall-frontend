@@ -109,6 +109,10 @@
   color: #cc3333;
   background-color: #fff;
 }
+.coupon-item-radio {
+  display: inline-block;
+  margin-right: 10rpx;
+}
 .coupon-name-wrap, .coupon-info, .operate-btn {
   display: inline-block;
   vertical-align: top;
@@ -133,7 +137,7 @@
   font-size: 30rpx;
 }
 .coupon-info {
-  width: 500rpx;
+  width: 440rpx;
   margin: 24rpx 30rpx 0 0;
 }
 .coupon-discount, .term-valid {

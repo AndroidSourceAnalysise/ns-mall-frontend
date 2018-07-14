@@ -11,7 +11,7 @@
       <text class="product-name">[{{item.product_name}}]</text>
       <text class="product-specific">{{item.brief_description}}*{{item.product_num}}</text>
       <view class="product-statis">
-        <text class="product-amount">¥ {{item.sal_price*item.product_num}}</text>
+        <text class="product-amount">¥ {{item.money || item.sal_price}}</text>
         <view class="ns-counter shopping-counter">
           <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
           <text class="ns-counter-num">{{item.product_num}}</text>

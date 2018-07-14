@@ -1,4 +1,7 @@
 // pages/payResult/index.js
+var util = require('../../utils/util.js'),
+    interfacePrefix = util.interfacePrefix;
+
 Page({
 
   /**
@@ -22,7 +25,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var params = util.getCurrentPageInfo().params,
+        orderNo = params.orderNo;
+
+    //this.getOrderInfo(orderNo);
   },
 
   /**
@@ -57,7 +63,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.onLoad();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -72,6 +79,23 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  getOrderInfo: function (orderNo) {
+    var self = this;
+
+    if (!orderNo) {
+      return;
+    }
+    wx.request({
+      url: interfacePrefix + '',
+      method: 'POST',
+      data: {
+        orderNo: orderNo
+      },
+      success: function (res) {
+        self.setData({ order: res.data });
+      }
+    });
   },
   goHome: function () {
     wx.redirectTo({

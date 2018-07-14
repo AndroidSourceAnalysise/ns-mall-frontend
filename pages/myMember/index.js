@@ -92,7 +92,7 @@ Page({
         list = res.data.list.map(function(item) {
           return util.toLowerCaseForObjectProperty(item);
         });
-        self.setData({ memberList: list, isLastPage: res.data.lastPage, pageNum: pageNum + 1 });
+        self.setData({ memberList: list, isLastPage: res.data.lastPage, pageNum: self.data.pageNum + 1 });
       }
     })
   },

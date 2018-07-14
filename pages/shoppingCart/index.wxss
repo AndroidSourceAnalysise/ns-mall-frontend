@@ -61,14 +61,15 @@
   background-color: #fff;
 }
 .select-all {
-  width: 110rpx;
+  width: 120rpx;
   line-height: 50rpx;
   margin-left: 40rpx;
 }
 .total-money {
-  margin-left: 40rpx;
+  margin-left: 20rpx;
   font-size: 30rpx;
   color: #cd363d;
+  vertical-align: middle;
 }
 .pay-btn {
   float: right;

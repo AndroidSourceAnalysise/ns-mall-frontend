@@ -7,9 +7,12 @@ var util = require('../../utils/util.js'),
 Page({
   data: {
     swiperImgs: [],
-    productList: []
+    productList: [],
+    //女性用户随机立减金额范围
+    reduceRange: ''
   },
   onLoad: function () {
+    this.getReduceRandomRange();
     this.getSwiperImgsList();
     this.getProductList();
   },
@@ -43,6 +46,20 @@ Page({
           return util.toLowerCaseForObjectProperty(item);
         });
         self.setData({ 'productList': list});
+      }
+    });
+  },
+  getReduceRandomRange: function () {
+    var self = this;
+
+    wx.request({
+      url: interfacePrefix + '/sys/dict/getByParamKey',
+      method: 'POST',
+      data: {
+        paramKey: 'random_decrease'
+      },
+      success: function (res) {
+        self.setData({ 'reduceRange': res.data + '元' });
       }
     });
   },

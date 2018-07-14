@@ -11,9 +11,9 @@
     <view class="product-desc">{{product.brief_description}}</view>
     <view class="product-price">¥{{product.sal_price}}</view>
     <view class="ns-counter shopping-counter">
-          <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
+          <text class="ns-counter-symbol" bindtap="reduceNum">-</text>
           <text class="ns-counter-num">{{product.product_num}}</text>
-          <text class="ns-counter-symbol" data-index="{{index}}" bindtap="addNum">+</text>
+          <text class="ns-counter-symbol" bindtap="addNum">+</text>
       </view>
     <!-- <view class="product-statisc">
       <text>快递：{{product.isExpressFree ? '免运费' : '¥' + product.expressMoney}}</text>

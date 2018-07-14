@@ -5,6 +5,12 @@
       <image src="{{item.url}}" class="slide-img" data-pro-id="{{item.id}}" bindtap="goProductDetail"></image>
     </swiper-item>
   </swiper>
+  <view class="ns-hints">
+    <image src="../../images/index/hint-status-normal.png" class="ns-hints-img"></image>
+    <view class="ns-hints-content">
+      女性是世界的孕育者，为社会和人类做出了巨大的贡献，没有女性的世界就是没有爱的世界！为此“咪猫”为女性用户每次下单提供随机{{reduceRange}}减免优惠，谨以此感谢伟大女性朋友们的付出!
+    </view>
+  </view>
   <view class="product-list">
     <view class="product-item {{index % 2 === 0 ? '' : 'mr0'}}" wx:for="{{productList}}">
       <view class="product-item-name">{{item.product_name}}</view>

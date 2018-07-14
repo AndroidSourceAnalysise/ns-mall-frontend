@@ -79,12 +79,10 @@ Page({
         list;
 
     wx.request({
-      url: interfacePrefix + '/ext/pointsRanking',
+      url: interfacePrefix + '/twitter/getCurrMonthSacleList',
       method: 'POST',
       success: function (res) {
-        list = res.data.map(function (item) {
-          return util.toLowerCaseForObjectProperty(item);
-        });
+        list = res.data.list;
         self.setData({ rankList: list });
       }
     });

@@ -2,13 +2,13 @@
 .qrcode-page {
   padding: 0 120rpx;
   background-color: #fff;
+  text-align: center;
 }
 .title {
-  padding-top: 100rpx;
-  margin-bottom: 84rpx;
+  padding-top: 80rpx;
+  margin-bottom: 64rpx;
   font-size: 40rpx;
   color: #321600;
-  text-align: center;
 }
 .desc-text {
   line-height: 64rpx;
@@ -16,14 +16,13 @@
   color: #384d43;
 }
 .qrcode-img {
-  display: blockl;
+  display: block;
   width: 346rpx;
   height: 346rpx;
-  margin: 118rpx auto 100rpx;
+  margin: 60rpx auto 60rpx;
 }
 .recommend-text {
-  line-height: 80rpx;
+  line-height: 60rpx;
   font-size: 36rpx;
   color: #000;
-  text-align: center;
 }

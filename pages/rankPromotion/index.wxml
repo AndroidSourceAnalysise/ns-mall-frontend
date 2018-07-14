@@ -6,12 +6,12 @@
     <text class="ar">排行</text>
   </view>
   <view class="rank-list">
-    <view class="rank-item" wx:for="{{rankList}}" wx:key="{{item.memberId}}">
+    <view class="rank-item" wx:for="{{rankList}}" wx:key="{{item.con_id}}">
       <view class="rank-member">
           <image src="{{item.memberImg}}" class="member-img"></image>
-          <text class="member-name">{{item.memberName}}</text>
+          <text class="member-name">{{item.con_name}}</text>
       </view>
-      <text class="promotion-money ac">{{item.promotionMoney}}</text>
+      <text class="promotion-money ac">{{item.month_sale}}</text>
       <view class="rank-num-wrap ar">
         <text class="rank-num {{index < 3 ? 'top-rank-num' : ''}}">{{index + 1}}</text>
       </view>

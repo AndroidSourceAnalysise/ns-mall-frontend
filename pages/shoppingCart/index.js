@@ -45,7 +45,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.updateShoppingCart();
   },
 
   /**
@@ -112,6 +112,8 @@ Page({
     if (pro.product_num > 1) {
       key = 'productList[' + index + '].product_num';
       obj[key] = pro.product_num - 1;
+      key = 'productList[' + index + '].money';
+      obj[key] = util.accMul(pro.product_num - 1, pro.sal_price);
       this.setData(obj);
       this.updateTotalMoney();
     }else {
@@ -143,6 +145,8 @@ Page({
     }
     key = 'productList[' + index + '].product_num';
     obj[key] = pro.product_num + 1;
+    key = 'productList[' + index + '].money';
+    obj[key] = util.accMul(pro.product_num + 1, pro.sal_price);
     this.setData(obj);
     this.updateTotalMoney();
   },
@@ -151,7 +155,7 @@ Page({
         total = 0;
 
     list.forEach(function (item) {
-      total += (item.product_num * item.sal_price);
+      total = util.accAdd(total, util.accMul(item.product_num, item.sal_price));
     });
     
     this.setData({ totalMoney: total});
@@ -203,7 +207,22 @@ Page({
     this.setData({ productList: list});
   },
   updateShoppingCart: function () {
-    
+    var self = this,
+        list = self.data.productList;
+
+    if(!list.length) {
+      return;
+    }
+    list = list.map(function(item) {
+      delete item.money;
+
+      return item;
+    });
+    wx.request({
+      url: interfacePrefix + '/cart/update',
+      method: 'POST',
+      data: list
+    });
   },
   goSettlement: function () {
     var list = [];

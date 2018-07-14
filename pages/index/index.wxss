@@ -5,7 +5,7 @@
 }
 .product-list {
   padding: 20rpx 40rpx;
-  margin-top: 54rpx;
+  margin-top: 34rpx;
   background-color: #fff;
 }
 .product-item {

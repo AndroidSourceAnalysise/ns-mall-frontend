@@ -107,7 +107,7 @@ Page({
     list.forEach(function(item, idx) {
       productNum = item.product_num || 1;
       counter += productNum;
-      totalMoney += parseFloat((productNum * item.sal_price).toFixed(2));
+      totalMoney = util.accAdd(totalMoney, parseFloat((productNum * item.sal_price).toFixed(2)));
       list[idx].id = item.product_id || item.id;
       list[idx].product_num = productNum;
       list[idx].amount = (productNum * item.sal_price).toFixed(2);
@@ -186,7 +186,7 @@ Page({
 
     list = self.filterCanUseCouponList();
 
-    return list.length > 0 ? list[0] : {};
+    return list.length > 0 ? list[0].disabled ? {} : list[0] : {};
   },
   filterCanUseCouponList: function () {
     //从已领取并有效的优惠券列表中筛选出满足减免条件的优惠券并将优惠金额进行倒序排列
@@ -261,10 +261,17 @@ Page({
   getDeuctMoney: function (evt) {
     //计算抵扣积分金额
     var val = evt.detail.value,
-      orderMoney = this.data.order.money - this.data.order.availableCoupon.discount_amount;
+        money,
+        orderMoney = this.data.order.money,
+        couponDiscountMoney = this.data.order.availableCoupon.discount_amount;
 
+    if(!couponDiscountMoney) {
+      money = orderMone;
+    }else {
+      money = util.accSub(orderMoney, couponDiscountMoney);
+    }
     val = val && parseInt(val, 10);
-    if(val > orderMoney) {
+    if (val > money) {
       wx.showToast({
         title: '积分抵现金额超过订单优惠应付金额，请重新输入!',
         icon: 'none',
@@ -303,7 +310,7 @@ Page({
       obj[key] = num - 1;
       key = 'order.productList[' + index + '].amount';
       obj[key] = ((num - 1) * price).toFixed(2);
-      obj['order.money'] = this.data.order.money - price;
+      obj['order.money'] = util.accSub(this.data.order.money, price);
       obj['order.productsAmount'] = this.data.order.productsAmount - 1;
       this.setData(obj);
       this.setData({ 'order.availableCoupon': this.getMaxDiscountCoupon() });
@@ -324,11 +331,19 @@ Page({
     obj[key] = num + 1;
     key = 'order.productList[' + index + '].amount';
     obj[key] = ((num + 1) * price).toFixed(2);
-    obj['order.money'] = this.data.order.money + price;
+    obj['order.money'] = util.accAdd(this.data.order.money, price);
     obj['order.productsAmount'] = this.data.order.productsAmount + 1;
     this.setData(obj);
     this.setData({ 'order.availableCoupon': this.getMaxDiscountCoupon() });
     this.getFreight();
+  },
+  couponRadioChange: function (evt) {
+    var target = evt.target,
+        dataset = target.dataset,
+        index = dataset.index,
+        list = this.useableCouponList;
+
+    this.setData('order.availableCoupon', list[index]);
   },
   toFixed: function (num, precis) {
     return num.toFixed(precis || 2);
@@ -359,16 +374,27 @@ Page({
   },
   submitOrder: function () {
     var self = this,
-      params = {},
-      list = self.data.order.productList,
-      items = '',
-      orderData;
+        params = {},
+        list = self.data.order.productList,
+        distributeInfo = self.data.distributionInfo,
+        items = '',
+        orderData;
 
     list.forEach(function (item) {
       items += item.id + '&null&' + item.product_num + '|';
     });
     items = items.substr(0, items.length - 1);
-    Object.assign(params, self.data.distributionInfo, {
+    Object.assign(params, {
+      country: distributeInfo.country,
+      province: distributeInfo.province,
+      city: distributeInfo.city,
+      district: distributeInfo.district,
+      address: distributeInfo.address,
+      postal_code: distributeInfo.postal_code,
+      mobile: distributeInfo.mobile,
+      recipients: distributeInfo.recipients,
+      freight: self.data.order.distributionMoney
+    }, {
       payment_typeid: '0',
       payment_type: '微信支付',
       order_source: '1',
@@ -401,7 +427,7 @@ Page({
           success: function (_res) {
             //跳转到支付成功页
             console.log(_res);
-            self.goPayResult(res.orderId);
+            self.goPayResult(res.data.orderNo);
           },
           fail: function (_res) {
             console.log(_res);
@@ -413,9 +439,9 @@ Page({
       }
     });
   },
-  goPayResult: function (orderId) {
+  goPayResult: function (orderNo) {
     wx.navigateTo({
-      url: '../payResult/index?orderId=' + orderId
+      url: '../payResult/index?orderNo=' + orderNo
     });
   },
   radioChange: function (evt) {

@@ -130,3 +130,21 @@ view {
   text-overflow:ellipsis;
   white-space:nowrap
 }
+.ns-hints {
+  padding: 8rpx 0;
+  margin: 20rpx 0;
+  border: 1px solid #d8fff7;
+  color: #3d6b62;
+  background: #e7fffa;
+}
+.ns-hints-img {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 12rpx 20rpx;
+}
+.ns-hints-content {
+  display: inline-block;
+  width: 620rpx;
+  line-height: 50rpx;
+  vertical-align: top;
+}

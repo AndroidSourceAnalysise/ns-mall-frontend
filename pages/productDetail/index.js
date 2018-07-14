@@ -148,6 +148,32 @@ Page({
       }
     });
   },
+  reduceNum: function (evt) {
+    var pro,
+        key,
+        obj = {};
+
+    if (!(pro = this.data.product)) {
+      return;
+    }
+    if (pro.product_num > 1) {
+      key = 'product.product_num';
+      obj[key] = pro.product_num - 1;
+      this.setData(obj);
+    }
+  },
+  addNum: function (evt) {
+    var pro,
+        key,
+        obj = {};
+
+    if (!(pro = this.data.product)) {
+      return;
+    }
+    key = 'product.product_num';
+    obj[key] = pro.product_num + 1;
+    this.setData(obj);
+  },
   buyProduct: function () {
     wx.setStorageSync('ns-products', [this.data.product]);
     wx.navigateTo({
