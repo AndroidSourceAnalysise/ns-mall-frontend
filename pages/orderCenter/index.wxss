@@ -52,6 +52,12 @@
   padding: 16rpx 40rpx;
   font-size: 0;
 }
+.operate-btn {
+  margin-right: 20rpx;
+}
+.operate-btn:last-child {
+  margin-left: 0;
+}
 button[plain] {
   border-color: gray;
   border-radius: 0;

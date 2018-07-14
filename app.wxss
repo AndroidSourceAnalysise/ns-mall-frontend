@@ -125,11 +125,13 @@ view {
   color: #0b0707;
 }
 /* =======页面区块公共样式end======= */
+/* 文字溢出显示... */
 .text-ellipsis {
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap
 }
+/* 页面通知、公告区域的样式 */
 .ns-hints {
   padding: 8rpx 0;
   margin: 20rpx 0;
@@ -147,4 +149,16 @@ view {
   width: 620rpx;
   line-height: 50rpx;
   vertical-align: top;
+}
+/* 页面通知、公告区域的样式end */
+/* 前面带绿色块的副标题 */
+.subtitle {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 6px;
+    margin: 40px 0 20px 0;
+    border-left: 6px solid #009999;
+    font-size: 16px;
+    color: #333;
 }

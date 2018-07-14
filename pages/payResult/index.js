@@ -26,9 +26,9 @@ Page({
    */
   onLoad: function (options) {
     var params = util.getCurrentPageInfo().params,
-        orderNo = params.orderNo;
+      orderNo = params.orderId;
 
-    //this.getOrderInfo(orderNo);
+    //this.getOrderInfo(orderId);
   },
 
   /**
@@ -80,7 +80,7 @@ Page({
   onShareAppMessage: function () {
   
   },
-  getOrderInfo: function (orderNo) {
+  getOrderInfo: function (orderId) {
     var self = this;
 
     if (!orderNo) {
@@ -90,7 +90,7 @@ Page({
       url: interfacePrefix + '',
       method: 'POST',
       data: {
-        orderNo: orderNo
+        orderId: orderId
       },
       success: function (res) {
         self.setData({ order: res.data });

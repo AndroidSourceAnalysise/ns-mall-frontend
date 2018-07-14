@@ -27,7 +27,6 @@ Page({
       11: '删除订单'
     },
     orderOperateUrlMap: {
-      1: '/weixin/pay/prePay',
       2: '/order/refund',
       11: '/order/deleteOrder'
     },
@@ -161,9 +160,15 @@ Page({
         url;
 
     status = self.data.orderList[idx].status;
-    id = self.data.orderList[idx].order_no;
+    id = self.data.orderList[idx].id;
     url = self.data.orderOperateUrlMap[status];
+    if(status == 1) {
+      //去支付
+      self.payOrder(id);
+      return;
+    }
     if(!url) {
+      //说明是查看物流操作
       self.queryLogistical(id);
       return;
     }
@@ -187,7 +192,46 @@ Page({
       }
     })
   },
-  deleteOrder: function (orderId) {
+  payOrder: function (id) {
+    var self = this,
+        orderData;
+    wx.request({
+      url: interfacePrefix + '/weixin/pay/prePay',
+      method: 'POST',
+      data: {
+        order_id: id
+      },
+      success: function (res) {
+        orderData = res.data;
+        //订单创建成功发起支付请求
+        wx.requestPayment({
+          appId: orderData.appId,
+          timeStamp: orderData.timeStamp,
+          nonceStr: orderData.nonceStr,
+          package: orderData.package,
+          signType: orderData.signType,
+          paySign: orderData.paySign,
+          success: function (_res) {
+            //跳转到支付成功页
+            console.log(_res);
+            self.goPayResult(res.data.orderId);
+          },
+          fail: function (_res) {
+            console.log(_res);
+          },
+          complete: function (_res) {
+            console.log(_res);
+          }
+        });
+      }
+    });
+  },
+  goPayResult: function (orderId) {
+    wx.navigateTo({
+      url: '../payResult/index?orderNo=' + orderId
+    });
+  },
+  deleteOrder: function (evt) {
     var self = this,
         target = evt.currentTarget,
         id = target.dataset.id,

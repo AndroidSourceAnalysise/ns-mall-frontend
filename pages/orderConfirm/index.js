@@ -427,7 +427,7 @@ Page({
           success: function (_res) {
             //跳转到支付成功页
             console.log(_res);
-            self.goPayResult(res.data.orderNo);
+            self.goPayResult(res.data.orderId);
           },
           fail: function (_res) {
             console.log(_res);
@@ -439,9 +439,9 @@ Page({
       }
     });
   },
-  goPayResult: function (orderNo) {
+  goPayResult: function (orderId) {
     wx.navigateTo({
-      url: '../payResult/index?orderNo=' + orderNo
+      url: '../payResult/index?orderNo=' + orderId
     });
   },
   radioChange: function (evt) {

@@ -1,8 +1,8 @@
 <!--pages/productDetail/index.wxml-->
 <view class="container product-detail">
   <swiper indicator-dots autoplay circular class="swiper-area">
-    <swiper-item wx:for="{{photos.top}}">
-      <image src="{{item.url}}" class="slide-img" data-pro-id="{{item.id}}" bindtap="goProductDetail"></image>
+    <swiper-item wx:for="{{photos.top}}" wx:key="{{item.id}}">
+      <image src="{{item.url}}" class="slide-img"></image>
     </swiper-item>
   </swiper>
   <image src="{{product.image_url}}" class="product-img"></image>
@@ -39,6 +39,13 @@
         <view class="comment-content">{{item.content}}</view>
         <view>{{item.time}}</view>
       </view>
+    </view>
+    <!-- 产品详情图和产品参数图片等区域 -->
+    <view>
+      <view class="subtitle" wx:if="{{photos.detail.length}}">产品详情</view>
+      <image src="{{item.url}}" class="slide-img" wx:for="{{photos.detail}}" wx:key="{{item.id}}"></image>
+      <view class="subtitle" wx:if="{{photos.detail.length}}">产品参数</view>
+      <image src="{{item.url}}" class="slide-img" wx:for="{{photos.params}}" wx:key="{{item.id}}"></image>
     </view>
     <view class="operate-btns-wrap">
       <text class="buy-btn" bindtap="buyProduct">立即购买</text>
