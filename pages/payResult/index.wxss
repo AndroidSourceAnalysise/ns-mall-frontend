@@ -5,7 +5,8 @@
   text-align: center;
 }
 .pay-status-text {
-  margin: 34rpx 0 50rpx;
+  line-height: 40rpx;
+  margin: 26rpx 0 42rpx;
   color: #99cc33;
 }
 .other-text {
@@ -26,9 +27,10 @@
 }
 .order-info-val {
   display: inline-block;
-  width: 430rpx;
+  width: 470rpx;
   line-height: 38rpx;
-  margin-left: 80rpx;
+  margin-left: 40rpx;
   color: #070d0c;
   vertical-align: top;
+  word-break:break-all;
 }

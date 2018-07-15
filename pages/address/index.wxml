@@ -40,7 +40,7 @@
       </picker>
     </view>
     <view class="section">
-      <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" value="{{address.detailAddress}}" name="detailAddress"/>
+      <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" value="{{address.address}}" name="address"/>
     </view>
     <view class="section">
       <text class="w200">设置默认地址</text><switch class="switch-btn" checked="{{address.isDefault}}" name="isDefault"/>

@@ -64,12 +64,14 @@ view {
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 50%;
   z-index: 100;
   padding: 40rpx 20rpx;
   border-radius: 8rpx;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background-color: #fff;
+  overflow-y: auto;
 }
 /* =======筛选栏统一样式begin======= */
 .filter-area {
@@ -127,9 +129,9 @@ view {
 /* =======页面区块公共样式end======= */
 /* 文字溢出显示... */
 .text-ellipsis {
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* 页面通知、公告区域的样式 */
 .ns-hints {

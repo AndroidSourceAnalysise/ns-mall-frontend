@@ -54,7 +54,7 @@
 }
 .product-comment-area {
   padding-top: 80rpx;
-  padding-bottom: 40rpx;
+  padding-bottom: 120rpx;
   color: #000;
 }
 .comment-statis {

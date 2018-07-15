@@ -1,5 +1,6 @@
 /* pages/adress/index.wxss */
 .address {
+  padding-bottom: 40rpx;
   background-color: #fff;
 }
 .address-item {

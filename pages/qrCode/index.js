@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    recommendQRcodeUrl: 'http://ns-1256668373.cos.ap-chengdu.myqcloud.com/dimen/23571102-6f72-4aa4-aaf9-24b443f4ffc5.jpg'
+    recommendQRcodeUrl: ''
   },
 
   /**
@@ -95,7 +95,6 @@ Page({
       },
       success: function (res) {
         self.setData({ recommendQRcodeUrl: res.data.codeImageUrl });
-        console.log(self.data.recommendQRcodeUrl);
       }
     });
   }

@@ -11,7 +11,8 @@
   margin-left: 100rpx;
 }
 .distribution-address {
-  margin-top: 30rpx;
+  line-height: 40rpx;
+  margin-top: 24rpx;
   font-size: 28rpx;
   color: #7b8180;
 }
@@ -151,3 +152,25 @@
 .term-valid {
   font-size: 26rpx;
 }
+/* 选择地址弹框样式 */
+.address-item {
+  display: inline-block;
+  padding: 60rpx 0 0;
+  color: #000;
+}
+.address-item-info {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  vertical-align: top;
+}
+.address-phone {
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+}
+.address-detail-item {
+  margin: 20rpx 0;
+  font-size: 30rpx;
+}
+/* 选择地址弹框样式 */

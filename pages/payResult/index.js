@@ -26,9 +26,9 @@ Page({
    */
   onLoad: function (options) {
     var params = util.getCurrentPageInfo().params,
-      orderNo = params.orderId;
+        orderId = params.orderId;
 
-    //this.getOrderInfo(orderId);
+    this.getOrderInfo(orderId);
   },
 
   /**
@@ -81,19 +81,24 @@ Page({
   
   },
   getOrderInfo: function (orderId) {
-    var self = this;
+    var self = this,
+        rs;
 
-    if (!orderNo) {
+    if (!orderId) {
       return;
     }
     wx.request({
-      url: interfacePrefix + '',
+      url: interfacePrefix + '/order/getOrderById',
       method: 'POST',
       data: {
-        orderId: orderId
+        order_id: orderId
       },
       success: function (res) {
-        self.setData({ order: res.data });
+        rs = util.toLowerCaseForObjectProperty(res.data);
+        rs.addressDetail = rs.province + rs.city + rs.district + rs.address;
+        rs.payStatus = rs.status === 2 ? 'success' : 'cancel';
+        rs.payStatusText = rs.payStatus === 'success' ? '恭喜您支付成功!' : '支付失败请回到支付页面重试，如果您已付款成功钱将在3-5个工作日退回到您账户。'
+        self.setData({ order: rs });
       }
     });
   },
@@ -101,5 +106,8 @@ Page({
     wx.redirectTo({
       url: '../index/index'
     });
+  },
+  goOrderConfirm: function () {
+    wx.navigateBack();
   }
 })

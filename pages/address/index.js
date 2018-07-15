@@ -98,8 +98,9 @@ Page({
             receiver: item.RECIPIENTS,
             phone: item.MOBILE,
             region: [item.PROVINCE, item.CITY, item.DISTRICT],
-            detailAddress: item.ADDRESS,
-            isDefault: item.IS_DEFAULT == 1
+            address: item.ADDRESS,
+            isDefault: item.IS_DEFAULT == 1,
+            detailAddress: item.PROVINCE + item.CITY + item.DISTRICT + item.ADDRESS
           };
         });
         self.setData({
@@ -172,7 +173,7 @@ Page({
         receiver: '',
         phone: '',
         region: [],
-        detailAddress: '',
+        address: '',
         isDefault: false
       },
       isAdd: true
@@ -234,7 +235,6 @@ Page({
         url,
         param;
 
-
     param = {
       MOBILE: add.phone,
       IS_DEFAULT: add.isDefault ? 1 : 0,
@@ -243,7 +243,7 @@ Page({
       PROVINCE: add.region[0],
       CITY: add.region[1],
       DISTRICT: add.region[2],
-      ADDRESS: add.detailAddress
+      ADDRESS: add.address
     };
     if(self.data.address.id) {
       url = '/address/updateAddress';

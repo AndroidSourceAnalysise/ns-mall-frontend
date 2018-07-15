@@ -19,6 +19,7 @@ Page({
       availableCoupon: {},
       realPayment: 0
     },
+    addressList: [],
     useableCouponList: [],
     //总可用积分
     integral: 0,
@@ -266,7 +267,7 @@ Page({
         couponDiscountMoney = this.data.order.availableCoupon.discount_amount;
 
     if(!couponDiscountMoney) {
-      money = orderMone;
+      money = orderMoney;
     }else {
       money = util.accSub(orderMoney, couponDiscountMoney);
     }
@@ -338,10 +339,8 @@ Page({
     this.getFreight();
   },
   couponRadioChange: function (evt) {
-    var target = evt.target,
-        dataset = target.dataset,
-        index = dataset.index,
-        list = this.useableCouponList;
+    var index = evt.detail.value,
+        list = this.data.useableCouponList;
 
     this.setData('order.availableCoupon', list[index]);
   },
@@ -426,11 +425,13 @@ Page({
           paySign: orderData.paySign,
           success: function (_res) {
             //跳转到支付成功页
-            console.log(_res);
-            self.goPayResult(res.data.orderId);
+            self.goPayResult(orderData.orderId);
           },
           fail: function (_res) {
-            console.log(_res);
+            if(!/\s+cancel$/.test(_res.errMsg)) {
+              //用户取消支付不跳转，只有支付失败才跳转
+              self.goPayResult(orderData.orderId);
+            }
           },
           complete: function (_res) {
             console.log(_res);
@@ -441,7 +442,7 @@ Page({
   },
   goPayResult: function (orderId) {
     wx.navigateTo({
-      url: '../payResult/index?orderNo=' + orderId
+      url: '../payResult/index?orderId=' + orderId
     });
   },
   radioChange: function (evt) {
@@ -497,5 +498,46 @@ Page({
   },
   submitSelectedCoupon: function () {
     this.setData({ isShowCouponPop: false });
+  },
+  getAddressList: function () {
+    var self = this,
+        list;
+
+    wx.request({
+      url: interfacePrefix + '/address/getAddressList',
+      method: 'POST',
+      success: function (res) {
+        list = res.data.map(function (item) {
+          util.toLowerCaseForObjectProperty(item);
+          item.addressDetail = item.province + item.city + item.district + item.address;
+
+          return item;
+        });
+        self.setData({
+          addressList: list
+        });
+      }
+    })
+  },
+  goAddAddress: function () {
+    wx.navigateTo({
+      url: '../address/index'
+    });
+  },
+  showAddressPop: function () {
+    this.getAddressList();
+    this.setData({ isShowAddressPop: true });
+  },
+  addressRadioChange: function (evt) {
+    var index = evt.detail.value,
+        list = this.data.addressList,
+        rs;
+
+    rs = list[index];
+    rs.addressDetail = rs.province + rs.city + rs.district + rs.address;
+    this.setData({'distributionInfo': rs});
+  },
+  submitSelectedAddress: function () {
+    this.setData({ isShowAddressPop: false });
   }
 })

@@ -215,6 +215,7 @@ Page({
     }
     list = list.map(function(item) {
       delete item.money;
+      delete item.checked;
 
       return item;
     });
