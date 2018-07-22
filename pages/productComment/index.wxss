@@ -1,0 +1,42 @@
+/* pages/productComment/index.wxss */
+.product-comment {
+  background-color: #fff;
+}
+.comment-item {
+  margin-bottom: 30rpx;
+  color: #999;
+}
+.last-comment-item {
+  margin-bottom: 0;
+  padding-bottom: 80rpx;
+}
+.comment-img {
+  width: 76rpx;
+  height: 76rpx;
+  border: 1px solid #aac4bf;
+  border-radius: 50%;
+}
+.comment-item-detail {
+  display: inline-block;
+  width: 420rpx;
+  margin-left: 50rpx;
+  vertical-align: top;
+}
+.comment-content {
+  line-height: 1.2;
+  margin: 16rpx 0;
+  color: #000;
+}
+.comment-wrap {
+  padding: 40rpx 20rpx;
+}
+.comment-textarea {
+  width: 100%;
+  padding: 20rpx;
+  border: 1px solid #b5b4b4;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+.add-comment-img-btn {
+  margin-top: 40rpx;
+}

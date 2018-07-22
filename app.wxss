@@ -155,12 +155,12 @@ view {
 /* 页面通知、公告区域的样式end */
 /* 前面带绿色块的副标题 */
 .subtitle {
-    display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    padding-left: 6px;
-    margin: 40px 0 20px 0;
-    border-left: 6px solid #009999;
-    font-size: 16px;
-    color: #333;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 6px;
+  margin: 40px 0 20px 0;
+  border-left: 6px solid #009999;
+  font-size: 16px;
+  color: #333;
 }

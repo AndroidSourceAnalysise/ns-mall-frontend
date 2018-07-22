@@ -11,9 +11,13 @@
     "pages/coupon/index",
     "pages/productDetail/index",
     "pages/orderConfirm/index",
+    "pages/orderDetail/index",
     "pages/payResult/index",
     "pages/qrCode/index",
     "pages/address/index",
+    "pages/productComment/index",
+    "pages/promotionOrder/index",
+    "pages/myNotices/index",
     "pages/login/index"
   ],
   "window":{

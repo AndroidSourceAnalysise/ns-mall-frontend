@@ -6,7 +6,7 @@
   </view>
   <view class="bottom-area">
     <image src="../../images/login/ck-box.png" class="ck-box"></image>
-    <text class="author-scope">获得你公开信息（昵称、头像等）</text>
+    <text class="author-scope">获取你公开信息(仅昵称、头像等基本信息)</text>
     <button bindgetuserinfo="getUserInfoCb" type="primary" open-type="getUserInfo" lang="zh_CN" class="author-btn">确认授权</button>
   </view>
 </view>

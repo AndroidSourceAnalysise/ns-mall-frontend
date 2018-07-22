@@ -1,3 +1,4 @@
+var requestPrefix = 'https://m.nashengbuy.com/ns-api/api';
 function toLowerCaseForObjectProperty(obj) {
   var p;
 
@@ -24,6 +25,39 @@ function getCurrentPageInfo() {
     url: url,
     params: options
   };
+}
+function setRecommenderAuto() {
+  var refereeNo = getCurrentPageInfo().params.refereeNo,
+      p;
+  
+  console.log('refereeNo:' + refereeNo);
+  if(!refereeNo) {
+    return;
+  }
+  //检测是否已经有绑定推荐人了
+  p = new Promise(function(resolve, reject) {
+    wx.request({
+      url: requestPrefix + '/customer/checkReferee',
+      method: 'POST',
+      success: function (res) {
+        resolve(res.data);
+      }
+    });
+  });
+  p.then(function(d) {
+    if(d) {
+      console.log('=====可以设置推荐人');
+      //true可以设置推荐人
+      wx.request({
+        url: requestPrefix + '/customer/updateReferee',
+        method: 'POST',
+        data: {
+          referee_no: refereeNo
+        },
+        success: function (res) {}
+      });
+    }
+  });
 }
 /*
     鉴于js的浮点型数字计算会出现精度问题，加以下方法。
@@ -101,11 +135,24 @@ function accDiv(arg1, arg2) {
 
   return accMul((r1 / r2), Math.pow(10, t2 - t1));
 }
+function getPersonInfo() {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: requestPrefix + '/customer/getCustomerBaseInfo',
+      method: 'POST',
+      success: function (res) {
+        resolve(toLowerCaseForObjectProperty(res.data));
+      }
+    });
+  });
+}
 
 module.exports = {
   toLowerCaseForObjectProperty: toLowerCaseForObjectProperty,
+  getPersonInfo: getPersonInfo,
   getCurrentPageInfo: getCurrentPageInfo,
-  interfacePrefix: 'https://m.nashengbuy.com/ns-api/api',
+  interfacePrefix: requestPrefix,
+  setRecommenderAuto: setRecommenderAuto,
   accAdd: accAdd,
   accSub: accSub,
   accMul: accMul,

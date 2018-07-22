@@ -6,15 +6,33 @@ var util = require('../../utils/util.js'),
 
 Page({
   data: {
+    userInfo: {},
     swiperImgs: [],
     productList: [],
     //女性用户随机立减金额范围
     reduceRange: ''
   },
   onLoad: function () {
+    var self = this;
+
     this.getReduceRandomRange();
     this.getSwiperImgsList();
     this.getProductList();
+    util.getPersonInfo().then(function (d) {
+      self.setData({ userInfo: d});
+    });
+    //用于打开别人分享的页面时自动绑定推荐人
+    util.setRecommenderAuto();
+  },
+  onPullDownRefresh: function () {
+    this.onLoad();
+    wx.stopPullDownRefresh();
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '美味夏威夷果吃不停，女性用户享受永久随机优惠哦，还有各种其他优惠等着你来领!',
+      path: '/pages/index/index?refereeNo=' + this.data.userInfo.con_no
+    };
   },
   getSwiperImgsList: function () {
     var self = this,
@@ -65,12 +83,22 @@ Page({
   },
   goProductDetail: function (evt) {
     var id = evt.target.dataset.proId,
-        url;
+      url;
 
-    if(!id) {
+    if (!id) {
       return;
     }
     url = '../productDetail/index?id=' + id;
+    wx.navigateTo({
+      url: url
+    });
+  },
+  goPage: function () {
+    var url = evt.target.dataset.url;
+
+    if (!url) {
+      return;
+    }
     wx.navigateTo({
       url: url
     });

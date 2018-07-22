@@ -19,7 +19,8 @@ Page({
     addressList: [],
     selfMobile: '',
     mobileCode: '',
-    isBindMobile: false
+    isBindMobile: false,
+    errorInfo: {}
   },
 
   /**
@@ -77,7 +78,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    
   },
   getSelectedAddress: function (evt) {
     var val = evt.detail.value;
@@ -143,22 +144,44 @@ Page({
     });
   },
   bindSelfMobile: function () {
-    var self = this;
+    var self = this,
+        data = self.data,
+        error = {},
+        flag = true;
 
     return new Promise(function (resolve, reject) {
+      if (!data.selfMobile || !/^1[34578]\d{9}$/.test(data.selfMobile)) {
+        error.selfMobile = '请输入正确的手机号';
+        flag = false;
+      }
+      if (!data.mobileCode) {
+        error.mobileCode = '请输入验证码';
+        flag = false;
+      }
+      self.setData({ errorInfo: error });
+      if (!flag) {
+        reject();
+        wx.showToast({
+          title: '请填写正确的信息',
+          icon: 'none',
+          mask: true,
+          duration: 2000
+        });
+      }else {
         wx.request({
-        url: interfacePrefix + '/customer/bindMobile',
-        method: 'POST',
-        data: {
-          mobile: self.data.selfMobile,
-          code: self.data.mobileCode,
-          type: 0
-        },
-        success: function (res) {
-          resolve();
-          self.setData({ isBindMobile: true });
-        }
-      });
+          url: interfacePrefix + '/customer/bindMobile',
+          method: 'POST',
+          data: {
+            mobile: self.data.selfMobile,
+            code: self.data.mobileCode,
+            type: 0
+          },
+          success: function (res) {
+            resolve();
+            self.setData({ isBindMobile: true });
+          }
+        });
+      }
     });
   },
   updateMobile: function (evt) {
@@ -235,6 +258,15 @@ Page({
         url,
         param;
 
+    if (!self.validAddressData()) {
+      wx.showToast({
+        title: '请填写正确的信息',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      });
+      return;
+    }
     param = {
       MOBILE: add.phone,
       IS_DEFAULT: add.isDefault ? 1 : 0,
@@ -273,5 +305,29 @@ Page({
   },
   cancel: function () {
     this.setData({ isAdd: false });
+  },
+  validAddressData: function (address) {
+    var flag = true,
+        obj = {};
+
+    if(!address.receiver) {
+      flag = false;
+      obj.receiver = '请输入收货人';
+    }
+    if (!address.phone) {
+      flag = false;
+      obj.phone = '请输入收货人联系电话';
+    }
+    if (!address.region.length) {
+      flag = false;
+      obj.region = '请选择所在地区';
+    }
+    if (!address.address) {
+      flag = false;
+      obj.region = '请输入详细地址';
+    }
+    this.setData({ errorInfo: obj });
+
+    return flag;
   }
 })

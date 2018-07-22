@@ -43,10 +43,12 @@ Page({
     if (!pId) {
       return;
     }
-    this.setData({'pId': pId, curPage: 1});
+    this.setData({'pId': pId});
     this.getProductDetail(pId);
     this.getServices();
-    this.getProductCommentList(pId, this.data.curPage);
+    this.getProductCommentList(pId);
+    //用于打开别人分享的页面时自动绑定推荐人
+    util.setRecommenderAuto();
   },
 
   /**
@@ -88,7 +90,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    !this.data.isCommentLastPage && this.getProductCommentList(this.data.pId, this.data.curPage);
+    
   },
 
   /**
@@ -126,7 +128,7 @@ Page({
       }
     });
   },
-  getProductCommentList: function(pId, curPage) {
+  getProductCommentList: function(pId) {
     var self = this,
         list = this.data.commentList;
 
@@ -136,15 +138,11 @@ Page({
       data: {
         pnt_id: pId,
         page_size: 20,
-        page_num: curPage
+        page_num: 1
       },
       success: function (res) {
-        if(!res.data.lastPage) {
-          list = list.concat(res.data.list);
-          self.setData({ commentList: list });
-        }else {
-          self.setData({ isCommentLastPage: true });
-        }
+        list = list.concat(res.data.list);
+        self.setData({ commentList: list });
       }
     });
   },
@@ -192,6 +190,11 @@ Page({
       success: function (res) {
         self.setData({services: res.data.split('@')});
       }
+    });
+  },
+  seeAllComments: function () {
+    wx.navigateTo({
+      url: '../productComment/index?id=' + this.data.pId,
     });
   },
   putShoppingCart: function () {

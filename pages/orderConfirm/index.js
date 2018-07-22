@@ -126,9 +126,11 @@ Page({
       wx.request({
         url: interfacePrefix + '/address/getDefault',
         success: function (res) {
-          info = util.toLowerCaseForObjectProperty(res.data);
-          info.addressDetail = info.province + info.city + info.district + info.address;
-          self.setData({ distributionInfo: info});
+          if(res.data) {
+            info = util.toLowerCaseForObjectProperty(res.data);
+            info.addressDetail = info.province + info.city + info.district + info.address;
+            self.setData({ distributionInfo: info });
+          }
           resolve();
         }
       });
@@ -354,12 +356,21 @@ Page({
     if(!list.length) {
       return;
     }
+    if (!self.data.distributionInfo) {
+      wx.showToast({
+        title: '请添加收货地址',
+        icon: 'none',
+        mask: true,
+        duration: 2000
+      });
+      return;
+    }
     if (!self.validRecommender()) {
       wx.showToast({
         title: '请填写推荐人会员号',
         icon: 'none',
         mask: true,
-        duration: 3000
+        duration: 2000
       });
       return;
     }

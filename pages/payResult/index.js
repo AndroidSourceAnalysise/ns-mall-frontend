@@ -103,7 +103,7 @@ Page({
     });
   },
   goHome: function () {
-    wx.redirectTo({
+    wx.switchTab({
       url: '../index/index'
     });
   },

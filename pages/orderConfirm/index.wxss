@@ -8,7 +8,8 @@
   padding-bottom: 20rpx;
 }
 .distribution-phone {
-  margin-left: 100rpx;
+  position: absolute;
+  right: 40rpx;
 }
 .distribution-address {
   line-height: 40rpx;

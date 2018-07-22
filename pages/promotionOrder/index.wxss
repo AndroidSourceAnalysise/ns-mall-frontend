@@ -1,0 +1,12 @@
+/* pages/promotionOrder/index.wxss */
+.promotion-order-item {
+  padding: 20rpx 20rpx;
+  margin-top: 40rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+.promotion-order-item-content {
+  display: block;
+  line-height: 34rpx;
+  margin: 12rpx 0;
+}

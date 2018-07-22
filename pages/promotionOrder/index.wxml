@@ -1,0 +1,17 @@
+<!--pages/promotionOrder/index.wxml-->
+<view class="container promotion-order">
+  <view class="filter-area" bindtap="filterOrder">
+    <text data-filter-type="0" class="{{curFilterType == 0 ? 'active-filter' : ''}}">待确认</text>
+    <text data-filter-type="1" class="{{curFilterType == 1 ? 'active-filter' : ''}}">已完成</text>
+    <text data-filter-type="-1" class="{{curFilterType == -1 ? 'active-filter' : ''}}">已退货</text>
+  </view>
+  <!-- 订单表格 -->
+  <view class="promotion-order-item" wx:for="{{orderList}}" wx:key="{{item.id}}">
+    <text class="promotion-order-item-content">昵称：{{item.buyer_name}}</text>
+    <text class="promotion-order-item-content">订单号：{{item.order_no}}</text>
+    <text class="promotion-order-item-content">金额/推广费：{{item.scale}}/{{item.fee}}</text>
+    <text class="promotion-order-item-content">状态：{{item.statusStr}}</text>
+    <text class="promotion-order-item-content">下单时间：{{item.create_dt}}</text>
+  </view>
+</view>
+

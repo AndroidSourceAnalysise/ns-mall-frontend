@@ -111,9 +111,19 @@ Page({
       url: '../qrCode/index'
     });
   },
+  goPromotionOrder: function () {
+    wx.navigateTo({
+      url: '../promotionOrder/index'
+    });
+  },
   goCouponCenter: function () {
     wx.navigateTo({
       url: '../coupon/index'
+    });
+  },
+  goMyNotice: function () {
+    wx.navigateTo({
+      url: '../myNotices/index'
     });
   },
   goAddress: function () {

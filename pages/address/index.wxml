@@ -19,28 +19,28 @@
   </view>
   <form bindsubmit="save" bindreset="cancel" wx:else>
     <view class="section">
-      <text>收货人</text><input class="input-item" placeholder="请输入收货人" value="{{address.receiver}}" name="receiver"/>
+      <text>收货人</text><input class="input-item {{errorInfo.receiver ? 'error-border' : ''}}" placeholder="请输入收货人" value="{{address.receiver}}" name="receiver"/>
     </view>
     <view class="section" wx:if="{{!isBindMobile}}">
-      <text>绑定手机号</text><input class="input-item" placeholder="请输入自己手机号" name="selfMobile" type="number" bindinput="updateMobile"/>
+      <text>绑定手机号</text><input class="input-item {{errorInfo.selfMobile ? 'error-border' : ''}}" placeholder="请输入自己手机号" name="selfMobile" type="number" bindinput="updateMobile"/>
       <button class="save-btn valid-code-btn" bindtap="getVerifyCode">获取验证码</button>
     </view>
     <view class="section" wx:if="{{!isBindMobile}}">
-      <text>输入验证码</text><input class="input-item" placeholder="请输入验证码" name="mobileCode" type="number" bindinput="updateVerifyCode"/>
+      <text>输入验证码</text><input class="input-item {{errorInfo.mobileCode ? 'error-border' : ''}}" placeholder="请输入验证码" name="mobileCode" type="number" bindinput="updateVerifyCode"/>
     </view>
     <view class="section">
-      <text>联系电话</text><input class="input-item" placeholder="请输入收货人手机号" type="number" value="{{address.phone}}" name="phone"/>
+      <text>联系电话</text><input class="input-item {{errorInfo.phone ? 'error-border' : ''}}" placeholder="请输入收货人手机号" type="number" value="{{address.phone}}" name="phone"/>
     </view>
     <view class="section">
       <text>所在地区</text>
       <picker mode="region" bindchange="getSelectedAddress" class="input-item" value="{{address.region}}" name="region">
-        <view class="selected-region">
+        <view class="selected-region {{errorInfo.region ? 'error-border' : ''}}">
           {{address.region.length ? address.region[0] + '  ' + address.region[1] + '  ' + address.region[2] : '请选择所在地区'}}
         </view>
       </picker>
     </view>
     <view class="section">
-      <text>详细地址</text><input class="input-item" placeholder="请输入详细地址" value="{{address.address}}" name="address"/>
+      <text>详细地址</text><input class="input-item {{errorInfo.address ? 'error-border' : ''}}" placeholder="请输入详细地址" value="{{address.address}}" name="address"/>
     </view>
     <view class="section">
       <text class="w200">设置默认地址</text><switch class="switch-btn" checked="{{address.isDefault}}" name="isDefault"/>

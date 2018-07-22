@@ -82,6 +82,9 @@
 .section .w200 {
   width: 200rpx;
 }
+.error-border {
+  border: 1px solid red;
+}
 .switch-btn {
   position: absolute;
   right: 0;
@@ -94,6 +97,6 @@
   right: 10rpx;
   z-index: 10;
   width: 240rpx;
-  transform:translate(0,-100%);
+  transform:translate(0,-50%);
   background-color: #339999;
 }

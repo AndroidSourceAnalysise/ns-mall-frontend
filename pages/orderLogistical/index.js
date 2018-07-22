@@ -116,7 +116,7 @@ Page({
           order_id: orderId
         },
         success: function (res) {
-          resolve(res.data);
+          resolve(util.toLowerCaseForObjectProperty(res.data[0]).waybill);
         }
       });
     });

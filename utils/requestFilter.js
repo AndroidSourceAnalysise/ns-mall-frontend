@@ -9,7 +9,7 @@ function _request(params) {
   if (!params || params.constructor === 'Object') {
     return;
   }
-  originSuccess = params.success;
+  originSuccess = params.success || function (res) {};
   sk = wx.getStorageSync(skName);
   if (sk) {
     params.header ? (params.header.sk = sk) : (params.header = {sk: sk});

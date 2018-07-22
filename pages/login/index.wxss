@@ -4,12 +4,17 @@ page {
   background-color: #fff;
 }
 .login {
-  font-size: 36rpx;
+  font-size: 30rpx;
 }
 .top-area {
   padding: 0 0 76rpx;
   background-color: #019e97;
   text-align: center;
+}
+.logo-img {
+  margin-top: 60rpx;
+  width: 300rpx;
+  height: 296rpx;
 }
 .author-desc {
   width: 540rpx;
@@ -28,7 +33,7 @@ page {
   vertical-align: middle;
 }
 .author-scope {
-  margin-left: 50rpx;
+  margin-left: 40rpx;
   color: #999;
   vertical-align: middle;
 }

@@ -1,0 +1,40 @@
+<!--pages/orderDetail/index.wxml-->
+<view class="container order-confirm">
+  <view class="distribution-info common-block-style" wx:if="{{distributionInfo}}" bindtap="showAddressPop">
+    <text>{{distributionInfo.recipients}}</text>
+    <text class="distribution-phone">{{distributionInfo.mobile}}</text>
+    <view class="distribution-address">{{distributionInfo.addressDetail}}</view>
+  </view>
+  <view class="product-info-wrap common-block-style" wx:for="{{order.items}}" wx:for-item="product" wx:key="{{product.id}}">
+    <image src="{{product.thumb_url}}" class="product-img"></image>
+    <view class="product-other-info">
+      <text class="product-name">[{{product.pnt_name}}]*{{product.quantity}}</text>
+      <view class="product-price red-text">¥{{product.amount}}</view>
+    </view>
+  </view>
+  <view class="relative common-block-style">
+    <text>商品总价</text>
+    <text class="right-text">¥{{order.pnt_amount}}</text>
+  </view>
+  <view class="relative common-block-style">
+    <text>运费</text>
+    <text class="right-text">¥{{order.freight}}</text>
+  </view>
+  <view class="relative common-block-style">
+    <text>优惠券</text>
+    <text class="right-text">¥{{order.coupon_amount}}</text>
+  </view>
+  <view class="relative common-block-style">
+    <text>折扣金额</text>
+    <text class="right-text">¥{{order.discount_amount}}</text>
+  </view>
+  <view class="relative common-block-style">
+    <text>积分抵扣金额</text>
+    <text class="right-text">¥{{order.integral_amount}}</text>
+  </view>
+  <view class="relative common-block-style">
+    <text>随机减免金额</text>
+    <text class="right-text">¥{{order.random_amount}}</text>
+  </view>
+  <view class="common-block-style red-text">实付金额：¥{{order.order_total}}</view>
+</view>
