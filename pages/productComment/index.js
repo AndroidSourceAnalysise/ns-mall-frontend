@@ -100,11 +100,39 @@ Page({
     });
   },
   addCommentImg: function () {
-    var self = this;
+    var self = this,
+        data;
+
     wx.chooseImage({
+      count: 3,
       success: function (res) {
         console.log(res.tempFilePaths);
-        self.setData({ commentImages: res.tempFilePaths });
+        self.setData({ commentImages: [] });
+        res.tempFilePaths.forEach(function(item) {
+          self.uploadImage(item);
+        });
+      }
+    });
+  },
+  uploadImage: function (filePath) {
+    var self = this,
+        data,
+        arr = self.data.commentImages;
+
+    wx.uploadFile({
+      url: interfacePrefix + '/file/upload', //仅为示例，非真实的接口地址
+      filePath: filePath,
+      name: 'file',
+      formData: {
+        type: 'comment'
+      },
+      success: function (res) {
+        data = JSON.parse(res.data);
+        data = data.data.map(function (item) {
+          return item.url;
+        });
+        arr = arr.concat(data);
+        self.setData({ commentImages: arr });
       }
     });
   },

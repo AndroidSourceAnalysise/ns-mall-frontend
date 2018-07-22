@@ -8,21 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
     product: {
-      // img: '',
-      // name: '咪之猫-夏威夷果200gx3袋',
-      // desc: '坚果零食组合大礼包',
-      // price: 98,
-      // isExpressFree: true,
-      // salesCount: 6888,
-      // coupons: [],
-      // services: ['订单险', '7天无理由退货'],
-      // commentCount: 128345,
-      // commentTags: [
-      //   { id: '001', tagName: '物流速度快', tagCount: 999},
-      //   { id: '001', tagName: '质量好', tagCount: 689 },
-      //   { id: '001', tagName: '味道不错', tagCount: 1200 }
-      // ]
+      
     },
     commentList: [
       { id: '001', img: '', commentator: '响叮当', content: '好吃非常划算，店家很有耐心', time: '2018-05-14 10:44:08' },
@@ -37,7 +25,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var params = util.getCurrentPageInfo().params,
+    var self = this,
+        params = util.getCurrentPageInfo().params,
         pId = params.id;
 
     if (!pId) {
@@ -47,6 +36,9 @@ Page({
     this.getProductDetail(pId);
     this.getServices();
     this.getProductCommentList(pId);
+    util.getPersonInfo().then(function (d) {
+      self.setData({ userInfo: d });
+    });
     //用于打开别人分享的页面时自动绑定推荐人
     util.setRecommenderAuto();
   },
@@ -97,7 +89,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '美味夏威夷果吃不停，女性用户享受永久随机优惠哦，还有各种其他优惠等着你来领!',
+      path: '/pages/productDetail/index?refereeNo=' + this.data.userInfo.con_no
+    };
   },
   getProductDetail: function (pId) {
     var self = this,
