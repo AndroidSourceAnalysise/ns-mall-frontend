@@ -9,6 +9,8 @@ Page({
    */
   data: {
     pId: '',
+    product: {},
+    userInfo: {},
     commentList: [],
     pageNum: 1,
     pageSize: 30,
@@ -20,7 +22,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var params = util.getCurrentPageInfo().params,
+    var self = this,
+        params = util.getCurrentPageInfo().params,
         pId = params.id;
 
     if (!pId) {
@@ -28,6 +31,10 @@ Page({
     }
     this.setData({ 'pId': pId });
     this.getCommentListByProduct();
+    this.getProductDetail(pId);
+    util.getPersonInfo().then(function(d) {
+      self.setData({ userInfo: d });
+    });
   },
 
   /**
@@ -74,11 +81,22 @@ Page({
     wx.stopPullDownRefresh();
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  getProductDetail: function (pId) {
+    var self = this,
+        p,
+        obj;
+
+    wx.request({
+      url: interfacePrefix + '/pnt/getProductById',
+      method: 'POST',
+      data: {
+        pnt_id: pId
+      },
+      success: function (res) {
+        p = util.toLowerCaseForObjectProperty(res.data.product);
+        self.setData({ product: p });
+      }
+    });
   },
   getCommentListByProduct: function () {
     var self = this,
@@ -117,10 +135,10 @@ Page({
   uploadImage: function (filePath) {
     var self = this,
         data,
-        arr = self.data.commentImages;
+        arr;
 
     wx.uploadFile({
-      url: interfacePrefix + '/file/upload', //仅为示例，非真实的接口地址
+      url: interfacePrefix + '/file/upload',
       filePath: filePath,
       name: 'file',
       formData: {
@@ -131,23 +149,38 @@ Page({
         data = data.data.map(function (item) {
           return item.url;
         });
+        arr = self.data.commentImages;
         arr = arr.concat(data);
         self.setData({ commentImages: arr });
       }
     });
   },
   getCommentContent: function (evt) {
-    self.setData({ commentContent: evt.detail.value });
+    this.setData({ commentContent: evt.detail.value });
   },
   submitComment: function () {
-    var self = this;
+    var self = this,
+        d = self.data,
+        params;
 
+    params = {
+      SOURCE_ID: d.product.id,
+      CON_NO: d.userInfo.con_no,
+      CON_NAME: d.userInfo.con_name,
+      PIC: d.userInfo.pic,
+      PHOTO_URL1: d.commentImages[0] || '',
+      PHOTO_URL2: d.commentImages[1] || '',
+      PHOTO_URL3: d.commentImages[2] || '',
+      CONTENT: d.commentContent,
+      TO_CON_NO: '',
+      TO_CON_NAME: '',
+      PNT_NAME: d.product.product_name
+    };
+    console.log(params);
     wx.request({
       url: interfacePrefix + '/pntcmt/inertCMT',
       method: 'POST',
-      data: {
-        paramKey: 'service_desc'
-      },
+      data: params,
       success: function (res) {
         self.getCommentListByProduct();
       }

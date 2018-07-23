@@ -1,0 +1,8 @@
+<!--pages/integralDetail/index.wxml-->
+<view class="container integral-detail">
+  <view class="integral-item" wx:for="{{integralList}}" wx:key="{{item.id}}">
+    <view class="integral-item-desc">{{item.remark}}</view>
+    <view class="integral-item-time">{{item.create_dt}}</view>
+    <view class="integral-item-amount">{{item.points_qty}}</view>
+  </view>
+</view>

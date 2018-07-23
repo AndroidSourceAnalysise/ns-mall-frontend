@@ -70,12 +70,6 @@ Page({
     !this.data.isLastPage && this.getProductList(this.data.pageNum + 1);
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getProductList: function (pageNum) {
     var self = this,
         list;

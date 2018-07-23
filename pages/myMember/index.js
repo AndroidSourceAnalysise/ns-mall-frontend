@@ -59,21 +59,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.setData({ pageNum: 1 });
+    this.getMemberList();
+    wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getMemberList();
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    !this.data.isLastPage && this.getMemberList();
   },
   getMemberList: function () {
     var self = this,

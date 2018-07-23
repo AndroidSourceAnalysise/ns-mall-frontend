@@ -65,12 +65,6 @@ Page({
     //this.getCouponList(this.data.pageNum + 1, this.data.curFilterType);
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getCouponList: function (pageNum, status) {
     var self = this,
         list = self.data.couponList,

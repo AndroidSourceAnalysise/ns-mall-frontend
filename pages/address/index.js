@@ -74,12 +74,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  },
   getSelectedAddress: function (evt) {
     var val = evt.detail.value;
 

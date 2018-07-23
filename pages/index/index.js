@@ -93,7 +93,7 @@ Page({
       url: url
     });
   },
-  goPage: function () {
+  goPage: function (evt) {
     var url = evt.target.dataset.url;
 
     if (!url) {

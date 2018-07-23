@@ -93,12 +93,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getProductList: function () {
     var list = wx.getStorageSync('ns-products'),
         counter = 0,

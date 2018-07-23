@@ -1,0 +1,22 @@
+/* pages/integralDetail/index.wxss */
+.integral-item {
+  position: relative;
+  line-height: 1;
+  padding: 20rpx;
+  margin: 40rpx 0;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+.integral-item-desc {
+  margin-bottom: 14rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.integral-item-amount {
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: auto;
+  color: red;
+}

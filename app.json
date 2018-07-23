@@ -18,6 +18,7 @@
     "pages/productComment/index",
     "pages/promotionOrder/index",
     "pages/myNotices/index",
+    "pages/integralDetail/index",
     "pages/login/index"
   ],
   "window":{

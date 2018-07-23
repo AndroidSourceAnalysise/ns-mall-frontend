@@ -70,12 +70,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getUserInfoCb: function (res) {
     console.log(res);
     this.setUserInfo(res.detail);

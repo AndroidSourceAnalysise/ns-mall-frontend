@@ -16,7 +16,7 @@
         <text class="coupon-discount" wx:else>立减{{item.discount_amount}}</text>
         <text class="term-valid">{{item.start_dt}}-{{item.end_dt}}</text>
       </view>
-      <text class="operate-btn" data-coupon-id="{{item.id}}" data-idx="{{index}}" bindtap="receiveCoupon" wx:if="{{item.status == 3}}">立即领取</text>
+      <text class="operate-btn" data-coupon-id="{{item.id}}" data-idx="{{index}}" bindtap="receiveCoupon" wx:if="{{curFilterType == 3}}">立即领取</text>
     </view>
   </view>
 </view>

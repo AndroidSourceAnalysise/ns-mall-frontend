@@ -64,12 +64,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getQRCodeTemplates: function () {
     return new Promise(function(resolve, reject) {
       var list;

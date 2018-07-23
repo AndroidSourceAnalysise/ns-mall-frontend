@@ -61,12 +61,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getRankList: function () {
     //推广排行
     var self = this,

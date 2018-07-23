@@ -74,12 +74,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   getOrderInfo: function (orderId) {
     var self = this,
         rs;

@@ -63,31 +63,24 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    !this.data.isLastPage && this.getNoticeList();
   },
   getNoticeList: function () {
     var self = this,
-      data,
-      list,
-      statusMap = {
-        0: '待确认',
-        1: '已完成',
-        '-1': '已退货'
-      };
+        data,
+        list,
+        statusMap = {
+          0: '待确认',
+          1: '已完成',
+          '-1': '已退货'
+        };
 
     wx.request({
       url: interfacePrefix + '/sitemsg/getMsg',
       method: 'POST',
       data: {
         type: self.data.curFilterType,
-        page_number: self.data.pageNum,
+        page_num: self.data.pageNum,
         page_size: self.data.pageSize
       },
       success: function (res) {

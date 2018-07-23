@@ -68,9 +68,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
   
-  },
+  // },
   getPersonInfo: function () {
     var self = this;
 
@@ -104,6 +104,11 @@ Page({
   seeRankOfPromotion: function () {
     wx.navigateTo({
       url: '../rankPromotion/index'
+    });
+  },
+  goIntegralDetail: function () {
+    wx.navigateTo({
+      url: '../integralDetail/index'
     });
   },
   goQRCode: function () {
