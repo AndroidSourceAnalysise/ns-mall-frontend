@@ -1,5 +1,5 @@
 <!--pages/shoppingCart/index.wxml-->
-<view class="container shopping-cart">
+<view class="container shopping-cart" wx:if="{{productList.length}}">
   <view class="product-item" wx:for="{{productList}}" wx:key="{{item.cart_id}}">
     <checkbox-group class="cr-box" bindchange="checkboxChange" data-index="{{index}}">
       <label class="checkbox">
@@ -32,3 +32,9 @@
     </view>
   </view>
 </view>
+<view class="empty-tip-area vertical-center" wx:else>
+    <view class="empty-content-wrap">
+        <view class="tip-text">您的购物车还没有任何宝贝~</view>
+        <button class="ns-button go-index-btn" bindtap="goIndex">去逛逛</button>
+    </view>
+  </view>

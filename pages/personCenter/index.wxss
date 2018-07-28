@@ -1,54 +1,75 @@
 /* pages/personCenter/index.wxss */
+
 .user-info {
-  padding: 40rpx 20rpx;
-  margin-bottom: 20rpx;
-  background-color: #fff;
+    position: relative;
+    padding: 40rpx 20rpx;
+    margin-bottom: 20rpx;
+    background-color: #fff;
 }
+
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
 }
+
 .user-info-detail {
-  display: inline-block;
-  width: auto;
-  margin-left: 40rpx;
+    display: inline-block;
+    width: auto;
+    margin-left: 40rpx;
 }
+.modify-info-btn {
+    position: absolute;
+    right: 20rpx;
+    top: 60rpx;
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+}
+
 .user-info-item {
-  display: block;
-  margin-bottom: 20rpx;
+    display: block;
+    margin-bottom: 20rpx;
 }
+
 .person-stat {
-  background-color: #fff;
+    background-color: #fff;
 }
+
 .inline-block {
-  display: inline-block;
-  line-height: 1;
+    display: inline-block;
+    line-height: 1;
 }
+
 .red-money {
-  display: block;
-  width: 100%;
-  line-height: 1.8;
+    display: block;
+    width: 100%;
+    line-height: 1.8;
 }
+
 .person-stat-item {
-  display: inline-block;
-  width: 33.3333%;
-  height: 120rpx;
-  line-height: 120rpx;
-  text-align: center;
+    display: inline-block;
+    width: 33.3333%;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
 }
+
 .red-text {
-  color: red;
+    color: red;
 }
+
 .person-item {
-  position: relative;
-  height: 120rpx;
-  line-height: 120rpx;
-  padding: 0 40rpx;
-  background-color: #fff;
+    position: relative;
+    height: 120rpx;
+    line-height: 120rpx;
+    padding: 0 40rpx;
+    background-color: #fff;
 }
+
 .arrow {
-  position: absolute;
-  right: 40rpx;
+    position: absolute;
+    right: 40rpx;
 }

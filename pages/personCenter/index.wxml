@@ -1,70 +1,71 @@
 <!--pages/personCenter/index.wxml-->
 <view class="container person-center">
-  <view class="user-info">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.pic}}" mode="cover"></image>
-      <view class="user-info-detail">
-        <text class="user-info-item">会员号：{{userInfo.con_no}}</text>
-        <text class="user-info-item">昵称：{{userInfo.con_name}}</text>
-        <text class="user-info-item">推荐人：{{userInfo.rp_name}}</text>
-      </view>
-    </block>
-  </view>
-  <view class="person-stat common-border-bottom">
-    <view class="common-border-bottom">
-      <view class="person-stat-item">
-        <view class="inline-block">
-          <text class="red-text red-money">{{userInfo.revenues}}元</text>
-          <text>营业额</text>
-        </view>
-      </view>
-      <view class="person-stat-item" bindtap="goIntegralDetail">
-        <view class="inline-block">
-          <text class="red-text red-money">{{userInfo.points_enabled}}积分</text>
-          <text>积分猫币></text>
-        </view>
-      </view>
-      <view class="person-stat-item" bindtap="seeRankOfPromotion">
-        <view class="inline-block">
-          <text class="red-text red-money">{{userInfo.balance_amount}}元</text>
-          <text>推广排行></text>
-        </view>
-      </view>
+    <view class="user-info">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <block wx:else>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.pic}}" mode="cover"></image>
+            <view class="user-info-detail">
+                <text class="user-info-item">会员号：{{userInfo.con_no}}</text>
+                <text class="user-info-item">昵称：{{userInfo.con_name}}</text>
+                <text class="user-info-item">推荐人：{{userInfo.rp_name}}</text>
+            </view>
+        </block>
+        <text class="modify-info-btn" bindtap="goModifyInfo">></text>
     </view>
-    <view>
-      <view class="person-stat-item">
-      <icon></icon>
-      <text bindtap="goQRCode">二维码></text>
-      </view>
-      <view class="person-stat-item">
-        <icon></icon>
-        <text bindtap="goPromotionOrder">提成订单></text>
-      </view>
+    <view class="person-stat common-border-bottom">
+        <view class="common-border-bottom">
+            <view class="person-stat-item">
+                <view class="inline-block">
+                    <text class="red-text red-money">{{userInfo.revenues}}元</text>
+                    <text>营业额</text>
+                </view>
+            </view>
+            <view class="person-stat-item" bindtap="goIntegralDetail">
+                <view class="inline-block">
+                    <text class="red-text red-money">{{userInfo.points_enabled}}积分</text>
+                    <text>积分猫币></text>
+                </view>
+            </view>
+            <view class="person-stat-item" bindtap="seeRankOfPromotion">
+                <view class="inline-block">
+                    <text class="red-text red-money">{{userInfo.balance_amount}}元</text>
+                    <text>推广排行></text>
+                </view>
+            </view>
+        </view>
+        <view>
+            <view class="person-stat-item">
+                <icon></icon>
+                <text bindtap="goQRCode">二维码></text>
+            </view>
+            <view class="person-stat-item">
+                <icon></icon>
+                <text bindtap="goPromotionOrder">提成订单></text>
+            </view>
+        </view>
     </view>
-  </view>
-  <view class="person-item common-border-bottom" bindtap="seeRankOfIntegral">
-    <text>积分排行</text>
-    <text class="arrow">></text>
-  </view>
-  <view class="person-item common-border-bottom" bindtap="goCouponCenter">
-    <text>领券中心</text>
-    <text class="arrow">></text>
-  </view>
-  <view class="person-item common-border-bottom" bindtap="goMyNotice">
-    <text>我的通知</text>
-    <text class="arrow">></text>
-  </view>
-  <view class="person-item common-border-bottom" bindtap="goAddress">
-    <text>收货地址</text>
-    <text class="arrow">></text>
-  </view>
-  <view class="person-item common-border-bottom" bindtap="callPhone">
-    <text>联系客服</text>
-    <text class="arrow">></text>
-  </view>
-  <view class="person-item common-border-bottom" bindtap="goMyMember">
-    <text>我的会员</text>
-    <text class="arrow">></text>
-  </view>
+    <view class="person-item common-border-bottom" bindtap="seeRankOfIntegral">
+        <text>积分排行</text>
+        <text class="arrow">></text>
+    </view>
+    <view class="person-item common-border-bottom" bindtap="goCouponCenter">
+        <text>领券中心</text>
+        <text class="arrow">></text>
+    </view>
+    <view class="person-item common-border-bottom" bindtap="goMyNotice">
+        <text>我的通知</text>
+        <text class="arrow">></text>
+    </view>
+    <view class="person-item common-border-bottom" bindtap="goAddress">
+        <text>收货地址</text>
+        <text class="arrow">></text>
+    </view>
+    <view class="person-item common-border-bottom" bindtap="callPhone">
+        <text>联系客服</text>
+        <text class="arrow">></text>
+    </view>
+    <view class="person-item common-border-bottom" bindtap="goMyMember">
+        <text>我的会员</text>
+        <text class="arrow">></text>
+    </view>
 </view>

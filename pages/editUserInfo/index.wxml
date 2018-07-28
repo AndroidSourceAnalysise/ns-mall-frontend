@@ -1,0 +1,18 @@
+<!--pages/editUserInfo/index.wxml-->
+<view class="container modify-user-info">
+    <view class="modify-item">
+        <text>头像</text><image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.pic}}" mode="cover"></image><button class="ns-button avatar-btn"bindtap="selectImg">修改头像</button>
+    </view>
+    <view class="modify-item">
+        <text>昵称</text><input class="input-item" placeholder="请输入昵称" value="{{userInfo.con_name}}" name="nickName" bindinput="updateNickName"/>
+    </view>
+    <view class="modify-item">
+        <text>手机号</text><input class="input-item" placeholder="请输入手机号" value="{{userInfo.mobile}}" name="mobile" type="number" bindinput="updateMobile"/>
+        <button class="ns-button code-btn" bindtap="getPhoneCode">{{codeBtnText}}</button>
+    </view>
+    <view class="modify-item">
+        <text>验证码</text><input class="input-item" placeholder="请输入手机验证码" name="code" bindinput="updateCode"/>
+    </view>
+    <button class="green-btn" bindtap="saveInfo">保存</button>
+    <button type="warn" class="green-btn" bindtap="cancel">取消</button>
+</view>

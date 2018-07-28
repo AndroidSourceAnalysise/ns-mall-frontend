@@ -1,166 +1,210 @@
 /**app.wxss**/
+
 page {
-  height: 100%;
-  padding: 20rpx;
-  box-sizing: border-box;
-  font-size: 26rpx;
-  background-color: #009999;
-  color: #757575;
+    height: 100%;
+    padding: 20rpx;
+    box-sizing: border-box;
+    font-size: 26rpx;
+    background-color: #099;
+    color: #757575;
 }
+
 view, text, image, input, button {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 view {
-  width: 100%;
-  box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
 }
+
 .container {
-  height: 100%;
-  box-sizing: border-box;
-  overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
+
 .inline-block {
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
+
 .vertical-top {
-  vertical-align: top;
+    vertical-align: top;
 }
+
 .common-border-bottom {
-  border-bottom: 1rpx solid #009999;
+    border-bottom: 1rpx solid #099;
 }
+
 .ns-button {
-  display: inline-block;
-  height: 80rpx;
-  line-height: 80rpx;
-  padding: 0 56rpx;
-  border: 1px solid #676767;
-  border-radius: 10rpx;
-  font-size: 32rpx;
-  color: #676767;
-  text-align: center;
+    display: inline-block;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 56rpx;
+    border: 1px solid #676767;
+    border-radius: 10rpx;
+    font-size: 32rpx;
+    color: #676767;
+    text-align: center;
 }
+
 .green-btn {
-  display: block;
-  width: 600rpx;
-  margin: 40rpx auto 0;
-  border: 0;
-  color: #fff;
-  background-color: #339999;
+    display: block;
+    width: 600rpx;
+    margin: 40rpx auto 0;
+    border: 0;
+    color: #fff;
+    background-color: #399;
 }
+
 .ns-pop-mask {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 90;
-  width: 100%;
-  height: 100%;
-  font-size: 0;
-  background-color: #aaa6a4;
-  opacity: 0.6;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 90;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    background-color: #aaa6a4;
+    opacity: 0.6;
 }
+
 .ns-pop-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  z-index: 100;
-  padding: 40rpx 20rpx;
-  border-radius: 8rpx;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  background-color: #fff;
-  overflow-y: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    z-index: 100;
+    padding: 40rpx 20rpx;
+    border-radius: 8rpx;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #fff;
+    overflow-y: auto;
+}
+/*
+    垂直居中公共样式，需要将元素内的子元素全部设置为display: inline-block;vertical-align: middle;
+ */
+.vertical-center:after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    font-size: 0;
+    visibility: hidden;
+    vertical-align: middle;
 }
 /* =======筛选栏统一样式begin======= */
+
 .filter-area {
-  display: flex;
-  margin-bottom: 16rpx;
-  background-color: #fff;
+    display: flex;
+    margin-bottom: 16rpx;
+    background-color: #fff;
 }
+
 .filter-area text {
-  width: 100%;
-  height: 96rpx;
-  line-height: 96rpx;
-  text-align: center;
+    width: 100%;
+    height: 96rpx;
+    line-height: 96rpx;
+    text-align: center;
 }
+
 .active-filter {
-  color: #009999;
+    color: #099;
 }
+
 /* =======筛选栏统一样式end======= */
 
 /* =======数量加减器样式begin======= */
+
 .ns-counter {
-  width: auto;
-  height: 50rpx;
-  line-height: 48rpx;
-  border: 1px solid #b5b4b4;
-  border-radius: 6rpx;
-  font-size: 25rpx;
-  color: #321600;
-  text-align: center;
+    width: auto;
+    height: 50rpx;
+    line-height: 48rpx;
+    border: 1px solid #b5b4b4;
+    border-radius: 6rpx;
+    font-size: 25rpx;
+    color: #321600;
+    text-align: center;
 }
+
 .ns-counter-symbol, .ns-counter-num {
-  display: inline-block;
-  vertical-align: top;
+    display: inline-block;
+    vertical-align: top;
 }
+
 .ns-counter-symbol {
-  width: 80rpx;
+    width: 80rpx;
 }
+
 .ns-counter-num {
-  min-width: 60rpx;
-  padding: 0 10rpx;
-  border: 1px solid #b5b4b4;
-  border-top: 0;
-  border-bottom: 0;
-  box-sizing: border-box;
+    min-width: 60rpx;
+    padding: 0 10rpx;
+    border: 1px solid #b5b4b4;
+    border-top: 0;
+    border-bottom: 0;
+    box-sizing: border-box;
 }
+
 /* =======数量加减器样式end======= */
 
 /* =======页面区块公共样式begin======= */
+
 .common-block-style {
-  margin: 4rpx 0;
-  padding: 32rpx 40rpx;
-  line-height: 1;
-  background-color: #fff;
-  color: #0b0707;
+    margin: 4rpx 0;
+    padding: 32rpx 40rpx;
+    line-height: 1;
+    background-color: #fff;
+    color: #0b0707;
 }
+
 /* =======页面区块公共样式end======= */
+
 /* 文字溢出显示... */
+
 .text-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 /* 页面通知、公告区域的样式 */
+
 .ns-hints {
-  padding: 8rpx 0;
-  margin: 20rpx 0;
-  border: 1px solid #d8fff7;
-  color: #3d6b62;
-  background: #e7fffa;
+    padding: 8rpx 0;
+    margin: 20rpx 0;
+    border: 1px solid #d8fff7;
+    color: #3d6b62;
+    background: #e7fffa;
 }
+
 .ns-hints-img {
-  width: 40rpx;
-  height: 40rpx;
-  margin: 12rpx 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+    margin: 12rpx 20rpx;
 }
+
 .ns-hints-content {
-  display: inline-block;
-  width: 620rpx;
-  line-height: 50rpx;
-  vertical-align: top;
+    display: inline-block;
+    width: 620rpx;
+    line-height: 50rpx;
+    vertical-align: top;
 }
+
 /* 页面通知、公告区域的样式end */
+
 /* 前面带绿色块的副标题 */
+
 .subtitle {
-  display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  padding-left: 6px;
-  margin: 40px 0 20px 0;
-  border-left: 6px solid #009999;
-  font-size: 16px;
-  color: #333;
+    display: inline-block;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding-left: 12rpx;
+    margin: 40rpx 0 20rpx 0;
+    border-left: 6px solid #099;
+    font-size: 38rpx;
+    color: #333;
 }

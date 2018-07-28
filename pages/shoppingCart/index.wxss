@@ -1,81 +1,113 @@
 /* pages/shoppingCart/index.wxss */
+
 .shopping-cart {
-  padding-bottom: 77.5rpx;
+    padding-bottom: 77.5rpx;
 }
+
 .product-item {
-  padding: 45rpx 20rpx;
-  margin: 12.5rpx 0;
-  background-color: #fff;
+    padding: 45rpx 20rpx;
+    margin: 12.5rpx 0;
+    background-color: #fff;
 }
+
 .cr-box {
-  display: inline-block;
-  width: 50rpx;
-  height: 50rpx;
-  border-radius: 50%;
-  vertical-align: middle;
+    display: inline-block;
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    vertical-align: middle;
 }
+
 .product-img {
-  width: 140rpx;
-  height: 140rpx;
-  margin: 0 22rpx 0 24rpx;
-  border: 1px solid #acabab;
-  border-radius: 8rpx;
-  vertical-align: middle;
+    width: 140rpx;
+    height: 140rpx;
+    margin: 0 22rpx 0 24rpx;
+    border: 1px solid #acabab;
+    border-radius: 8rpx;
+    vertical-align: middle;
 }
+
 .product-item-detail {
-  display: inline-block;
-  width: 420rpx;
-  line-height: 1;
-  vertical-align: top;
+    display: inline-block;
+    width: 420rpx;
+    line-height: 1;
+    vertical-align: top;
 }
+
 .product-name {
-  display: block;
-  margin: 14rpx 0 20rpx;
-  font-size: 28rpx;
-  color: #321600;
+    display: block;
+    margin: 14rpx 0 20rpx;
+    font-size: 28rpx;
+    color: #321600;
 }
+
 .product-specific {
-  display: block;
-  margin-bottom: 25rpx;
-  font-size: 25rpx;
-  color: #757575;
+    display: block;
+    margin-bottom: 25rpx;
+    font-size: 25rpx;
+    color: #757575;
 }
+
 .product-amount {
-  margin-right: 75rpx;
-  font-size: 30rpx;
-  color: #cd363d;
+    margin-right: 75rpx;
+    font-size: 30rpx;
+    color: #cd363d;
 }
+
 .shopping-counter {
-  display: inline-block;
+    display: inline-block;
 }
+
 .shopping-statisc-area {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  border-top: 1px solid #009999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
 }
+
 .shopping-statisc-wrap {
-  height: 90rpx;
-  line-height: 90rpx;
-  background-color: #fff;
+    height: 90rpx;
+    line-height: 90rpx;
+    background-color: #fff;
 }
+
 .select-all {
-  width: 120rpx;
-  line-height: 50rpx;
-  margin-left: 40rpx;
+    width: 120rpx;
+    line-height: 50rpx;
+    margin-left: 40rpx;
 }
+
 .total-money {
-  margin-left: 20rpx;
-  font-size: 30rpx;
-  color: #cd363d;
-  vertical-align: middle;
+    margin-left: 20rpx;
+    font-size: 30rpx;
+    color: #cd363d;
+    vertical-align: middle;
 }
+
 .pay-btn {
-  float: right;
-  width: 140rpx;
-  font-size: 25rpx;
-  background-color: #cd363d;
-  color: #fff;
-  text-align: center;
+    float: right;
+    width: 140rpx;
+    font-size: 25rpx;
+    background-color: #cd363d;
+    color: #fff;
+    text-align: center;
+}
+
+.empty-tip-area {
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.empty-tip-area .empty-content-wrap {
+    display: inline-block;
+}
+
+.empty-tip-area .tip-text {
+    font-size: 36rpx;
+}
+
+.empty-tip-area .go-index-btn {
+    margin-top: 30rpx;
 }

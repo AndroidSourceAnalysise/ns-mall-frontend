@@ -165,9 +165,9 @@ Page({
 
     params = {
       SOURCE_ID: d.product.id,
-      CON_NO: d.userInfo.con_no,
-      CON_NAME: d.userInfo.con_name,
-      PIC: d.userInfo.pic,
+    //   CON_NO: d.userInfo.con_no,
+    //   CON_NAME: d.userInfo.con_name,
+    //   PIC: d.userInfo.pic,
       PHOTO_URL1: d.commentImages[0] || '',
       PHOTO_URL2: d.commentImages[1] || '',
       PHOTO_URL3: d.commentImages[2] || '',
