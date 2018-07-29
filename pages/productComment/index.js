@@ -33,7 +33,7 @@ Page({
         }
         this.setData({
             pId: pId,
-            itemId: itemId
+            itemId: itemId || ''
         });
         this.getCommentListByProduct();
         this.getProductDetail(pId);
@@ -113,7 +113,8 @@ Page({
     getCommentListByProduct: function() {
         var self = this,
             list = this.data.commentList,
-            d = self.data;
+            d = self.data,
+            data;
 
         wx.request({
             url: interfacePrefix + '/pntcmt/getPntCmtList',
@@ -124,13 +125,32 @@ Page({
                 page_num: d.pageNum
             },
             success: function(res) {
-                list = list.concat(res.data.list);
+                data = res.data.list;
+                data = data.map(function (item) {
+                    item = util.toLowerCaseForObjectProperty(item);
+                    item.imgs = [];
+                    item.photo_url1 && item.imgs.push(item.photo_url1);
+                    item.photo_url2 && item.imgs.push(item.photo_url2);
+                    item.photo_url3 && item.imgs.push(item.photo_url3);
+
+                    return item;
+                });
+                list = list.concat(data);
                 self.setData({
                     commentList: list,
                     isLastPage: res.data.lastPage,
                     pageNum: d.pageNum + 1
                 });
             }
+        });
+    },
+    previewImgs: function (evt) {
+        var target = evt.currentTarget,
+            idx = target.dataset.idx,
+            imgs = this.data.commentList[idx].imgs;
+
+        wx.previewImage({
+            urls: imgs
         });
     },
     addCommentImg: function() {

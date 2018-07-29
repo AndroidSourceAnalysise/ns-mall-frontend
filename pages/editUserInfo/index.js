@@ -9,6 +9,7 @@ Page({
      */
     data: {
         userInfo: {},
+        originMobile: '',
         codeBtnText: '获取验证码'
     },
 
@@ -19,7 +20,7 @@ Page({
         var self = this;
 
         util.getPersonInfo().then(function(d) {
-            self.setData({userInfo: d});
+            self.setData({ userInfo: d, originMobile: d.mobile });
         });
     },
 
@@ -207,6 +208,17 @@ Page({
             });
             return;
         }
+        if (self.data.originMobile === info.mobile) {
+            self.saveUserInfo().then(function() {
+                wx.showToast({
+                    title: '修改昵称成功!',
+                    icon: 'none',
+                    mask: true,
+                    duration: 2000
+                });
+            });
+            return;
+        }
         if (!self.validMobile(info.mobile)) {
             wx.showToast({
                 title: '请输入正确的手机号!',
@@ -226,7 +238,14 @@ Page({
             return;
         }
         self.savePhone().then(function() {
-            self.saveUserInfo();
+            return self.saveUserInfo();
+        }).then(function () {
+            wx.showToast({
+                title: '修改信息成功!',
+                icon: 'none',
+                mask: true,
+                duration: 2000
+            });
         });
     },
     cancel: function () {

@@ -10,11 +10,11 @@
   margin-bottom: 0;
   padding-bottom: 80rpx;
 }
-.comment-img {
-  width: 76rpx;
-  height: 76rpx;
-  border: 1px solid #aac4bf;
-  border-radius: 50%;
+.commentator-img {
+    width: 76rpx;
+    height: 76rpx;
+    border: 1px solid #aac4bf;
+    border-radius: 50%;
 }
 .comment-item-detail {
   display: inline-block;
@@ -26,6 +26,17 @@
   line-height: 1.2;
   margin: 16rpx 0;
   color: #000;
+}
+.comment-img {
+    width: 76rpx;
+    height: 76rpx;
+    margin-right: 14rpx;
+    margin-bottom: 16rpx;
+    border: 1px solid #aac4bf;
+}
+
+.comment-img:last-child {
+    margin-right: 0;
 }
 .comment-wrap {
   padding: 40rpx 20rpx;

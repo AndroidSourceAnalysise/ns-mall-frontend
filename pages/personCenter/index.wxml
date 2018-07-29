@@ -1,6 +1,6 @@
 <!--pages/personCenter/index.wxml-->
 <view class="container person-center">
-    <view class="user-info">
+    <view class="user-info" bindtap="goModifyInfo">
         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
         <block wx:else>
             <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.pic}}" mode="cover"></image>
@@ -10,7 +10,7 @@
                 <text class="user-info-item">推荐人：{{userInfo.rp_name}}</text>
             </view>
         </block>
-        <text class="modify-info-btn" bindtap="goModifyInfo">></text>
+        <text class="modify-info-btn">></text>
     </view>
     <view class="person-stat common-border-bottom">
         <view class="common-border-bottom">
