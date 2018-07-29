@@ -8,7 +8,7 @@
   <view class="ns-hints">
     <image src="../../images/index/hint-status-normal.png" class="ns-hints-img"></image>
     <view class="ns-hints-content">
-      女性是美丽的天使，是世界的半边天，没有女性的世界就是没有爱的世界！“咪猫”为女性用户每次下单提供随机<text class="red-text">{{reduceRange}}</text>减免优惠，谨以此感谢女性朋友们给世界带来美和爱!
+      女性是美丽的天使，是世界重要的一半，没有女性的世界就是没有爱的世界！“咪猫”为女性用户每次下单提供随机<text class="red-text">{{reduceRange}}</text>减免优惠，谨以此感谢女性朋友们给世界带来美和爱!
     </view>
   </view>
   <view class="product-list">

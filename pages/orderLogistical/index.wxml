@@ -1,20 +1,18 @@
 <!--pages/orderLogistical/index.wxml-->
 <view class="container order-logistical">
   <view class="order-info">
-    <image src="" class="order-img"></image>
     <view class="order-detail-info">
-      <text class="block">{{order.productName}}*{{order.num}}袋</text>
-      <text class="block">{{order.logisticalCompany}} {{order.logisticalNo}}</text>
-      <text class="block order-status">{{order.statusStr}}</text>
+      <text class="block">{{expressInfo.exp_company_name}}</text>
+      <text class="block order-status">快递单号：{{expressInfo.waybill}}</text>
     </view>
   </view>
   <view class="gray-block"></view>
   <view class="logistical-info">
     <view class="timer-bar-item" wx:for="{{logistMessageList}}" wx:key="{{index}}">
       <text class="line" wx:if="{{index != logistMessageList.length - 1}}"></text>
-      <text class="time inline-block">{{item.time}}</text>
+      <text class="time inline-block">{{item.upload_Time}}</text>
       <text class="circle inline-block">∧</text>
-      <text class="message inline-block">{{item.message}}</text>
+      <text class="message inline-block">{{item.processInfo}}</text>
     </view>
   </view>
 </view>

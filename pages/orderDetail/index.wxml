@@ -21,13 +21,14 @@
             <text class="right-text">{{order.update_dt}}</text>
         </view>
     </view>
-    <view class="subtitle">商户详情</view>
+    <view class="subtitle">商品详情</view>
     <view class="product-info-wrap common-block-style" wx:for="{{order.items}}" wx:for-item="product" wx:key="{{product.id}}">
         <image src="{{product.thumb_url}}" class="product-img"></image>
         <view class="product-other-info">
             <text class="product-name">[{{product.pnt_name}}]*{{product.quantity}}</text>
             <view class="product-price red-text">¥{{product.amount}}</view>
         </view>
+        <button class="ns-button comment-btn" bindtap="goComment" data-idx="{{index}}">去评价</button>
     </view>
     <view class="relative common-block-style">
         <text>商品总价</text>
@@ -43,7 +44,7 @@
     </view>
     <view class="relative common-block-style">
         <text>折扣金额</text>
-        <text class="right-text">¥{{order.discount_amount}}</text>
+        <text class="right-text">¥{{orde.is_discount ? order.discount_amount : 0}}</text>
     </view>
     <view class="relative common-block-style">
         <text>积分抵扣金额</text>

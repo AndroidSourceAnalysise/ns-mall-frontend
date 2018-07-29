@@ -25,7 +25,7 @@
         <text>共{{item.quantity}}件商品，合计{{item.order_total}}¥（运费{{item.freight}}¥）</text>
       </view>
       <view class="operate-btns">
-        <button size="mini" plain="true" class="operate-btn" bindtap="operateOrder" data-idx="{{index}}">{{orderOperateText[item.status]}}</button>
+        <button size="mini" plain="true" class="operate-btn" bindtap="operateOrder" data-idx="{{index}}" wx:if="{{orderOperateText[item.status]}}">{{orderOperateText[item.status]}}</button>
         <button size="mini" plain="true" class="operate-btn" bindtap="deleteOrder" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 1}}">删除订单</button>
         <button size="mini" plain="true" class="operate-btn" bindtap="goOrderDetail" data-idx="{{index}}" wx:if="{{canSeeDetailStatus[item.status]}}">查看详情</button>
       </view>

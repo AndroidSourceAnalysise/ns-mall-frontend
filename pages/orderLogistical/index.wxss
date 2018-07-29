@@ -5,11 +5,6 @@
 .order-info {
   padding: 40rpx;
 }
-.order-img {
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 12rpx;
-}
 .order-detail-info {
   display: inline-block;
   width: 440rpx;
@@ -36,7 +31,7 @@
 }
 .timer-bar-item .line {
   position: absolute;
-  left: 120rpx;
+  left: 220rpx;
   top: 0;
   width: 0;
   height: 100%;
@@ -47,7 +42,7 @@
   vertical-align: top;
 }
 .timer-bar-item .time {
-  width: 100rpx;
+  width: 200rpx;
   color: #000;
 }
 .timer-bar-item .circle {
@@ -62,7 +57,7 @@
   text-align: center;
 }
 .timer-bar-item .message {
-  width: 400rpx;
+  width: 300rpx;
   margin-left: 20rpx;
   color: #321600;
 }

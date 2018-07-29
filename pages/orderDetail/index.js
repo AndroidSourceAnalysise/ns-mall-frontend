@@ -4,87 +4,102 @@ var util = require('../../utils/util.js'),
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    order: {}
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        order: {}
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var params = util.getCurrentPageInfo().params,
-        pId = params.id;
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
+        var params = util.getCurrentPageInfo().params,
+            pId = params.id;
 
-    if (!pId) {
-      return;
-    }
-    this.setData({ 'orderId': pId });
-    this.getOrderDetail();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    this.onLoad();
-    wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-  getOrderDetail: function () {
-    var self = this,
-        data;
-
-    wx.request({
-      url: interfacePrefix + '/order/getOrderItems',
-      method: 'POST',
-      data: {
-        order_id: self.data.orderId
-      },
-      success: function (res) {
-        data = util.toLowerCaseForObjectProperty(res.data);
-        data.items = data.items.map(function(item) {
-          return util.toLowerCaseForObjectProperty(item);
+        if (!pId) {
+            return;
+        }
+        this.setData({
+            'orderId': pId
         });
-        data.addressDetail = data.province + data.city + data.district + data.address;
-        self.setData({ distributionInfo: data, order: data });
-      }
-    })
-  }
+        this.getOrderDetail();
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function() {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function() {
+        this.onLoad();
+        wx.stopPullDownRefresh();
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function() {
+
+    },
+    getOrderDetail: function() {
+        var self = this,
+            data;
+
+        wx.request({
+            url: interfacePrefix + '/order/getOrderItems',
+            method: 'POST',
+            data: {
+                order_id: self.data.orderId
+            },
+            success: function(res) {
+                data = util.toLowerCaseForObjectProperty(res.data);
+                data.items = data.items.map(function(item) {
+                    return util.toLowerCaseForObjectProperty(item);
+                });
+                data.addressDetail = data.province + data.city + data.district + data.address;
+                self.setData({
+                    distributionInfo: data,
+                    order: data
+                });
+            }
+        })
+    },
+    goComment: function (evt) {
+        var target = evt.currentTarget,
+            idx = target.dataset.idx,
+            p;
+
+        p = this.data.order.items[idx];
+        wx.navigateTo({
+            url: '../productComment/index?id=' + p.pnt_id + '&itemId=' + p.id
+        });
+    }
 })
