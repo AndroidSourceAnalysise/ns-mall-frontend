@@ -1,0 +1,66 @@
+/* pages/refund/index.wxss */
+
+.refund {
+    background-color: #fff;
+}
+
+.product-list {
+    margin: 20rpx 0;
+}
+
+.product-info-wrap {
+    line-height: 1;
+    font-size: 32rpx;
+}
+
+.product-img {
+    width: 160rpx;
+    height: 160rpx;
+    border: 1px solid #999;
+    border-radius: 8rpx;
+}
+
+.product-other-info {
+    display: inline-block;
+    width: 420rpx;
+    margin-left: 40rpx;
+    vertical-align: top;
+}
+
+.product-name {
+    color: #321600;
+}
+
+.product-price {
+    display: inline-block;
+    width: 130rpx;
+    margin-top: 26rpx;
+}
+
+.common-block {
+    padding: 32rpx 40rpx;
+    border-bottom: 1px solid #099;
+}
+
+.radio-group {
+    display: inline-block;
+}
+
+.refund-desc {
+    color: red;
+    text-align: center;
+}
+
+.refund-detail-area {
+    display: inline-block;
+    width: 450rpx;
+    padding: 10rpx;
+    margin-left: 20rpx;
+    border: 1px solid #b5b4b4;
+    border-radius: 10rpx;
+    vertical-align: top;
+}
+
+.choose-img-btn {
+    margin: 40rpx 0 0 40rpx;
+}

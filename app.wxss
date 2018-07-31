@@ -9,7 +9,7 @@ page {
     color: #757575;
 }
 
-view, text, image, input, button {
+view, text, image, input, button, textarea {
     box-sizing: border-box;
 }
 

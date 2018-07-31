@@ -20,6 +20,7 @@
     "pages/myNotices/index",
     "pages/integralDetail/index",
     "pages/editUserInfo/index",
+    "pages/refund/index",
     "pages/login/index"
   ],
   "window":{

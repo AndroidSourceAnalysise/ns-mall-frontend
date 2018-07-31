@@ -19,12 +19,6 @@ Page({
             10: '已退款',
             11: '已关闭'
         },
-        canSeeDetailStatus: {
-            2: true,
-            3: true,
-            4: true,
-            6: true
-        },
         orderOperateText: {
             1: '去支付',
             2: '取消订单',
@@ -204,6 +198,15 @@ Page({
                 });
             }
         })
+    },
+    refund: function (evt) {
+        //申请退货
+        var target = evt.currentTarget,
+            id = target.dataset.id;
+
+        wx.navigateTo({
+            url: '../refund/index?orderId=' + id
+        });
     },
     goOrderDetail: function(evt) {
         var target = evt.currentTarget,

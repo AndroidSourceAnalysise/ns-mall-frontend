@@ -76,19 +76,19 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-        !this.data.isLastPage && this.getCommentListByProduct();
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
         this.setData({
             commentList: [],
             pageNum: 1
         });
         this.getCommentListByProduct();
         wx.stopPullDownRefresh();
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function() {
+        !this.data.isLastPage && this.getCommentListByProduct();
     },
 
     getProductDetail: function(pId) {

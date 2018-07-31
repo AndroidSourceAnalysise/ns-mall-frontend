@@ -1,0 +1,30 @@
+<!--pages/refund/index.wxml-->
+<view class="container refund">
+    <view class="product-list common-block">
+        <view class="product-info-wrap" wx:for="{{productList}}" wx:for-item="product" wx:key="{{product.id}}">
+            <image src="{{product.thumb_url}}" class="product-img"></image>
+            <view class="product-other-info">
+                <text class="product-name">[{{product.pnt_name}}]*{{product.quantity}}</text>
+                <view class="product-price red-text">¥{{product.amount}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="refund-reasons common-block">
+        <text>退货原因：</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio">
+                <radio value="0" checked/>个人原因
+            </label>
+            <label class="radio">
+                <radio value="1" />货物破损
+            </label>
+        </radio-group>
+    </view>
+    <view class="refund-desc common-block">注意：退货金额不包括发货邮费</view>
+    <view class="refund-detail-reasons common-block">
+        <text>{{refundDescMap[refundType]}}:</text>
+        <textarea class="refund-detail-area" bindblur="updateRefundRemark"></textarea>
+    </view>
+    <button class="ns-button choose-img-btn" bindtap="chooseImgs">上传货物破损凭证</button>
+    <button class="green-btn" bindtap="submitRefund">提交</button>
+</view>
