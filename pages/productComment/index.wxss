@@ -1,10 +1,12 @@
 /* pages/productComment/index.wxss */
 
 .product-comment {
+    padding-top: 40rpx;
     background-color: #fff;
 }
 
 .comment-item {
+    padding-left: 40rpx;
     margin-bottom: 30rpx;
     color: #999;
 }

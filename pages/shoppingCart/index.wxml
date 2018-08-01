@@ -20,7 +20,7 @@
       </view>
     </view>
   </view>
-  <view class="shopping-statisc-area">
+  <view class="shopping-statisc-area" fixed>
     <view class="shopping-statisc-wrap">
       <checkbox-group class="cr-box select-all" bindchange="sellAllChange">
         <label class="checkbox">

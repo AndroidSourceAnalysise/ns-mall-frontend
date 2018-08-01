@@ -95,11 +95,14 @@ Page({
     goComment: function (evt) {
         var target = evt.currentTarget,
             idx = target.dataset.idx,
-            p;
+            p,
+            url;
 
         p = this.data.order.items[idx];
+        url = '../productComment/index?id=' + p.pnt_id;
+        p.comment_tag == 0 && (url = url + '&itemId=' + p.id);
         wx.navigateTo({
-            url: '../productComment/index?id=' + p.pnt_id + '&itemId=' + p.id
+            url: url
         });
     }
 })

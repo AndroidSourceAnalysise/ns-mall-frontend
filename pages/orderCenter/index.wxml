@@ -5,7 +5,7 @@
       <text data-filter-type="1" class="{{orderStatus == 1 ? 'active-filter' : ''}}">待付款</text>
       <text data-filter-type="5" class="{{orderStatus == 5 ? 'active-filter' : ''}}">待发货</text>
       <text data-filter-type="6" class="{{orderStatus == 6 ? 'active-filter' : ''}}">待收货</text>
-      <text data-filter-type="7" class="{{orderStatus == 7 ? 'active-filter' : ''}}">待评价</text>
+      <text data-filter-type="7" class="{{orderStatus == 7 ? 'active-filter' : ''}}">已收货</text>
     </view>
     <view wx:for="{{orderList}}" wx:key="{{item.order_no}}" class="order-item">
       <view class="order-item-status common-border-bottom">

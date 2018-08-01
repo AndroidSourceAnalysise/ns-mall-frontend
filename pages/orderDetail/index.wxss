@@ -59,7 +59,11 @@
     width: 130rpx;
     margin-top: 26rpx;
 }
-
+.comment-btn {
+    position: absolute;
+    left: 0;
+    top: 100rpx;
+}
 .relative {
     position: relative;
 }

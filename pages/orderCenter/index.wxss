@@ -49,11 +49,12 @@
   text-align: right;
 }
 .operate-btns {
-  padding: 16rpx 40rpx;
+  padding: 0 40rpx 16rpx;
   font-size: 0;
 }
 .operate-btn {
   margin-right: 20rpx;
+  margin-top: 20rpx;
 }
 .operate-btn:last-child {
   margin-left: 0;

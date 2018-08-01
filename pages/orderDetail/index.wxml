@@ -24,11 +24,11 @@
     <view class="subtitle">商品详情</view>
     <view class="product-info-wrap common-block-style" wx:for="{{order.items}}" wx:for-item="product" wx:key="{{product.id}}">
         <image src="{{product.thumb_url}}" class="product-img"></image>
-        <view class="product-other-info">
+        <view class="product-other-info relative">
             <text class="product-name">[{{product.pnt_name}}]*{{product.quantity}}</text>
             <view class="product-price red-text">¥{{product.amount}}</view>
+            <button class="ns-button comment-btn" bindtap="goComment" data-idx="{{index}}">{{product.comment_tag == 0 ? '去评价' : '查看评价'}}</button>
         </view>
-        <button class="ns-button comment-btn" bindtap="goComment" data-idx="{{index}}" wx:if="{{product.comment_tag == 0}}">去评价</button>
     </view>
     <view class="relative common-block-style">
         <text>商品总价</text>

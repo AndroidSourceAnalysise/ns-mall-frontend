@@ -11,7 +11,7 @@
       <view>{{item.create_dt}}</view>
     </view>
   </view>
-  <view class="comment-wrap" wx:if="{{itemId}}">
+  <view class="comment-wrap" wx:if="{{itemId && !hasComment}}">
     <textarea placeholder="请说说您对宝贝和我们服务的评价和意见吧，有您的意见我们才能不断改善我的服务以便给您带来更好的体验哦" class="comment-textarea" bindinput="getCommentContent" maxlength="200"></textarea>
     <button class="ns-button add-comment-img-btn" bindtap="addCommentImg">添加图片</button>
     <button class="green-btn" bindtap="submitComment">提交评论</button>

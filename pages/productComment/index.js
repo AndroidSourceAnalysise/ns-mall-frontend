@@ -16,6 +16,7 @@ Page({
         pageNum: 1,
         pageSize: 30,
         isLastPage: false,
+        hasComment: false,
         commentImages: []
     },
 
@@ -126,7 +127,7 @@ Page({
             },
             success: function(res) {
                 data = res.data.list;
-                data = data.map(function (item) {
+                data = data.map(function(item) {
                     item = util.toLowerCaseForObjectProperty(item);
                     item.imgs = [];
                     item.photo_url1 && item.imgs.push(item.photo_url1);
@@ -139,18 +140,60 @@ Page({
                 self.setData({
                     commentList: list,
                     isLastPage: res.data.lastPage,
-                    pageNum: d.pageNum + 1
+                    pageNum: res.data.lastPage ? d.pageNum : d.pageNum + 1
                 });
             }
         });
     },
-    previewImgs: function (evt) {
+    previewImgs: function(evt) {
         var target = evt.currentTarget,
             idx = target.dataset.idx,
             imgs = this.data.commentList[idx].imgs;
 
         wx.previewImage({
             urls: imgs
+        });
+    },
+    likeComment: function(evt) {
+        var self = this,
+            target = evt.currentTarget,
+            idx = target.dataset.idx,
+            list = self.data.commentList,
+            commentId = target.dataset.commentId;
+
+        wx.request({
+            url: interfacePrefix + '/pntcmt/pntCmtLike',
+            method: 'POST',
+            data: {
+                cmt_id: commentId
+            },
+            success: function(res) {
+                list[idx].is_like = true;
+                self.setData({
+                    commentList: list
+                });
+            }
+        });
+    },
+    unLikeComment: function(evt) {
+        var self = this,
+            target = evt.currentTarget,
+            idx = target.dataset.idx,
+            list = self.data.commentList,
+            commentId = target.dataset.commentId;
+
+        wx.request({
+            url: interfacePrefix + '/pntcmt/cancelLike',
+            method: 'POST',
+            data: {
+                cmt_id: commentId
+            },
+            success: function(res) {
+                list[idx].is_like = false;
+                self.setData({
+                    commentList: list
+                });
+            }
         });
     },
     addCommentImg: function() {
@@ -226,6 +269,11 @@ Page({
             method: 'POST',
             data: params,
             success: function(res) {
+                if (d.curToConNo && !d.hasComment) {
+                    self.setData({
+                        hasComment: true
+                    });
+                }
                 self.getCommentListByProduct();
             }
         });
