@@ -1,16 +1,21 @@
 <!--pages/myMember/index.wxml-->
 <view class="container my-member">
-  <view class="filter-area" bindtap="filterMember">
-    <text data-filter-type="0" class="{{curFilterType == 0 ? 'active-filter' : ''}}">全部会员</text>
-    <text data-filter-type="1" class="{{curFilterType == 1 ? 'active-filter' : ''}}">已购买</text>
-    <text data-filter-type="2" class="{{curFilterType == 2 ? 'active-filter' : ''}}">未购买</text>
-  </view>
-  <view class="member-item white-bg" wx:for="{{memberList}}" wx:key="{{item.id}}">
-    <text class="member-register-time common-border-bottom">注册日期：{{item.register_dt}}</text>
-    <view class="member-item-detail">
-      <image src="{{item.pic}}" class="member-img"></image>
-      <text>昵称：{{item.con_name}}</text>
-      <text class="member-id">会员ID：{{item.con_no}}</text>
+    <view class="filter-area" bindtap="filterMember">
+        <text data-filter-type="0" class="{{curFilterType == 0 ? 'active-filter' : ''}}">全部会员</text>
+        <text data-filter-type="1" class="{{curFilterType == 1 ? 'active-filter' : ''}}">已购买</text>
+        <text data-filter-type="2" class="{{curFilterType == 2 ? 'active-filter' : ''}}">未购买</text>
     </view>
-  </view>
+    <view wx:if="{{memberList.length > 0}}">
+        <view class="member-item white-bg" wx:for="{{memberList}}" wx:key="{{item.id}}">
+            <text class="member-register-time common-border-bottom">注册日期：{{item.register_dt}}</text>
+            <view class="member-item-detail">
+                <image src="{{item.pic}}" class="member-img"></image>
+                <text>昵称：{{item.con_name}}</text>
+                <text class="member-id">会员ID：{{item.con_no}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="no-result-view" wx:else>
+        暂无记录~
+    </view>
 </view>

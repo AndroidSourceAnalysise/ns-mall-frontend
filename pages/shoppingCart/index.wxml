@@ -1,40 +1,40 @@
 <!--pages/shoppingCart/index.wxml-->
 <view class="container shopping-cart" wx:if="{{productList.length}}">
-  <view class="product-item" wx:for="{{productList}}" wx:key="{{item.cart_id}}">
-    <checkbox-group class="cr-box" bindchange="checkboxChange" data-index="{{index}}">
-      <label class="checkbox">
-        <checkbox value="selected" checked="{{item.checked}}"/>
-      </label>
-    </checkbox-group>
-    <image src="{{item.image_url}}" class="product-img"></image>
-    <view class="product-item-detail">
-      <text class="product-name">[{{item.product_name}}]</text>
-      <text class="product-specific">{{item.brief_description}}*{{item.product_num}}</text>
-      <view class="product-statis">
-        <text class="product-amount">¥ {{item.money || item.sal_price}}</text>
-        <view class="ns-counter shopping-counter">
-          <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
-          <text class="ns-counter-num">{{item.product_num}}</text>
-          <text class="ns-counter-symbol" data-index="{{index}}" bindtap="addNum">+</text>
+    <view class="product-item" wx:for="{{productList}}" wx:key="{{item.cart_id}}">
+        <checkbox-group class="cr-box" bindchange="checkboxChange" data-index="{{index}}">
+            <label class="checkbox">
+                <checkbox value="selected" checked="{{item.checked}}" />
+            </label>
+        </checkbox-group>
+        <image src="{{item.image_url}}" class="product-img"></image>
+        <view class="product-item-detail">
+            <text class="product-name">[{{item.product_name}}]</text>
+            <text class="product-specific">{{item.brief_description}}*{{item.product_num}}</text>
+            <view class="product-statis">
+                <text class="product-amount">¥ {{item.money || item.sal_price}}</text>
+                <view class="ns-counter shopping-counter">
+                    <text class="ns-counter-symbol" data-index="{{index}}" bindtap="reduceNum">-</text>
+                    <text class="ns-counter-num">{{item.product_num}}</text>
+                    <text class="ns-counter-symbol" data-index="{{index}}" bindtap="addNum">+</text>
+                </view>
+            </view>
         </view>
-      </view>
     </view>
-  </view>
-  <view class="shopping-statisc-area" fixed>
-    <view class="shopping-statisc-wrap">
-      <checkbox-group class="cr-box select-all" bindchange="sellAllChange">
-        <label class="checkbox">
-          <checkbox value="selected" checked="{{isSelectAll}}"/>全选
-        </label>
-      </checkbox-group>
-      <text class="total-money">合计：¥{{totalMoney}}</text>
-      <text class="pay-btn" bindtap="goSettlement">去结算</text>
-    </view>
-  </view>
 </view>
 <view class="empty-tip-area vertical-center" wx:else>
     <view class="empty-content-wrap">
         <view class="tip-text">您的购物车还没有任何宝贝~</view>
         <button class="ns-button go-index-btn" bindtap="goIndex">去逛逛</button>
     </view>
-  </view>
+</view>
+<view class="shopping-statisc-area" wx:if="{{productList.length}}">
+    <view class="shopping-statisc-wrap">
+        <checkbox-group class="cr-box select-all" bindchange="sellAllChange">
+            <label class="checkbox">
+                <checkbox value="selected" checked="{{isSelectAll}}" />全选
+            </label>
+        </checkbox-group>
+        <text class="total-money">合计：¥{{totalMoney}}</text>
+        <text class="pay-btn" bindtap="goSettlement">去结算</text>
+    </view>
+</view>

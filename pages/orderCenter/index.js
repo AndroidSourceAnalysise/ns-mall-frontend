@@ -199,6 +199,39 @@ Page({
             }
         })
     },
+    confirmOrder: function (evt) {
+        var self = this,
+            target = evt.currentTarget,
+            id = target.dataset.id,
+            flag;
+
+        wx.showModal({
+            title: '提示',
+            content: '确定要确认收货吗？',
+            success: function (res) {
+                flag = res.confirm;
+                if(!flag) {
+                    return;
+                }
+                wx.request({
+                    url: interfacePrefix + '/order/confirmOrder',
+                    method: 'POST',
+                    data: {
+                        order_id: id
+                    },
+                    success: function () {
+                        wx.showToast({
+                            title: '确认收货成功!',
+                            icon: 'none',
+                            mask: true,
+                            duration: 2000
+                        });
+                        self.getOrderList(self.data.pageNum, self.data.orderStatus);
+                    }
+                });
+            }
+        });
+    },
     refund: function (evt) {
         //申请退货
         var target = evt.currentTarget,

@@ -76,7 +76,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-
+        wx.stopPullDownRefresh();
     },
 
     /**
@@ -92,6 +92,7 @@ Page({
     onShareAppMessage: function() {
         return {
             title: '美味夏威夷果吃不停，女性用户享受永久随机优惠哦，还有各种其他优惠等着你来领!',
+            imageUrl: this.data.product.image_url,
             path: '/pages/productDetail/index?refereeNo=' + this.data.userInfo.con_no
         };
     },

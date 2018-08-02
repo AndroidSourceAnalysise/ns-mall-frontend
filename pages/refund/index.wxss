@@ -62,5 +62,5 @@
 }
 
 .choose-img-btn {
-    margin: 40rpx 0 0 40rpx;
+    margin: 40rpx 0 20rpx 40rpx;
 }

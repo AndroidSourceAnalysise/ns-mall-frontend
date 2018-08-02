@@ -1,34 +1,40 @@
 <!--pages/orderCenter/index.wxml-->
 <view class="container order-center">
     <view class="filter-area" bindtap="filterOrder">
-      <text data-filter-type="" class="{{orderStatus === null ? 'active-filter' : ''}}">全部</text>
-      <text data-filter-type="1" class="{{orderStatus == 1 ? 'active-filter' : ''}}">待付款</text>
-      <text data-filter-type="5" class="{{orderStatus == 5 ? 'active-filter' : ''}}">待发货</text>
-      <text data-filter-type="6" class="{{orderStatus == 6 ? 'active-filter' : ''}}">待收货</text>
-      <text data-filter-type="7" class="{{orderStatus == 7 ? 'active-filter' : ''}}">已收货</text>
+        <text data-filter-type="" class="{{orderStatus === null ? 'active-filter' : ''}}">全部</text>
+        <text data-filter-type="1" class="{{orderStatus == 1 ? 'active-filter' : ''}}">待付款</text>
+        <text data-filter-type="5" class="{{orderStatus == 5 ? 'active-filter' : ''}}">待发货</text>
+        <text data-filter-type="6" class="{{orderStatus == 6 ? 'active-filter' : ''}}">待收货</text>
+        <text data-filter-type="7" class="{{orderStatus == 7 ? 'active-filter' : ''}}">已收货</text>
     </view>
-    <view wx:for="{{orderList}}" wx:key="{{item.order_no}}" class="order-item">
-      <view class="order-item-status common-border-bottom">
-        <image src='../../images/orderCenter/logo.png' class="logo-img"></image>
-        <text class="shop-name">咪之猫坚果店</text>
-        <text class="order-status">{{statusMap[item.status]}}</text>
-      </view>
-      <view class="order-item-product common-border-bottom" wx:for="{{item.items}}" wx:key="p.pid" wx:for-item="p">
-        <image src="{{p.image_url}}" class="product-img"></image>
-        <text class="product-name inline-block">{{p.pnt_name}}</text>
-        <view class="product-other-info inline-block vertical-top">
-          <text class="product-price">¥{{p.sale_price}}</text>
-          <text class="product-num">×{{p.quantity}}</text>
+    <view wx:if="{{orderList.length > 0}}">
+        <view wx:for="{{orderList}}" wx:key="{{item.order_no}}" class="order-item">
+            <view class="order-item-status common-border-bottom">
+                <image src='../../images/orderCenter/logo.png' class="logo-img"></image>
+                <text class="shop-name">咪之猫坚果店</text>
+                <text class="order-status">{{statusMap[item.status]}}</text>
+            </view>
+            <view class="order-item-product common-border-bottom" wx:for="{{item.items}}" wx:key="p.pid" wx:for-item="p">
+                <image src="{{p.image_url}}" class="product-img"></image>
+                <text class="product-name inline-block">{{p.pnt_name}}</text>
+                <view class="product-other-info inline-block vertical-top">
+                    <text class="product-price">¥{{p.sale_price}}</text>
+                    <text class="product-num">×{{p.quantity}}</text>
+                </view>
+            </view>
+            <view class="order-statistic common-border-bottom">
+                <text>共{{item.quantity}}件商品，合计{{item.order_total}}¥（运费{{item.freight}}¥）</text>
+            </view>
+            <view class="operate-btns">
+                <button size="mini" plain="true" class="operate-btn" bindtap="confirmOrder" data-id="{{item.id}}" wx:if="{{item.status == 6}}">确认收货</button>
+                <button size="mini" plain="true" class="operate-btn" bindtap="operateOrder" data-idx="{{index}}" wx:if="{{orderOperateText[item.status]}}">{{orderOperateText[item.status]}}</button>
+                <button size="mini" plain="true" class="operate-btn" bindtap="deleteOrder" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 1}}">删除订单</button>
+                <button size="mini" plain="true" class="operate-btn" bindtap="refund" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 7}}">申请退货</button>
+                <button size="mini" plain="true" class="operate-btn" bindtap="goOrderDetail" data-idx="{{index}}">查看详情</button>
+            </view>
         </view>
-      </view>
-      <view class="order-statistic common-border-bottom">
-        <text>共{{item.quantity}}件商品，合计{{item.order_total}}¥（运费{{item.freight}}¥）</text>
-      </view>
-      <view class="operate-btns">
-        <button size="mini" plain="true" class="operate-btn" bindtap="operateOrder" data-idx="{{index}}" wx:if="{{orderOperateText[item.status]}}">{{orderOperateText[item.status]}}</button>
-        <button size="mini" plain="true" class="operate-btn" bindtap="deleteOrder" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 1}}">删除订单</button>
-        <button size="mini" plain="true" class="operate-btn" bindtap="refund" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 7}}">申请退货</button>
-        <button size="mini" plain="true" class="operate-btn" bindtap="goOrderDetail" data-idx="{{index}}">查看详情</button>
-      </view>
+    </view>
+    <view class="no-result-view" wx:else>
+        暂无记录~
     </view>
 </view>

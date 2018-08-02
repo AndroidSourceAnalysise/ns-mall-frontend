@@ -140,7 +140,6 @@
     height: 76rpx;
     margin-right: 14rpx;
     margin-bottom: 16rpx;
-    border: 1px solid #aac4bf;
 }
 
 .comment-img:last-child {

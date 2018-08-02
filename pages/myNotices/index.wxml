@@ -1,12 +1,17 @@
 <!--pages/myNotices/index.wxml-->
 <view class="container my-notices">
-  <view class="filter-area" bindtap="filterOrder">
-    <text data-filter-type="1" class="{{curFilterType == 1 ? 'active-filter' : ''}}">会员通知</text>
-    <text data-filter-type="2" class="{{curFilterType == 2 ? 'active-filter' : ''}}">订单通知</text>
-    <text data-filter-type="3" class="{{curFilterType == 3 ? 'active-filter' : ''}}">系统通知</text>
-  </view>
-  <view class="notice-item" wx:for="{{noticeList}}" wx:key="{{item.id}}">
-    <view class="notice-item-time">{{item.create_dt}}</view>
-    <view class="notice-item-content">{{item.msg_content}}</view>
-  </view>
+    <view class="filter-area" bindtap="filterOrder">
+        <text data-filter-type="1" class="{{curFilterType == 1 ? 'active-filter' : ''}}">会员通知</text>
+        <text data-filter-type="2" class="{{curFilterType == 2 ? 'active-filter' : ''}}">订单通知</text>
+        <text data-filter-type="3" class="{{curFilterType == 3 ? 'active-filter' : ''}}">系统通知</text>
+    </view>
+    <view wx:if="{{noticeList.length > 0}}">
+        <view class="notice-item" wx:for="{{noticeList}}" wx:key="{{item.id}}">
+            <view class="notice-item-time">{{item.create_dt}}</view>
+            <view class="notice-item-content">{{item.msg_content}}</view>
+        </view>
+    </view>
+    <view class="no-result-view" wx:else>
+        暂无记录~
+    </view>
 </view>
