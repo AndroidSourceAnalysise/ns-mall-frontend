@@ -19,7 +19,7 @@ Page({
         var self = this;
 
         this.getQRCodeTemplates().then(function(d) {
-            self.getQRCode(d);
+            d && self.getQRCode(d);
         });
         util.getPersonInfo().then(function (d) {
             self.setData({ userInfo: d });
@@ -81,7 +81,7 @@ Page({
                 url: interfacePrefix + '/qrcode/getQrBgmList',
                 method: 'POST',
                 success: function(res) {
-                    resolve(res.data[0].id);
+                    resolve(res.data.length ? res.data[0].id : null);
                 }
             })
         });

@@ -22,7 +22,7 @@
       </view>
     </view>
   </view>
-  <view bindtap="selectCoupon" class="relative common-block-style">优惠券：<text class="coupons">{{order.availableCoupon.desc || '无可用优惠券'}}</text><text class="right-arrow">></text></view>
+  <view bindtap="selectCoupon" class="relative common-block-style">优惠券：<text class="coupons">{{order.availableCoupon.desc || '无可用优惠券'}}</text><text class="right-arrow">{{order.availableCoupon.desc ? '>' : ''}}</text></view>
   <view class="relative common-block-style" wx:if="{{integral}}">积分抵现：<input class="message-input" bindinput="getDeuctMoney" value="{{useIntegral}}" type="number"/>
     <view class="block-desc-text">共{{integral}}积分,使用{{useIntegral}}积分抵扣<text class="red-text">{{deductMoney}}</text>元</view>
   </view>

@@ -112,7 +112,6 @@
   background-color: #fff;
 }
 .coupon-item-radio {
-  display: inline-block;
   margin-right: 10rpx;
 }
 .coupon-name-wrap, .coupon-info, .operate-btn {

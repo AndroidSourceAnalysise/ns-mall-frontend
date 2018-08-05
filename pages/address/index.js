@@ -252,7 +252,7 @@ Page({
         url,
         param;
 
-    if (!self.validAddressData()) {
+    if (!self.validAddressData(add)) {
       wx.showToast({
         title: '请填写正确的信息',
         icon: 'none',
