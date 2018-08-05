@@ -29,7 +29,7 @@
                 <button size="mini" plain="true" class="operate-btn" bindtap="confirmOrder" data-id="{{item.id}}" wx:if="{{item.status == 6}}">确认收货</button>
                 <button size="mini" plain="true" class="operate-btn" bindtap="operateOrder" data-idx="{{index}}" wx:if="{{orderOperateText[item.status]}}">{{orderOperateText[item.status]}}</button>
                 <button size="mini" plain="true" class="operate-btn" bindtap="deleteOrder" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 1}}">删除订单</button>
-                <button size="mini" plain="true" class="operate-btn" bindtap="refund" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 7}}">申请退货</button>
+                <button size="mini" plain="true" class="operate-btn" bindtap="refund" data-id="{{item.id}}" data-idx="{{index}}" wx:if="{{item.status == 6}}">申请退货</button>
                 <button size="mini" plain="true" class="operate-btn" bindtap="goOrderDetail" data-idx="{{index}}">查看详情</button>
             </view>
         </view>

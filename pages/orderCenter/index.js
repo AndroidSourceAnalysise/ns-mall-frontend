@@ -16,8 +16,12 @@ Page({
             5: '已出货',
             6: '待收货',
             7: '已收货',
+            8: '申请退货',
+            9: '已退货',
             10: '已退款',
-            11: '已关闭'
+            11: '已关闭',
+            12: '已删除',
+            13: '已评价'
         },
         orderOperateText: {
             1: '去支付',
@@ -42,7 +46,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.getOrderList(this.data.pageNum, this.data.orderStatus);
+        
     },
 
     /**
@@ -56,7 +60,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        this.getOrderList(this.data.pageNum, this.data.orderStatus);
     },
 
     /**

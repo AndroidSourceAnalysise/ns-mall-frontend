@@ -27,7 +27,7 @@
         <view class="product-other-info relative">
             <text class="product-name">[{{product.pnt_name}}]*{{product.quantity}}</text>
             <view class="product-price red-text">¥{{product.amount}}</view>
-            <button class="ns-button comment-btn" bindtap="goComment" data-idx="{{index}}">{{product.comment_tag == 0 ? '去评价' : '查看评价'}}</button>
+            <button class="ns-button comment-btn" bindtap="goComment" data-idx="{{index}}" wx:if="{{order.status != 1}}">{{product.comment_tag == 0 ? '去评价' : '查看评价'}}</button>
         </view>
     </view>
     <view class="relative common-block-style">

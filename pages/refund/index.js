@@ -11,6 +11,7 @@ Page({
         productList: [],
         refundType: 0,
         remark: '',
+        imgs: [],
         refundDescMap: {
             0: '退货原因说明',
             1: '备注'

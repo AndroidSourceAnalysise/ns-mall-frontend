@@ -106,7 +106,6 @@ Page({
                 billNo: expressNo
             },
             success: function(res) {
-                console.log(res);
                 self.setData({
                     logistMessageList: res.data
                 });
