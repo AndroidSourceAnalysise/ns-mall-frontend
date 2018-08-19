@@ -175,3 +175,11 @@
 .relative {
     position: relative;
 }
+
+.detail-photos {
+    padding-top: 0;
+}
+
+.detail-photos .subtitle {
+    margin: 40rpx 0;
+}
